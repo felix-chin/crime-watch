@@ -1,0 +1,859 @@
+{
+  "cities_count": 122,
+  "cities": [
+    {
+      "city_name": "Chicago",
+      "incidents_quantity": 7095389,
+      "city_key": "CHI",
+      "first_incident_date": "2001-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-22T23:58:00.000Z"
+    },
+    {
+      "city_name": "New York City",
+      "incidents_quantity": 6600106,
+      "city_key": "NYC",
+      "first_incident_date": "2006-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-06-30T23:40:00.000Z"
+    },
+    {
+      "city_name": "Philadelphia",
+      "incidents_quantity": 2635325,
+      "city_key": "PHI",
+      "first_incident_date": "2006-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-30T01:52:43.000Z"
+    },
+    {
+      "city_name": "Los Angeles",
+      "incidents_quantity": 2223966,
+      "city_key": "LAX",
+      "first_incident_date": "2010-01-01T00:01:00.000Z",
+      "last_incident_date": "2020-07-27T23:55:00.000Z"
+    },
+    {
+      "city_name": "Austin",
+      "incidents_quantity": 2216868,
+      "city_key": "AUS",
+      "first_incident_date": "2003-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-25T19:09:00.000Z"
+    },
+    {
+      "city_name": "Fresno",
+      "incidents_quantity": 1815364,
+      "city_key": "FAT",
+      "first_incident_date": "2011-01-05T23:01:24.000Z",
+      "last_incident_date": "2019-04-11T07:56:28.000Z"
+    },
+    {
+      "city_name": "Memphis",
+      "incidents_quantity": 1149804,
+      "city_key": "MEM",
+      "first_incident_date": "2000-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T06:12:00.000Z"
+    },
+    {
+      "city_name": "Pima County",
+      "incidents_quantity": 947423,
+      "city_key": "GPM",
+      "first_incident_date": "2000-01-01T00:00:01.000Z",
+      "last_incident_date": "2019-11-05T01:08:03.000Z"
+    },
+    {
+      "city_name": "Nashville",
+      "incidents_quantity": 889053,
+      "city_key": "BNA",
+      "first_incident_date": "2013-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T21:00:00.000Z"
+    },
+    {
+      "city_name": "Seattle",
+      "incidents_quantity": 818116,
+      "city_key": "SEA",
+      "first_incident_date": "2008-01-01T00:02:00.000Z",
+      "last_incident_date": "2020-07-29T22:10:22.000Z"
+    },
+    {
+      "city_name": "Elgin",
+      "incidents_quantity": 704701,
+      "city_key": "EGN",
+      "first_incident_date": "2010-02-01T00:17:00.000Z",
+      "last_incident_date": "2019-11-25T18:07:37.000Z"
+    },
+    {
+      "city_name": "Worcester",
+      "incidents_quantity": 690509,
+      "city_key": "ORH",
+      "first_incident_date": "2011-03-06T15:34:27.000Z",
+      "last_incident_date": "2019-12-12T19:21:31.000Z"
+    },
+    {
+      "city_name": "Indianapolis",
+      "incidents_quantity": 678389,
+      "city_key": "IND",
+      "first_incident_date": "2018-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T21:17:15.000Z"
+    },
+    {
+      "city_name": "Denver",
+      "incidents_quantity": 582079,
+      "city_key": "DEN",
+      "first_incident_date": "2014-01-02T00:00:00.000Z",
+      "last_incident_date": "2020-07-30T06:00:00.000Z"
+    },
+    {
+      "city_name": "Baltimore",
+      "incidents_quantity": 484417,
+      "city_key": "BAL",
+      "first_incident_date": "2000-01-01T08:00:00.000Z",
+      "last_incident_date": "2020-07-25T23:50:00.000Z"
+    },
+    {
+      "city_name": "Boston",
+      "incidents_quantity": 457783,
+      "city_key": "BOS",
+      "first_incident_date": "2015-06-15T00:00:00.000Z",
+      "last_incident_date": "2020-06-30T03:20:00.000Z"
+    },
+    {
+      "city_name": "Washington",
+      "incidents_quantity": 429773,
+      "city_key": "WAS",
+      "first_incident_date": "2008-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T21:53:26.000Z"
+    },
+    {
+      "city_name": "Dallas",
+      "incidents_quantity": 404409,
+      "city_key": "DAL",
+      "first_incident_date": "2006-01-01T08:00:00.000Z",
+      "last_incident_date": "2020-07-29T20:30:00.000Z"
+    },
+    {
+      "city_name": "Tucson",
+      "incidents_quantity": 385399,
+      "city_key": "TUZ",
+      "first_incident_date": "2018-01-01T00:05:00.000Z",
+      "last_incident_date": "2020-07-28T23:50:00.000Z"
+    },
+    {
+      "city_name": "Atlanta",
+      "incidents_quantity": 370260,
+      "city_key": "ATL",
+      "first_incident_date": "2000-04-28T00:01:00.000Z",
+      "last_incident_date": "2020-07-29T16:45:00.000Z"
+    },
+    {
+      "city_name": "Houston",
+      "incidents_quantity": 359852,
+      "city_key": "HOU",
+      "first_incident_date": "2018-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T15:33:00.000Z"
+    },
+    {
+      "city_name": "San Francisco",
+      "incidents_quantity": 350182,
+      "city_key": "SFO",
+      "first_incident_date": "2018-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T22:50:00.000Z"
+    },
+    {
+      "city_name": "Phoenix",
+      "incidents_quantity": 307833,
+      "city_key": "PHX",
+      "first_incident_date": "2015-11-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-23T23:18:00.000Z"
+    },
+    {
+      "city_name": "Fremont",
+      "incidents_quantity": 303059,
+      "city_key": "FNC",
+      "first_incident_date": "2000-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-12T12:27:00.000Z"
+    },
+    {
+      "city_name": "Sonoma County",
+      "incidents_quantity": 277397,
+      "city_key": "STS",
+      "first_incident_date": "2000-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T09:19:00.000Z"
+    },
+    {
+      "city_name": "Detroit",
+      "incidents_quantity": 268185,
+      "city_key": "DET",
+      "first_incident_date": "2000-01-01T10:00:00.000Z",
+      "last_incident_date": "2020-05-28T00:20:00.000Z"
+    },
+    {
+      "city_name": "Salem OR",
+      "incidents_quantity": 264851,
+      "city_key": "SLE",
+      "first_incident_date": "2000-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-11-13T00:00:00.000Z"
+    },
+    {
+      "city_name": "San Antonio",
+      "incidents_quantity": 261861,
+      "city_key": "SAT",
+      "first_incident_date": "2019-04-24T00:00:00.000Z",
+      "last_incident_date": "2020-07-30T14:09:00.000Z"
+    },
+    {
+      "city_name": "Evanston",
+      "incidents_quantity": 253447,
+      "city_key": "EVA",
+      "first_incident_date": "2017-01-01T00:02:34.000Z",
+      "last_incident_date": "2020-07-30T02:55:16.000Z"
+    },
+    {
+      "city_name": "San Jose",
+      "incidents_quantity": 234313,
+      "city_key": "SJC",
+      "first_incident_date": "2018-01-01T00:05:40.000Z",
+      "last_incident_date": "2020-07-29T17:53:26.000Z"
+    },
+    {
+      "city_name": "Raleigh",
+      "incidents_quantity": 230430,
+      "city_key": "RAG",
+      "first_incident_date": "2014-06-01T04:15:00.000Z",
+      "last_incident_date": "2020-07-30T02:24:00.000Z"
+    },
+    {
+      "city_name": "Portland",
+      "incidents_quantity": 206325,
+      "city_key": "PDX",
+      "first_incident_date": "2019-10-25T18:03:50.000Z",
+      "last_incident_date": "2020-07-27T11:15:31.000Z"
+    },
+    {
+      "city_name": "St. Louis",
+      "incidents_quantity": 150940,
+      "city_key": "STL",
+      "first_incident_date": "2017-11-01T00:01:00.000Z",
+      "last_incident_date": "2020-07-29T20:14:27.000Z"
+    },
+    {
+      "city_name": "Jacksonville",
+      "incidents_quantity": 148172,
+      "city_key": "JAX",
+      "first_incident_date": "2019-05-14T00:06:00.000Z",
+      "last_incident_date": "2020-07-30T13:09:00.000Z"
+    },
+    {
+      "city_name": "Santa Monica",
+      "incidents_quantity": 127048,
+      "city_key": "SMO",
+      "first_incident_date": "2006-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-30T00:00:00.000Z"
+    },
+    {
+      "city_name": "Plano",
+      "incidents_quantity": 117489,
+      "city_key": "PLZ",
+      "first_incident_date": "2002-08-13T00:00:00.000Z",
+      "last_incident_date": "2019-11-08T13:32:12.000Z"
+    },
+    {
+      "city_name": "Albuquerque",
+      "incidents_quantity": 117302,
+      "city_key": "ABQ",
+      "first_incident_date": "2019-03-19T07:11:00.000Z",
+      "last_incident_date": "2020-07-29T09:17:00.000Z"
+    },
+    {
+      "city_name": "Miami",
+      "incidents_quantity": 101389,
+      "city_key": "MIA",
+      "first_incident_date": "2009-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-12T16:56:15.000Z"
+    },
+    {
+      "city_name": "Jacksonville AR",
+      "incidents_quantity": 101359,
+      "city_key": "LRF",
+      "first_incident_date": "2010-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-11-26T09:28:27.000Z"
+    },
+    {
+      "city_name": "Fort Worth",
+      "incidents_quantity": 98304,
+      "city_key": "FWT",
+      "first_incident_date": "2018-01-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-26T11:20:00.000Z"
+    },
+    {
+      "city_name": "Las Vegas",
+      "incidents_quantity": 97411,
+      "city_key": "LAS",
+      "first_incident_date": "2019-04-24T00:01:00.000Z",
+      "last_incident_date": "2020-07-30T12:00:00.000Z"
+    },
+    {
+      "city_name": "San Diego",
+      "incidents_quantity": 88273,
+      "city_key": "SAN",
+      "first_incident_date": "2019-06-21T00:00:00.000Z",
+      "last_incident_date": "2020-07-28T21:48:00.000Z"
+    },
+    {
+      "city_name": "Sacramento",
+      "incidents_quantity": 82883,
+      "city_key": "SAC",
+      "first_incident_date": "2019-04-30T13:25:00.000Z",
+      "last_incident_date": "2020-07-12T00:00:00.000Z"
+    },
+    {
+      "city_name": "Cape Coral",
+      "incidents_quantity": 82479,
+      "city_key": "CC2",
+      "first_incident_date": "2000-06-01T15:58:34.000Z",
+      "last_incident_date": "2019-12-12T16:36:59.000Z"
+    },
+    {
+      "city_name": "Alameda County",
+      "incidents_quantity": 77753,
+      "city_key": "NGZ",
+      "first_incident_date": "2011-03-03T00:08:00.000Z",
+      "last_incident_date": "2019-12-12T00:08:00.000Z"
+    },
+    {
+      "city_name": "Garland",
+      "incidents_quantity": 77436,
+      "city_key": "GRX",
+      "first_incident_date": "2000-01-01T12:00:00.000Z",
+      "last_incident_date": "2019-11-07T11:24:00.000Z"
+    },
+    {
+      "city_name": "Shelby County",
+      "incidents_quantity": 73789,
+      "city_key": "MEM",
+      "first_incident_date": "2009-01-01T00:01:00.000Z",
+      "last_incident_date": "2019-12-11T17:40:00.000Z"
+    },
+    {
+      "city_name": "Kansas",
+      "incidents_quantity": 65139,
+      "city_key": "MKC",
+      "first_incident_date": "2000-01-01T00:01:00.000Z",
+      "last_incident_date": "2020-07-29T06:09:00.000Z"
+    },
+    {
+      "city_name": "Orlando",
+      "incidents_quantity": 64792,
+      "city_key": "ORL",
+      "first_incident_date": "2017-01-13T00:23:01.000Z",
+      "last_incident_date": "2020-07-26T05:16:00.000Z"
+    },
+    {
+      "city_name": "Louisville",
+      "incidents_quantity": 62199,
+      "city_key": "LUI",
+      "first_incident_date": "2019-05-14T00:00:00.000Z",
+      "last_incident_date": "2020-07-28T19:43:00.000Z"
+    },
+    {
+      "city_name": "Aurora",
+      "incidents_quantity": 61625,
+      "city_key": "AUC",
+      "first_incident_date": "2017-11-01T00:00:00.000Z",
+      "last_incident_date": "2020-07-28T06:18:00.000Z"
+    },
+    {
+      "city_name": "Mesa",
+      "incidents_quantity": 58065,
+      "city_key": "MSC",
+      "first_incident_date": "2019-04-17T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T19:59:00.000Z"
+    },
+    {
+      "city_name": "Essex",
+      "incidents_quantity": 54913,
+      "city_key": "8SS",
+      "first_incident_date": "2001-01-01T09:50:23.000Z",
+      "last_incident_date": "2019-12-12T18:04:25.000Z"
+    },
+    {
+      "city_name": "Des Moines",
+      "incidents_quantity": 49616,
+      "city_key": "DSN",
+      "first_incident_date": "2000-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-11-25T11:00:00.000Z"
+    },
+    {
+      "city_name": "Tampa",
+      "incidents_quantity": 42967,
+      "city_key": "TPA",
+      "first_incident_date": "2019-04-19T00:59:00.000Z",
+      "last_incident_date": "2020-07-29T10:05:00.000Z"
+    },
+    {
+      "city_name": "Huntington Beach",
+      "incidents_quantity": 42022,
+      "city_key": "HTD",
+      "first_incident_date": "2018-01-01T00:01:00.000Z",
+      "last_incident_date": "2019-12-15T15:06:00.000Z"
+    },
+    {
+      "city_name": "Grand Rapids",
+      "incidents_quantity": 37729,
+      "city_key": "L4D",
+      "first_incident_date": "2011-11-11T01:18:00.000Z",
+      "last_incident_date": "2020-07-06T16:18:01.000Z"
+    },
+    {
+      "city_name": "Pittsburgh",
+      "incidents_quantity": 31609,
+      "city_key": "PIT",
+      "first_incident_date": "2019-04-20T00:29:00.000Z",
+      "last_incident_date": "2020-07-29T23:42:00.000Z"
+    },
+    {
+      "city_name": "Columbus",
+      "incidents_quantity": 30687,
+      "city_key": "CMH",
+      "first_incident_date": "2019-04-20T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T13:40:00.000Z"
+    },
+    {
+      "city_name": "Marin County",
+      "incidents_quantity": 30293,
+      "city_key": "SRF",
+      "first_incident_date": "2013-01-01T01:23:00.000Z",
+      "last_incident_date": "2020-07-30T10:57:00.000Z"
+    },
+    {
+      "city_name": "West Hollywood",
+      "incidents_quantity": 28073,
+      "city_key": "WWU",
+      "first_incident_date": "2017-11-01T00:01:00.000Z",
+      "last_incident_date": "2019-12-13T17:30:00.000Z"
+    },
+    {
+      "city_name": "Spring",
+      "incidents_quantity": 26468,
+      "city_key": "ABS",
+      "first_incident_date": "2019-03-19T07:01:59.000Z",
+      "last_incident_date": "2020-07-17T23:00:00.000Z"
+    },
+    {
+      "city_name": "Cincinnati",
+      "incidents_quantity": 25655,
+      "city_key": "CVG",
+      "first_incident_date": "2019-05-14T00:10:00.000Z",
+      "last_incident_date": "2020-07-29T13:21:00.000Z"
+    },
+    {
+      "city_name": "Thurston County",
+      "incidents_quantity": 23037,
+      "city_key": "OLM",
+      "first_incident_date": "2019-06-03T00:08:00.000Z",
+      "last_incident_date": "2020-07-24T22:45:00.000Z"
+    },
+    {
+      "city_name": "Omaha",
+      "incidents_quantity": 20403,
+      "city_key": "OMA",
+      "first_incident_date": "2019-05-14T09:17:00.000Z",
+      "last_incident_date": "2020-07-29T16:39:00.000Z"
+    },
+    {
+      "city_name": "Oklahoma City",
+      "incidents_quantity": 17815,
+      "city_key": "OKC",
+      "first_incident_date": "2019-04-19T00:05:00.000Z",
+      "last_incident_date": "2020-06-21T00:08:00.000Z"
+    },
+    {
+      "city_name": "Lincoln City",
+      "incidents_quantity": 17695,
+      "city_key": "YOC",
+      "first_incident_date": "2008-02-01T10:00:00.000Z",
+      "last_incident_date": "2019-11-13T00:00:00.000Z"
+    },
+    {
+      "city_name": "Dallas OR",
+      "incidents_quantity": 16717,
+      "city_key": "DAE",
+      "first_incident_date": "2001-04-14T08:00:00.000Z",
+      "last_incident_date": "2019-09-19T21:18:00.000Z"
+    },
+    {
+      "city_name": "Hendersonville",
+      "incidents_quantity": 15449,
+      "city_key": "HDV",
+      "first_incident_date": "2012-04-16T15:30:00.000Z",
+      "last_incident_date": "2019-12-10T15:40:00.000Z"
+    },
+    {
+      "city_name": "Jacksonville AL",
+      "incidents_quantity": 15062,
+      "city_key": "JAO",
+      "first_incident_date": "2002-09-27T22:00:00.000Z",
+      "last_incident_date": "2019-12-12T20:00:00.000Z"
+    },
+    {
+      "city_name": "Minneapolis",
+      "incidents_quantity": 12624,
+      "city_key": "MES",
+      "first_incident_date": "2019-03-19T07:01:45.000Z",
+      "last_incident_date": "2020-07-29T02:33:00.000Z"
+    },
+    {
+      "city_name": "Pierce County",
+      "incidents_quantity": 11693,
+      "city_key": "TIW",
+      "first_incident_date": "2019-06-03T00:01:00.000Z",
+      "last_incident_date": "2020-06-30T20:09:00.000Z"
+    },
+    {
+      "city_name": "Bakersfield",
+      "incidents_quantity": 9758,
+      "city_key": "BFL",
+      "first_incident_date": "2019-04-17T00:00:00.000Z",
+      "last_incident_date": "2020-07-29T01:35:00.000Z"
+    },
+    {
+      "city_name": "\"\"",
+      "incidents_quantity": 7537,
+      "city_key": "DEN",
+      "first_incident_date": "2001-06-07T03:55:00.000Z",
+      "last_incident_date": "2020-07-28T09:15:00.000Z"
+    },
+    {
+      "city_name": "Long Beach",
+      "incidents_quantity": 7324,
+      "city_key": "LGB",
+      "first_incident_date": "2019-04-17T00:20:00.000Z",
+      "last_incident_date": "2020-07-29T19:26:00.000Z"
+    },
+    {
+      "city_name": "Lansing",
+      "incidents_quantity": 6275,
+      "city_key": "LAN",
+      "first_incident_date": "2019-12-10T06:21:00.000Z",
+      "last_incident_date": "2020-07-29T16:50:01.000Z"
+    },
+    {
+      "city_name": "Miami Springs",
+      "incidents_quantity": 5716,
+      "city_key": "MIZ",
+      "first_incident_date": "2001-11-17T19:30:00.000Z",
+      "last_incident_date": "2019-12-02T23:19:00.000Z"
+    },
+    {
+      "city_name": "Newark",
+      "incidents_quantity": 5427,
+      "city_key": "EWR",
+      "first_incident_date": "2019-07-14T11:22:00.000Z",
+      "last_incident_date": "2020-07-12T07:20:00.000Z"
+    },
+    {
+      "city_name": "WALDPORT",
+      "incidents_quantity": 5215,
+      "city_key": "ZRK",
+      "first_incident_date": "2009-04-18T23:50:00.000Z",
+      "last_incident_date": "2019-12-12T14:23:01.000Z"
+    },
+    {
+      "city_name": "San Rafael",
+      "incidents_quantity": 5141,
+      "city_key": "SRF",
+      "first_incident_date": "2019-07-03T00:00:00.000Z",
+      "last_incident_date": "2020-07-27T01:57:00.000Z"
+    },
+    {
+      "city_name": "Ross",
+      "incidents_quantity": 5076,
+      "city_key": "RZO",
+      "first_incident_date": "2019-07-03T00:00:00.000Z",
+      "last_incident_date": "2020-07-19T10:38:00.000Z"
+    },
+    {
+      "city_name": "NEWPORT",
+      "incidents_quantity": 3966,
+      "city_key": "NPO",
+      "first_incident_date": "2005-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-11T21:23:23.000Z"
+    },
+    {
+      "city_name": "LINCOLN COUNTY",
+      "incidents_quantity": 3617,
+      "city_key": "YOC",
+      "first_incident_date": "2015-09-15T13:24:00.000Z",
+      "last_incident_date": "2019-12-11T19:29:00.000Z"
+    },
+    {
+      "city_name": "Richmond Hill",
+      "incidents_quantity": 3464,
+      "city_key": "RJK",
+      "first_incident_date": "2013-05-01T09:00:00.000Z",
+      "last_incident_date": "2019-11-20T19:53:00.000Z"
+    },
+    {
+      "city_name": "Fairfax",
+      "incidents_quantity": 3357,
+      "city_key": "AIF",
+      "first_incident_date": "2019-07-03T00:00:00.000Z",
+      "last_incident_date": "2020-07-19T10:38:00.000Z"
+    },
+    {
+      "city_name": "OTIS",
+      "incidents_quantity": 3193,
+      "city_key": "YOC",
+      "first_incident_date": "2001-01-01T12:00:00.000Z",
+      "last_incident_date": "2019-12-10T13:21:08.000Z"
+    },
+    {
+      "city_name": "SILETZ",
+      "incidents_quantity": 2969,
+      "city_key": "TDX",
+      "first_incident_date": "2014-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-11T14:07:02.000Z"
+    },
+    {
+      "city_name": "Colorado Springs",
+      "incidents_quantity": 2871,
+      "city_key": "COS",
+      "first_incident_date": "2019-06-01T11:59:00.000Z",
+      "last_incident_date": "2020-07-28T21:00:00.000Z"
+    },
+    {
+      "city_name": "LINCOLN CITY",
+      "incidents_quantity": 2512,
+      "city_key": "YOC",
+      "first_incident_date": "2014-07-15T09:00:00.000Z",
+      "last_incident_date": "2019-12-10T19:14:22.000Z"
+    },
+    {
+      "city_name": "DEPOE BAY",
+      "incidents_quantity": 2422,
+      "city_key": "YOC",
+      "first_incident_date": "2006-10-10T18:15:00.000Z",
+      "last_incident_date": "2019-12-12T01:24:16.000Z"
+    },
+    {
+      "city_name": "Central Marin",
+      "incidents_quantity": 1852,
+      "city_key": "DXM",
+      "first_incident_date": "2019-07-03T12:41:00.000Z",
+      "last_incident_date": "2020-07-26T09:54:00.000Z"
+    },
+    {
+      "city_name": "TOLEDO",
+      "incidents_quantity": 1832,
+      "city_key": "TDX",
+      "first_incident_date": "2009-01-01T12:00:00.000Z",
+      "last_incident_date": "2019-12-12T10:22:20.000Z"
+    },
+    {
+      "city_name": "Charlotte",
+      "incidents_quantity": 1699,
+      "city_key": "CLT",
+      "first_incident_date": "2019-03-19T07:00:00.000Z",
+      "last_incident_date": "2020-07-28T20:36:00.000Z"
+    },
+    {
+      "city_name": "Brooklyn",
+      "incidents_quantity": 1612,
+      "city_key": "BOY",
+      "first_incident_date": "2019-04-19T11:05:00.000Z",
+      "last_incident_date": "2020-07-29T21:00:00.000Z"
+    },
+    {
+      "city_name": "YACHATS",
+      "incidents_quantity": 1414,
+      "city_key": "Y9O",
+      "first_incident_date": "2015-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-10T19:05:08.000Z"
+    },
+    {
+      "city_name": "Belvedere",
+      "incidents_quantity": 1312,
+      "city_key": "VD7",
+      "first_incident_date": "2019-07-09T17:30:00.000Z",
+      "last_incident_date": "2020-07-25T17:14:00.000Z"
+    },
+    {
+      "city_name": "Mill Valley",
+      "incidents_quantity": 1250,
+      "city_key": "VYV",
+      "first_incident_date": "2019-07-07T09:50:00.000Z",
+      "last_incident_date": "2020-07-26T21:55:00.000Z"
+    },
+    {
+      "city_name": "Tiburon",
+      "incidents_quantity": 1211,
+      "city_key": "XTN",
+      "first_incident_date": "2019-07-05T14:25:00.000Z",
+      "last_incident_date": "2020-07-24T12:55:00.000Z"
+    },
+    {
+      "city_name": "Sausalito",
+      "incidents_quantity": 1065,
+      "city_key": "JMC",
+      "first_incident_date": "2019-07-05T14:25:00.000Z",
+      "last_incident_date": "2020-07-19T02:22:00.000Z"
+    },
+    {
+      "city_name": "SOUTH BEACH",
+      "incidents_quantity": 962,
+      "city_key": "BS6",
+      "first_incident_date": "2014-07-07T18:00:00.000Z",
+      "last_incident_date": "2019-12-07T07:48:57.000Z"
+    },
+    {
+      "city_name": "East Lansing",
+      "incidents_quantity": 948,
+      "city_key": "EQ4",
+      "first_incident_date": "2019-06-06T03:00:00.000Z",
+      "last_incident_date": "2020-07-29T17:05:01.000Z"
+    },
+    {
+      "city_name": "Novato",
+      "incidents_quantity": 829,
+      "city_key": "NOT",
+      "first_incident_date": "2019-07-21T04:45:00.000Z",
+      "last_incident_date": "2020-07-19T11:10:00.000Z"
+    },
+    {
+      "city_name": "SEAL ROCK",
+      "incidents_quantity": 784,
+      "city_key": "ZRK",
+      "first_incident_date": "2007-06-04T12:00:00.000Z",
+      "last_incident_date": "2019-12-12T12:27:35.000Z"
+    },
+    {
+      "city_name": "GLENEDEN BEACH",
+      "incidents_quantity": 768,
+      "city_key": "YOC",
+      "first_incident_date": "2001-01-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-11T19:01:34.000Z"
+    },
+    {
+      "city_name": "TIDEWATER",
+      "incidents_quantity": 315,
+      "city_key": "ZRK",
+      "first_incident_date": "2016-07-03T15:00:00.000Z",
+      "last_incident_date": "2019-12-09T10:48:06.000Z"
+    },
+    {
+      "city_name": "EDDYVILLE",
+      "incidents_quantity": 291,
+      "city_key": "TDX",
+      "first_incident_date": "2016-06-09T07:30:00.000Z",
+      "last_incident_date": "2019-11-11T09:20:30.000Z"
+    },
+    {
+      "city_name": "LOGSDEN",
+      "incidents_quantity": 212,
+      "city_key": "TDX",
+      "first_incident_date": "2016-07-17T17:37:00.000Z",
+      "last_incident_date": "2019-11-27T15:26:01.000Z"
+    },
+    {
+      "city_name": "BLODGETT",
+      "incidents_quantity": 193,
+      "city_key": "CVL",
+      "first_incident_date": "2015-11-01T00:00:00.000Z",
+      "last_incident_date": "2019-12-11T10:10:47.000Z"
+    },
+    {
+      "city_name": "NEOTSU",
+      "incidents_quantity": 164,
+      "city_key": "YOC",
+      "first_incident_date": "2016-07-26T12:55:00.000Z",
+      "last_incident_date": "2019-11-29T12:22:42.000Z"
+    },
+    {
+      "city_name": "OTTER ROCK",
+      "incidents_quantity": 157,
+      "city_key": "NPO",
+      "first_incident_date": "2015-11-10T12:39:00.000Z",
+      "last_incident_date": "2019-12-06T18:58:11.000Z"
+    },
+    {
+      "city_name": "Trenton",
+      "incidents_quantity": 102,
+      "city_key": "XNG",
+      "first_incident_date": "2020-01-11T11:30:00.000Z",
+      "last_incident_date": "2020-07-02T11:17:00.000Z"
+    },
+    {
+      "city_name": "Petaluma",
+      "incidents_quantity": 60,
+      "city_key": "PUM",
+      "first_incident_date": "2020-05-06T09:22:00.000Z",
+      "last_incident_date": "2020-07-01T12:33:00.000Z"
+    },
+    {
+      "city_name": "Rohnert Park",
+      "incidents_quantity": 50,
+      "city_key": "RFH",
+      "first_incident_date": "2019-12-24T01:28:00.000Z",
+      "last_incident_date": "2020-07-22T10:59:00.000Z"
+    },
+    {
+      "city_name": "Santa Rosa",
+      "incidents_quantity": 50,
+      "city_key": "STS",
+      "first_incident_date": "2020-07-16T09:12:00.000Z",
+      "last_incident_date": "2020-07-26T15:08:00.000Z"
+    },
+    {
+      "city_name": "ALSEA",
+      "incidents_quantity": 45,
+      "city_key": "CVL",
+      "first_incident_date": "2016-07-04T00:00:00.000Z",
+      "last_incident_date": "2019-11-11T21:15:18.000Z"
+    },
+    {
+      "city_name": "KERNVILLE",
+      "incidents_quantity": 19,
+      "city_key": "YOC",
+      "first_incident_date": "2015-10-07T07:00:00.000Z",
+      "last_incident_date": "2018-09-02T21:38:50.000Z"
+    },
+    {
+      "city_name": "POLK COUNTY",
+      "incidents_quantity": 4,
+      "city_key": "SLE",
+      "first_incident_date": "2017-11-08T17:15:34.000Z",
+      "last_incident_date": "2019-03-19T14:38:08.000Z"
+    },
+    {
+      "city_name": "STE D",
+      "incidents_quantity": 3,
+      "city_key": "YOC",
+      "first_incident_date": "2017-09-13T19:21:03.000Z",
+      "last_incident_date": "2019-01-30T01:15:46.000Z"
+    },
+    {
+      "city_name": "AUMSVILLE",
+      "incidents_quantity": 2,
+      "city_key": "USV",
+      "first_incident_date": "2018-09-03T00:37:19.000Z",
+      "last_incident_date": "2018-10-10T21:58:31.000Z"
+    },
+    {
+      "city_name": "DALLAS",
+      "incidents_quantity": 1,
+      "city_key": "DAE",
+      "first_incident_date": "2018-04-15T13:02:32.000Z",
+      "last_incident_date": "2018-04-15T13:02:32.000Z"
+    },
+    {
+      "city_name": "LANE COUNTY",
+      "incidents_quantity": 1,
+      "city_key": "EUG",
+      "first_incident_date": "2018-05-18T10:02:41.000Z",
+      "last_incident_date": "2018-05-18T10:02:41.000Z"
+    },
+    {
+      "city_name": "MT ANGEL",
+      "incidents_quantity": 1,
+      "city_key": "SLE",
+      "first_incident_date": "2018-04-24T17:08:04.000Z",
+      "last_incident_date": "2018-04-24T17:08:04.000Z"
+    }
+  ]
+}
