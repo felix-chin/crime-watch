@@ -1,5 +1,6 @@
 require('dotenv/config');
 const express = require('express');
+const statsJSON = require('../data/stats1.json');
 
 const db = require('./database');
 const ClientError = require('./client-error');
@@ -8,15 +9,21 @@ const sessionMiddleware = require('./session-middleware');
 
 const app = express();
 
+const stats = statsJSON.report_types;
+
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
 
 app.use(express.json());
 
 app.get('/api/health-check', (req, res, next) => {
-  db.query(`select 'successfully connected' as "message"`)
+  db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
+});
+
+app.get('/api/stats', (req, res, next) => {
+  res.send(stats);
 });
 
 app.use('/api', (req, res, next) => {
