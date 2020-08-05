@@ -23,7 +23,38 @@ app.get('/api/health-check', (req, res, next) => {
 });
 
 app.get('/api/stats', (req, res, next) => {
-  res.send(stats);
+  const typeMap = {
+    'Theft From Motor Vehicle': 'vehicleRelated',
+    'All Other Larceny': 'theft',
+    'Simple Assault': 'assault',
+    'Destruction/Damage/Vandalism of Property': 'vandalism',
+    'Motor Vehicle Theft': 'vehicleRelated',
+    'Aggravated Assault': 'assault',
+    'Burglary/Breaking & Entering': 'theft',
+    'Domestic Violence/Simple Assault': 'assault',
+    Robbery: 'theft',
+    'Identity Theft': 'theft',
+    Shoplifting: 'theft',
+    'Domestic Violence/Aggravated Assault': 'assault',
+    'Stolen Property Offenses': 'theft',
+    'Murder & Non-negligent Manslaughter': 'homicide'
+  };
+  const statsObj = {
+    vehicleRelated: 0,
+    assault: 0,
+    vandalism: 0,
+    theft: 0,
+    homicide: 0,
+    other: 0
+  };
+  stats.forEach(stat => {
+    if (stat.type in typeMap) {
+      statsObj[typeMap[stat.type]] += stat.count;
+    } else {
+      statsObj.other += stat.count;
+    }
+  });
+  res.send(statsObj);
 });
 
 app.use('/api', (req, res, next) => {
