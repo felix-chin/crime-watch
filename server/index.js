@@ -24,37 +24,80 @@ app.get('/api/health-check', (req, res, next) => {
 
 app.get('/api/stats', (req, res, next) => {
   const typeMap = {
-    'Theft From Motor Vehicle': 'vehicleRelated',
-    'All Other Larceny': 'theft',
-    'Simple Assault': 'assault',
-    'Destruction/Damage/Vandalism of Property': 'vandalism',
-    'Motor Vehicle Theft': 'vehicleRelated',
-    'Aggravated Assault': 'assault',
-    'Burglary/Breaking & Entering': 'theft',
-    'Domestic Violence/Simple Assault': 'assault',
-    Robbery: 'theft',
-    'Identity Theft': 'theft',
-    Shoplifting: 'theft',
-    'Domestic Violence/Aggravated Assault': 'assault',
-    'Stolen Property Offenses': 'theft',
-    'Murder & Non-negligent Manslaughter': 'homicide'
+    'Theft From Motor Vehicle': 'property',
+    'All Other Larceny': 'property',
+    'Simple Assault': 'violent',
+    'Destruction/Damage/Vandalism of Property': 'property',
+    'Motor Vehicle Theft': 'property',
+    'Aggravated Assault': 'violent',
+    'Burglary/Breaking & Entering': 'property',
+    'Domestic Violence/Simple Assault': 'violent',
+    Robbery: 'property',
+    'Identity Theft': 'whiteCollar',
+    Shoplifting: 'property',
+    Intimidation: 'organized',
+    'Weapon Law Violations': 'organized',
+    'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
+    'Trespass of Real Property': 'property',
+    'Domestic Violence/Aggravated Assault': 'violent',
+    'Child Abuse/Simple/Psychological abuse': 'violent',
+    Rape: 'violent',
+    'Counterfeiting/Forgery': 'whiteCollar',
+    'Human Trafficking, Commercial Sex Acts': 'organized',
+    'Human Trafficking, Involuntary Servitude': 'organized',
+    'Assisting or Promoting Prostitution': 'organized',
+    Embezzlement: 'whiteCollar',
+    'Sexual Battery': 'violent',
+    'Stolen Property Offenses': 'property',
+    'Drug Equipment Violations': 'publicOrder',
+    Drunkenness: 'publicOrder',
+    Arson: 'property',
+    'Drug/Narcotic Violations': 'publicOrder',
+    'Disorderly Conduct': 'publicOrder',
+    'Driving Under the Influence': 'publicOrder',
+    'Kidnapping/Abduction': 'organized',
+    'Extortion/Blackmail': 'highTech',
+    'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
+    'Hacking/Computer Invasion': 'highTech',
+    'Credit Card/Automated Teller Machine Fraud': 'highTech',
+    'Murder & Non-negligent Manslaughter': 'violent'
   };
-  const statsObj = {
-    vehicleRelated: 0,
-    assault: 0,
-    vandalism: 0,
-    theft: 0,
-    homicide: 0,
+
+  const crimeCounts = {
+    violent: 0,
+    property: 0,
+    publicOrder: 0,
+    whiteCollar: 0,
+    organized: 0,
+    highTech: 0,
+    other: 0,
+    total: 0
+  };
+
+  const crimeRates = {
+    violent: 0,
+    property: 0,
+    publicOrder: 0,
+    whiteCollar: 0,
+    organized: 0,
+    highTech: 0,
     other: 0
   };
+
   stats.forEach(stat => {
     if (stat.type in typeMap) {
-      statsObj[typeMap[stat.type]] += stat.count;
+      crimeCounts[typeMap[stat.type]] += stat.count;
     } else {
-      statsObj.other += stat.count;
+      crimeCounts.other += stat.count;
     }
+    crimeCounts.total += stat.count;
   });
-  res.send(statsObj);
+
+  for (const key in crimeRates) {
+    crimeRates[key] = (crimeCounts[key] / crimeCounts.total * 100).toFixed(2) + '%';
+  }
+
+  res.send(crimeRates);
 });
 
 app.use('/api', (req, res, next) => {
