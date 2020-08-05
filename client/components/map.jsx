@@ -1,4 +1,12 @@
 import React from 'react';
+// import assault from './assault.png';
+// import homicide from './homicide.png';
+// import vehicleRelated from './vehicle-related.png';
+// import theft from './theft.png';
+// import vandalism from './vandalism.png';
+// import other from './other.png';
+
+
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -8,6 +16,7 @@ export default class Map extends React.Component {
 
     this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
+    this.checkCrimeType = this.checkCrimeType.bind(this);
   }
 
   getData() {
@@ -27,14 +36,54 @@ export default class Map extends React.Component {
 
   displayMarkers() {
     const coords = this.state.coords;
+    const iconMarker = this.checkCrimeType();
     coords.map(coord => {
       this.marker = new google.maps.Marker({
         position: { lat: coord.lat, lng: coord.lng },
         map: this.map,
-        icon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Ball-Pink-icon.png'
+        icon: iconMarker
       });
     });
+  }
 
+  checkCrimeType() {
+    const crime = this.state.crimes;
+    const typeMap = {
+      'Property': 'propertyCrime',
+      'Disorderly': 'publicOrderCrime',
+      'THEFT': 'properyCrime',
+      'SEX': 'violentCrime',
+      'ASSAULT': 'violentCrime',
+      'BURGLARY': 'properyCrime',
+      'VANDALISM': 'propertyCrime',
+      'CRIMINAL THREATS': 'violentCrime',
+      'SHOPLIFTING': 'propertyCrime',
+      'INTIMATE PARTNER': 'violentCrime',
+      'BRANDISH WEAPON': 'organizedCrime',
+      'VEHICLE THEFT': 'properyCrime',
+      'OTHER': 'otherCrime',
+      'Suspicious': 'otherCrime',
+      'Assault': 'violentCrime',
+      'Larceny': 'propertyCrime',
+      'Vandalism': 'propertyCrime',
+      'Arson': 'propertyCrime',
+      'Robbery': 'propertyCrime',
+      'Other': 'otherCrime',
+      'Tresspass': 'propertyCrime',
+      'Embezzlement': 'whiteCollarCrime',
+      'Non-Criminal': 'otherCrime',
+      'Drug Violation': 'publicOrderCrime',
+      'Fraud': 'whiteCollarCrime',
+      'Manslaughter': 'violentCrime',
+      'Intimidation': 'violentCrime',
+      'Warrent': 'otherCrime',
+      'Fire Report': 'otherCrime',
+      'Breaking': 'propertyCrime',
+      'STOLEN': 'propertyCrime',
+      'BATTERY': 'violentCrime',
+      'ROBBERY': 'propertyCrime',
+      ''
+    };
   }
 
   componentDidMount() {
