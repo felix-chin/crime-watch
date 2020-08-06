@@ -1,4 +1,5 @@
 import React from 'react';
+import CrimeRates from './crime-rates';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -6,7 +7,6 @@ export default class App extends React.Component {
       message: null,
       isLoading: true
     };
-    this.getStats = this.getStats.bind(this);
   }
 
   componentDidMount() {
@@ -18,8 +18,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : <h1>{ this.state.message.toUpperCase() }</h1>;
+    return (
+      <CrimeRates />
+    );
   }
 }
