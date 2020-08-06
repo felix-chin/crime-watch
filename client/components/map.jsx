@@ -121,10 +121,24 @@ export default class Map extends React.Component {
 
   render() {
     return (
-      <div
-        ref={this.googleMapContainerRef}
-        style={{ width: '2000px', height: '600px' }}
-      >{this.displayMarkers()}</div>
+      <>
+        <div className="d-flex p-4 input-group input-group-lg md-form form-sm form-2 position-absolute" style={{ zIndex: 1 }}>
+          <input className="form-control my-0 py-1 red-border shadow" type="text" placeholder="Search" aria-label="Search"></input>
+          <div className="input-group-append">
+            <span className="input-group-text red lighten-3" id="basic-text1"><i className="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div
+          ref={this.googleMapContainerRef}
+          style={{ width: '100vw', height: '100vh' }}
+          className="d-flex"
+        >
+          {this.displayMarkers()}
+
+        </div>
+      </>
+
     );
   }
 }
