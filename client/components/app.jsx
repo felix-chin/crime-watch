@@ -1,5 +1,9 @@
 import React from 'react';
+
+import CrimeRateList from './crime-rate-list';
+
 import Map from './map';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,7 +12,6 @@ export default class App extends React.Component {
       message: null,
       isLoading: true
     };
-    this.getStats = this.getStats.bind(this);
   }
 
   componentDidMount() {
@@ -21,9 +24,13 @@ export default class App extends React.Component {
 
   render() {
     return (
+
+      <CrimeRateList />
+
       <div>
         <Map />
       </div>
+
     );
   }
 }

@@ -17,9 +17,19 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+
+ALTER TABLE ONLY public.searches DROP CONSTRAINT searches_pkey;
+ALTER TABLE ONLY public.bookmarks DROP CONSTRAINT bookmarks_pkey;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
+ALTER TABLE public.searches ALTER COLUMN "searchId" DROP DEFAULT;
+ALTER TABLE public.bookmarks ALTER COLUMN "bookmarkId" DROP DEFAULT;
 DROP SEQUENCE public."users_userId_seq";
 DROP TABLE public.users;
+DROP SEQUENCE public."searches_searchId_seq";
+DROP TABLE public.searches;
+DROP SEQUENCE public."bookmarks_bookmarkId_seq";
+DROP TABLE public.bookmarks;
+
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -55,6 +65,72 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+
+-- Name: bookmarks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.bookmarks (
+    "bookmarkId" integer NOT NULL,
+    "userId" integer NOT NULL,
+    incident json NOT NULL,
+    "createdAt" timestamp(6) with time zone DEFAULT now() NOT NULL
+);
+
+
+--
+-- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."bookmarks_bookmarkId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."bookmarks_bookmarkId_seq" OWNED BY public.bookmarks."bookmarkId";
+
+
+--
+-- Name: searches; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.searches (
+    "searchId" integer NOT NULL,
+    "userId" integer NOT NULL,
+    location text NOT NULL,
+    "createdAt" timestamp(6) with time zone DEFAULT now() NOT NULL
+);
+
+
+--
+-- Name: searches_searchId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."searches_searchId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_searchId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."searches_searchId_seq" OWNED BY public.searches."searchId";
+
+
+--
+
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -87,6 +163,22 @@ ALTER SEQUENCE public."users_userId_seq" OWNED BY public.users."userId";
 
 
 --
+
+-- Name: bookmarks bookmarkId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bookmarks ALTER COLUMN "bookmarkId" SET DEFAULT nextval('public."bookmarks_bookmarkId_seq"'::regclass);
+
+
+--
+-- Name: searches searchId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.searches ALTER COLUMN "searchId" SET DEFAULT nextval('public."searches_searchId_seq"'::regclass);
+
+
+--
+
 -- Name: users userId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -94,19 +186,69 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 
 
 --
+
+-- Data for Name: bookmarks; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.bookmarks ("bookmarkId", "userId", incident, "createdAt") FROM stdin;
+\.
+
+
+--
+-- Data for Name: searches; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
+\.
+
+
+--
+
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
-5	vargas123	Daniel Vargas	Los Angeles
+
 \.
+
+
+--
+
+-- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."bookmarks_bookmarkId_seq"', 1, false);
+
+
+--
+-- Name: searches_searchId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."searches_searchId_seq"', 1, false);
 
 
 --
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 5, true);
+SELECT pg_catalog.setval('public."users_userId_seq"', 1, false);
+
+
+--
+-- Name: bookmarks bookmarks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bookmarks
+    ADD CONSTRAINT bookmarks_pkey PRIMARY KEY ("bookmarkId");
+
+
+--
+-- Name: searches searches_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY ("searchId");
+
 
 
 --
