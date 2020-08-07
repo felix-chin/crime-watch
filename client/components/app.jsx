@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from './map';
+import EditProfile from './edit-profile';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Map />
+        <EditProfile />
+        {/* <Map /> */}
       </div>
     );
   }
