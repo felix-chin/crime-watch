@@ -19,6 +19,19 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
+app.get('/api/crimes', (req, res, next) => {
+  const result = [];
+  for (let i = 0; i < 10; i++) {
+    result.push(
+      {
+        type: statsJSON.report_types[i].type,
+        percent: ((statsJSON.report_types[i].count / statsJSON.total_incidents) * 100).toFixed(2)
+      }
+    );
+  }
+  res.status(200).json(result);
+});
+
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))

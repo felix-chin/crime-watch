@@ -1,9 +1,10 @@
 import React from 'react';
 
-import CrimeRateList from './crime-rate-list';
+// import CrimeRateList from './crime-rate-list';
 
-import Map from './map';
+// import Map from './map';
 
+import SearchPage from './search';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,11 +26,7 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <CrimeRateList />
-
-      <div>
-        <Map />
-      </div>
+      <SearchPage />
 
     );
   }
