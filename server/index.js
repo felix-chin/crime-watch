@@ -1,5 +1,8 @@
 require('dotenv/config');
 const express = require('express');
+
+const crimesJSON = require('../data/crimes1.json');
+
 const statsJSON = require('../data/stats1.json');
 
 const db = require('./database');
@@ -20,6 +23,48 @@ app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
+});
+
+app.get('/api/crimes', (req, res, next) => {
+  res.json(crimesJSON);
+});
+
+app.get('/api/default-location', (req, res, next) => {
+  const sql = `
+    select *
+    from "users"
+  `;
+  db.query(sql)
+    .then(result => {
+      const users = result.rows;
+      res.json(users);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/default-location', (req, res, next) => {
+  const sql = `
+    insert into "users" ("username", "name", "defaultLocation")
+    values ($1, $2, $3)
+    returning *;
+  `;
+  const username = req.body.username;
+  const name = req.body.name;
+  const location = req.body.defaultLocation;
+
+  const params = [username, name, location];
+
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows) {
+        throw new ClientError('Please provide a valid location', 400);
+      } else {
+        const location = result.rows[0];
+        res.status(201).json(location);
+      }
+    })
+    .catch(err => next(err));
+
 });
 
 app.get('/api/stats', (req, res, next) => {
