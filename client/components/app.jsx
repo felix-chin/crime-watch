@@ -18,24 +18,29 @@ export default class App extends React.Component {
       });
   }
 
-  editProfile(userId) {
-    const currentUsers = this.state.users;
-    const id = parseInt(userId, 10);
-    const updatedProfile = currentUsers.filter(user => user.userId !== userId);
-    fetch(`/api/users/${userId}`, {
+  editProfile(profile) {
+    fetch(`/api/users/${6}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(profile)
     })
       .then(response => response.json())
-      .then(() => {
-        this.setState({ users: updatedProfile });
+      .then(updatedProfile => {
+        const newUsers = this.state.users.map(user => {
+          if (user.userId === 6) {
+            return updatedProfile;
+          } else {
+            return user;
+          }
+        });
+        this.setState({ users: newUsers });
       });
   }
 
   render() {
     return (
       <div>
-        <EditProfile edit={this.editProfile}/>
+        <EditProfile edit={this.editProfile} />
         {/* <Map /> */}
       </div>
     );

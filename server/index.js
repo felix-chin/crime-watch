@@ -67,7 +67,7 @@ app.post('/api/users', (req, res, next) => {
 
 });
 
-app.put('/api/users/:userId', (req, res, next) => {
+app.patch('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const defaultLocation = req.body.defaultLocation;
   const name = req.body.name;
