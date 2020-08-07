@@ -5,28 +5,31 @@ class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      crime: []
+      location: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    fetch('/api/search').then(
-      data => data.json()
-    ).then(
-      json => {
-        this.setState({ crime: json });
-      }
-    );
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit() {
+    const setView = this.props.setView;
+    setView('crime-rates');
+    // method to post search location to Search History database
   }
 
   render() {
     return (
       <div className="main">
         <Header />
-        <form className="form-group location" onSubmit={this.handleSubmit.bind(this)}>
+        <form className="form-group location" onSubmit={this.handleSubmit}>
           <div className="input-group row">
-            <input type="text" className="form-control " name="location" placeholder="Enter location" />
+            <input type="text" className="form-control " name="location" placeholder="Enter location" onChange={this.handleChange} />
             <span>
               <input type="submit" className="btn btn-outline-dark"></input>
             </span>

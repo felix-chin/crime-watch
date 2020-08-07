@@ -21,11 +21,13 @@ export default class CrimeRateList extends React.Component {
   }
 
   render() {
+    const setView = this.props.setView;
     const statsObj = this.state.stats;
     const crimeRateListItems = Object.keys(statsObj).map((item, i) => {
       return (
         <CrimeRateListItem
           key={i}
+          setView={() => setView('crime-details', { crimeType: statsObj[item].crimeType })}
           image={statsObj[item].image}
           crimeType={statsObj[item].crimeType}
           rate={statsObj[item].rate} />
