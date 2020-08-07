@@ -54,24 +54,37 @@ export default class CrimeDetailsList extends React.Component {
       'Murder & Non-negligent Manslaughter': 'violent'
     };
     const type = this.props.type;
-    const incidentsList = [];
     fetch('/api/crime-details')
       .then(res => res.json())
       .then(data => {
+        const incidentsList = [];
         data.forEach(incident => {
-          if (typeMap[incident['incident_offense_description']] === type) {
-            incidentsList.push(incident)
+          if (typeMap[incident.incident_offense_description] === type) {
+            incidentsList.push(incident);
           }
-        })
-        this.setState({ incidents: incidentsList })
+        });
+        this.setState({ incidents: incidentsList });
       })
       .catch(err => console.error(err));
   }
 
   render() {
     const setView = this.props.setView;
+    const incidents = this.state.incidents;
+    const renderIncidents = incidents.map((incident, i) => {
+      return (
+        <CrimeDetailsListItem
+          key={i}
+          setView={() => setView('incident')}
+          date={incident.incident_date}
+          address={incident.incident_address}
+          detail={incident.incident_offense_description} />
+      );
+    });
     return (
-      <div>test</div>
+      <div>
+        {renderIncidents}
+      </div>
     );
   }
 }

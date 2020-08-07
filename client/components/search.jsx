@@ -19,8 +19,8 @@ class SearchPage extends React.Component {
 
   handleSubmit() {
     const setView = this.props.setView;
-    setView('crime-rates');
-    // method to post search location to Search History database
+    setView('crime-rates', {});
+    // needs method to post search location to Search History database
   }
 
   render() {

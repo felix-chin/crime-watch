@@ -37,7 +37,7 @@ export default class App extends React.Component {
     } else if (view === 'crime-rates') {
       renderPage = <CrimeRateList setView={this.setView}/>;
     } else if (view === 'crime-details') {
-      renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />
+      renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
       renderPage = <Map />;
     }
