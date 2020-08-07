@@ -2,13 +2,14 @@ import React from 'react';
 import CrimeRateList from './crime-rate-list';
 import Map from './map';
 import SearchPage from './search';
+import CrimeDetailsList from './crime-details-list';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'search',
+        name: 'crime-rates',
         params: {}
       },
       location: ''
@@ -17,11 +18,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // fetch('/api/health-check')
-    //   .then(res => res.json())
-    //   .then(data => this.setState({ message: data.message || data.error }))
-    //   .catch(err => this.setState({ message: err.message }))
-    //   .finally(() => this.setState({ isLoading: false }));
   }
 
   setView(name, params) {
@@ -40,6 +36,8 @@ export default class App extends React.Component {
       renderPage = <SearchPage setView={this.setView}/>;
     } else if (view === 'crime-rates') {
       renderPage = <CrimeRateList setView={this.setView}/>;
+    } else if (view === 'crime-details') {
+      renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />
     } else if (view === 'map') {
       renderPage = <Map />;
     }
