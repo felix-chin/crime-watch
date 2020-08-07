@@ -29,7 +29,7 @@ app.get('/api/crimes', (req, res, next) => {
   res.json(crimesJSON);
 });
 
-app.get('/api/default-location', (req, res, next) => {
+app.get('/api/users', (req, res, next) => {
   const sql = `
     select *
     from "users"
@@ -42,7 +42,7 @@ app.get('/api/default-location', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/create-user', (req, res, next) => {
+app.post('/api/users', (req, res, next) => {
   const sql = `
     insert into "users" ("username", "name", "defaultLocation")
     values ($1, $2, $3)
@@ -67,7 +67,7 @@ app.post('/api/create-user', (req, res, next) => {
 
 });
 
-app.put('/api/edit-profile/:userId', (req, res, next) => {
+app.put('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const defaultLocation = req.body.defaultLocation;
   const name = req.body.name;

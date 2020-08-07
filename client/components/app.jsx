@@ -5,25 +5,37 @@ import EditProfile from './edit-profile';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      message: null,
-      isLoading: true
-    };
+    this.state = { users: [] };
     // this.getStats = this.getStats.bind(this);
+    this.editProfile = this.editProfile.bind(this);
   }
 
   componentDidMount() {
-    // fetch('/api/health-check')
-    //   .then(res => res.json())
-    //   .then(data => this.setState({ message: data.message || data.error }))
-    //   .catch(err => this.setState({ message: err.message }))
-    //   .finally(() => this.setState({ isLoading: false }));
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ users: data });
+      });
+  }
+
+  editProfile(userId) {
+    const currentUsers = this.state.users;
+    const id = parseInt(userId, 10);
+    const updatedProfile = currentUsers.filter(user => user.userId !== userId);
+    fetch(`/api/users/${userId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then(() => {
+        this.setState({ users: updatedProfile });
+      });
   }
 
   render() {
     return (
       <div>
-        <EditProfile />
+        <EditProfile edit={this.editProfile}/>
         {/* <Map /> */}
       </div>
     );
