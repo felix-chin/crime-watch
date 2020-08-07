@@ -19,7 +19,7 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
-app.get('/api/crimes', (req, res, next) => {
+app.get('/api/search', (req, res, next) => {
   const result = [];
   for (let i = 0; i < 10; i++) {
     result.push(
@@ -40,6 +40,10 @@ app.get('/api/health-check', (req, res, next) => {
 
 app.get('/api/crimes', (req, res, next) => {
   res.json(crimesJSON);
+});
+
+app.get('/api/crime-details', (req, res, next) => {
+  res.json(crimesJSON.incidents);
 });
 
 app.get('/api/default-location', (req, res, next) => {

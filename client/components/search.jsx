@@ -11,7 +11,7 @@ class SearchPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:3000/api/crimes').then(
+    fetch('/api/search').then(
       data => data.json()
     ).then(
       json => {
