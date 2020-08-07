@@ -42,7 +42,7 @@ app.get('/api/default-location', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/default-location', (req, res, next) => {
+app.post('/api/create-user', (req, res, next) => {
   const sql = `
     insert into "users" ("username", "name", "defaultLocation")
     values ($1, $2, $3)
@@ -65,6 +65,32 @@ app.post('/api/default-location', (req, res, next) => {
     })
     .catch(err => next(err));
 
+});
+
+app.put('/api/edit-profile/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const defaultLocation = req.body.defaultLocation;
+  const name = req.body.name;
+  const params = [name, defaultLocation, userId];
+
+  const sql = `
+    update "users"
+    set "name"            = $1,
+         "defaultLocation" = $2
+    where "userId"        = $3
+    returning *;
+  `;
+
+  db.query(sql, params)
+    .then(result => {
+      const editProfile = result.rows[0];
+      if (!editProfile) {
+        throw new ClientError(`cannot find user with id ${userId}`, 400);
+      } else {
+        res.status(201).json(editProfile);
+      }
+    })
+    .catch(err => next(err));
 });
 
 app.get('/api/stats', (req, res, next) => {

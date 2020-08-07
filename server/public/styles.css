@@ -1,0 +1,23 @@
+body {
+  background-color: #F0F0F0;
+}
+
+.profilePic {
+  border-radius: 50%;
+}
+
+.quantico-font {
+  font-family: Quantico;
+  font-size: 36px;
+  font-weight: bold;
+  color: #1244A5
+}
+
+.roboto-font {
+  font-family: Roboto;
+}
+
+.btn-color {
+  background-color: #1244A5;
+  color: white;
+}

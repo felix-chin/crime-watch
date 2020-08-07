@@ -9,7 +9,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true
     };
-    this.getStats = this.getStats.bind(this);
+    // this.getStats = this.getStats.bind(this);
   }
 
   componentDidMount() {
