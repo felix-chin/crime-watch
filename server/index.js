@@ -75,13 +75,41 @@ app.get('/api/stats', (req, res, next) => {
   };
 
   const crimeRates = {
-    violent: 0,
-    property: 0,
-    publicOrder: 0,
-    whiteCollar: 0,
-    organized: 0,
-    highTech: 0,
-    other: 0
+    violent: {
+      crimeType: 'Violent',
+      image: './images/crimes/violent.png',
+      rate: 0
+    },
+    property: {
+      crimeType: 'Property',
+      image: './images/crimes/property.png',
+      rate: 0
+    },
+    publicOrder: {
+      crimeType: 'Public Order',
+      image: './images/crimes/public-order.png',
+      rate: 0
+    },
+    whiteCollar: {
+      crimeType: 'White Collar',
+      image: './images/crimes/white-collar.png',
+      rate: 0
+    },
+    organized: {
+      crimeType: 'Organized',
+      image: './images/crimes/organized-crime.png',
+      rate: 0
+    },
+    highTech: {
+      crimeType: 'High Tech',
+      image: './images/crimes/high-tech.png',
+      rate: 0
+    },
+    other: {
+      crimeType: 'Other',
+      image: './images/crimes/other.png',
+      rate: 0
+    }
   };
 
   stats.forEach(stat => {
@@ -94,7 +122,7 @@ app.get('/api/stats', (req, res, next) => {
   });
 
   for (const key in crimeRates) {
-    crimeRates[key] = (crimeCounts[key] / crimeCounts.total * 100).toFixed(2) + '%';
+    crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
   }
 
   res.send(crimeRates);

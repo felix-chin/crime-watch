@@ -1,5 +1,5 @@
 import React from 'react';
-import CrimeRates from './crime-rates';
+import CrimeRateList from './crime-rate-list';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <CrimeRates />
+      <CrimeRateList />
     );
   }
 }
