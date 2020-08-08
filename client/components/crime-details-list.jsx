@@ -1,5 +1,7 @@
 import React from 'react';
+import CrimeDetailsHeading from './crime-details-heading';
 import CrimeDetailsListItem from './crime-details-list-item';
+import typeMap from '../../shared/type-map';
 
 export default class CrimeDetailsList extends React.Component {
   constructor(props) {
@@ -14,45 +16,6 @@ export default class CrimeDetailsList extends React.Component {
   }
 
   getIncidents() {
-    const typeMap = {
-      'Theft From Motor Vehicle': 'property',
-      'All Other Larceny': 'property',
-      'Simple Assault': 'violent',
-      'Destruction/Damage/Vandalism of Property': 'property',
-      'Motor Vehicle Theft': 'property',
-      'Aggravated Assault': 'violent',
-      'Burglary/Breaking & Entering': 'property',
-      'Domestic Violence/Simple Assault': 'violent',
-      Robbery: 'property',
-      'Identity Theft': 'whiteCollar',
-      Shoplifting: 'property',
-      Intimidation: 'organized',
-      'Weapon Law Violations': 'organized',
-      'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
-      'Trespass of Real Property': 'property',
-      'Domestic Violence/Aggravated Assault': 'violent',
-      'Child Abuse/Simple/Psychological abuse': 'violent',
-      Rape: 'violent',
-      'Counterfeiting/Forgery': 'whiteCollar',
-      'Human Trafficking, Commercial Sex Acts': 'organized',
-      'Human Trafficking, Involuntary Servitude': 'organized',
-      'Assisting or Promoting Prostitution': 'organized',
-      Embezzlement: 'whiteCollar',
-      'Sexual Battery': 'violent',
-      'Stolen Property Offenses': 'property',
-      'Drug Equipment Violations': 'publicOrder',
-      Drunkenness: 'publicOrder',
-      Arson: 'property',
-      'Drug/Narcotic Violations': 'publicOrder',
-      'Disorderly Conduct': 'publicOrder',
-      'Driving Under the Influence': 'publicOrder',
-      'Kidnapping/Abduction': 'organized',
-      'Extortion/Blackmail': 'highTech',
-      'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
-      'Hacking/Computer Invasion': 'highTech',
-      'Credit Card/Automated Teller Machine Fraud': 'highTech',
-      'Murder & Non-negligent Manslaughter': 'violent'
-    };
     const type = this.props.type;
     fetch('/api/crime-details')
       .then(res => res.json())
@@ -69,8 +32,40 @@ export default class CrimeDetailsList extends React.Component {
   }
 
   render() {
+    const type = this.props.type;
     const setView = this.props.setView;
     const incidents = this.state.incidents;
+    let image;
+    let heading;
+    switch (type) {
+      case 'violent':
+        image = './images/crimes/violent.png';
+        heading = 'Violent';
+        break;
+      case 'property':
+        image = './images/crimes/property.png';
+        heading = 'Property';
+        break;
+      case 'publicOrder':
+        image = './images/crimes/public-order.png';
+        heading = 'Public Order';
+        break;
+      case 'whiteCollar':
+        image = './images/crimes/white-collar.png';
+        heading = 'White Collar';
+        break;
+      case 'organized':
+        image = './images/crimes/organized-crime.png';
+        heading = 'Organized';
+        break;
+      case 'highTech':
+        image = './images/crimes/high-tech.png';
+        heading = 'High Tech';
+        break;
+      default:
+        image = './images/crimes/other.png';
+        heading = 'Other';
+    }
     const renderIncidents = incidents.map((incident, i) => {
       const date = incident.incident_date;
       const newDate = date.slice(0, date.indexOf('T'));
@@ -87,6 +82,7 @@ export default class CrimeDetailsList extends React.Component {
       <div className="container pt-3">
         <span onClick={() => setView('crime-rates')} className="mx-3 text-muted cursor-pointer back">Back</span>
         <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
+        <CrimeDetailsHeading image={image} heading={heading} />
         <div className="mx-3">
           {renderIncidents}
         </div>
