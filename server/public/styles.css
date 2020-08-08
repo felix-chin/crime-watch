@@ -25,3 +25,15 @@ body {
   width: 40px;
   height: 40px;
 }
+
+.list-type-none {
+  list-style-type: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.back {
+  font-size: 18px;
+}
