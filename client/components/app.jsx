@@ -1,11 +1,7 @@
 import React from 'react';
-
-import CrimeRateList from './crime-rate-list';
-
 import Map from './map';
 import EditProfile from './edit-profile';
 import CrimeRateList from './crime-rate-list';
-
 import SearchPage from './search';
 import CrimeDetailsList from './crime-details-list';
 
@@ -22,7 +18,6 @@ export default class App extends React.Component {
       location: ''
     };
     this.setView = this.setView.bind(this);
-    this.getStats = this.getStats.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
 
@@ -33,17 +28,14 @@ export default class App extends React.Component {
         params: params
       }
     });
-
-
-
   }
 
   componentDidMount() {
-    fetch('/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ users: data });
-      });
+    // fetch('/api/users')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     this.setState({ users: data });
+    //   });
   }
 
   editProfile(profile) {
@@ -76,12 +68,12 @@ export default class App extends React.Component {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
       renderPage = <Map />;
+    } else if (view === 'edit-profile') {
+      renderPage = <EditProfile edit={this.editProfile} />;
     }
     return (
       <div>
-
         {renderPage}
-        <EditProfile edit={this.editProfile} />
       </div>
     );
   }
