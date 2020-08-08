@@ -3,6 +3,7 @@ import Map from './map';
 import EditProfile from './edit-profile';
 // import CrimeRateList from './crime-rate-list';
 import SearchPage from './search';
+import HeatMap from './heat-map';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,7 +45,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <EditProfile edit={this.editProfile} />
+        <HeatMap />
+        {/* <EditProfile edit={this.editProfile} /> */}
         {/* <Map /> */}
       </div>
 
