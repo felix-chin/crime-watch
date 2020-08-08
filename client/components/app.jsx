@@ -1,23 +1,29 @@
 import React from 'react';
+
 import CrimeRateList from './crime-rate-list';
+
 import Map from './map';
+import EditProfile from './edit-profile';
+import CrimeRateList from './crime-rate-list';
+
 import SearchPage from './search';
 import CrimeDetailsList from './crime-details-list';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       view: {
         name: 'search',
         params: {}
       },
+      users: [],
       location: ''
     };
     this.setView = this.setView.bind(this);
-  }
-
-  componentDidMount() {
+    this.getStats = this.getStats.bind(this);
+    this.editProfile = this.editProfile.bind(this);
   }
 
   setView(name, params) {
@@ -27,6 +33,36 @@ export default class App extends React.Component {
         params: params
       }
     });
+
+
+
+  }
+
+  componentDidMount() {
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ users: data });
+      });
+  }
+
+  editProfile(profile) {
+    fetch(`/api/users/${6}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(profile)
+    })
+      .then(response => response.json())
+      .then(updatedProfile => {
+        const newUsers = this.state.users.map(user => {
+          if (user.userId === 6) {
+            return updatedProfile;
+          } else {
+            return user;
+          }
+        });
+        this.setState({ users: newUsers });
+      });
   }
 
   render() {
@@ -43,7 +79,9 @@ export default class App extends React.Component {
     }
     return (
       <div>
+
         {renderPage}
+        <EditProfile edit={this.editProfile} />
       </div>
     );
   }
