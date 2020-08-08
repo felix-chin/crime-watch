@@ -1,32 +1,52 @@
 import React from 'react';
-
+import Map from './map';
+import EditProfile from './edit-profile';
 // import CrimeRateList from './crime-rate-list';
-
-// import Map from './map';
-
 import SearchPage from './search';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      message: null,
-      isLoading: true
-    };
+
+    this.state = { users: [] };
+    // this.getStats = this.getStats.bind(this);
+    this.editProfile = this.editProfile.bind(this);
+
   }
 
   componentDidMount() {
-    // fetch('/api/health-check')
-    //   .then(res => res.json())
-    //   .then(data => this.setState({ message: data.message || data.error }))
-    //   .catch(err => this.setState({ message: err.message }))
-    //   .finally(() => this.setState({ isLoading: false }));
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ users: data });
+      });
+  }
+
+  editProfile(profile) {
+    fetch(`/api/users/${6}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(profile)
+    })
+      .then(response => response.json())
+      .then(updatedProfile => {
+        const newUsers = this.state.users.map(user => {
+          if (user.userId === 6) {
+            return updatedProfile;
+          } else {
+            return user;
+          }
+        });
+        this.setState({ users: newUsers });
+      });
   }
 
   render() {
     return (
-
-      <SearchPage />
+      <div>
+        <EditProfile edit={this.editProfile} />
+        {/* <Map /> */}
+      </div>
 
     );
   }
