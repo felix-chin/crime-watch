@@ -19,6 +19,19 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
+app.get('/api/search', (req, res, next) => {
+  const result = [];
+  for (let i = 0; i < 10; i++) {
+    result.push(
+      {
+        type: statsJSON.report_types[i].type,
+        percent: ((statsJSON.report_types[i].count / statsJSON.total_incidents) * 100).toFixed(2)
+      }
+    );
+  }
+  res.status(200).json(result);
+});
+
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
@@ -27,6 +40,11 @@ app.get('/api/health-check', (req, res, next) => {
 
 app.get('/api/crimes', (req, res, next) => {
   res.json(crimesJSON);
+});
+
+
+app.get('/api/crime-details', (req, res, next) => {
+  res.json(crimesJSON.incidents);
 });
 
 app.get('/api/users', (req, res, next) => {
@@ -146,13 +164,41 @@ app.get('/api/stats', (req, res, next) => {
   };
 
   const crimeRates = {
-    violent: 0,
-    property: 0,
-    publicOrder: 0,
-    whiteCollar: 0,
-    organized: 0,
-    highTech: 0,
-    other: 0
+    violent: {
+      crimeType: 'Violent',
+      image: './images/crimes/violent.png',
+      rate: 0
+    },
+    property: {
+      crimeType: 'Property',
+      image: './images/crimes/property.png',
+      rate: 0
+    },
+    publicOrder: {
+      crimeType: 'Public Order',
+      image: './images/crimes/public-order.png',
+      rate: 0
+    },
+    whiteCollar: {
+      crimeType: 'White Collar',
+      image: './images/crimes/white-collar.png',
+      rate: 0
+    },
+    organized: {
+      crimeType: 'Organized',
+      image: './images/crimes/organized-crime.png',
+      rate: 0
+    },
+    highTech: {
+      crimeType: 'High Tech',
+      image: './images/crimes/high-tech.png',
+      rate: 0
+    },
+    other: {
+      crimeType: 'Other',
+      image: './images/crimes/other.png',
+      rate: 0
+    }
   };
 
   stats.forEach(stat => {
@@ -165,7 +211,7 @@ app.get('/api/stats', (req, res, next) => {
   });
 
   for (const key in crimeRates) {
-    crimeRates[key] = (crimeCounts[key] / crimeCounts.total * 100).toFixed(2) + '%';
+    crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
   }
 
   res.send(crimeRates);
