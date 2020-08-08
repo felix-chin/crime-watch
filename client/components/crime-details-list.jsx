@@ -72,18 +72,24 @@ export default class CrimeDetailsList extends React.Component {
     const setView = this.props.setView;
     const incidents = this.state.incidents;
     const renderIncidents = incidents.map((incident, i) => {
+      const date = incident.incident_date;
+      const newDate = date.slice(0, date.indexOf('T'));
       return (
         <CrimeDetailsListItem
           key={i}
           setView={() => setView('incident')}
-          date={incident.incident_date}
+          date={newDate}
           address={incident.incident_address}
           detail={incident.incident_offense_description} />
       );
     });
     return (
-      <div>
-        {renderIncidents}
+      <div className="container pt-3">
+        <span onClick={() => setView('crime-rates')} className="mx-3 text-muted cursor-pointer back">Back</span>
+        <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
+        <div className="mx-3">
+          {renderIncidents}
+        </div>
       </div>
     );
   }
