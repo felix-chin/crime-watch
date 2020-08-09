@@ -20,13 +20,20 @@ export default function NavBar(props) {
     user = './images/user.png';
   }
   return (
-    <nav>
-      <div className="navbar">
-        <div className="container">
-          <img src={search} onClick={() => setView('search', {})} className="nav-icon" />
-          <img src={place} onClick={() => setView('map', {})} className="nav-icon" />
-          <img src={user} onClick={() => setView('profile', {})} className="nav-icon" />
-        </div>
+    <nav className="navbar fixed-bottom nav">
+      <div className="container d-flex flex-row justify-content-between px-5">
+        <img
+          src={search}
+          onClick={() => setView('search', {})}
+          className="nav-icon cursor-pointer" />
+        <img
+          src={place}
+          onClick={() => setView('map', {})}
+          className="nav-icon cursor-pointer" />
+        <img
+          src={user}
+          onClick={() => setView('profile', {})}
+          className="nav-icon cursor-pointer" />
       </div>
     </nav>
   );

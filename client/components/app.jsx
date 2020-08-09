@@ -4,6 +4,7 @@ import EditProfile from './edit-profile';
 import CrimeRateList from './crime-rate-list';
 import SearchPage from './search';
 import CrimeDetailsList from './crime-details-list';
+import NavBar from './navbar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -72,9 +73,12 @@ export default class App extends React.Component {
       renderPage = <EditProfile edit={this.editProfile} />;
     }
     return (
-      <div>
-        {renderPage}
-      </div>
+      <>
+        <div>
+          {renderPage}
+        </div>
+        <NavBar view={this.state.view.name} setView={this.setView} />
+      </>
     );
   }
 }
