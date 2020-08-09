@@ -49,13 +49,14 @@ body {
 }
 
 .standardMapView {
+  font-size: 1.5rem;
   position: absolute;
   border-radius: 20px;
   border-style: none;
   background-color: #fff;
   padding: 5px 15px;
-  bottom: 30px;
-  right: 10px
+  bottom: 6rem;
+  right: 10px;
 }
 
 .standardMapView:hover {
