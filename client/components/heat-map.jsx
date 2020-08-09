@@ -27,12 +27,13 @@ export default class HeatMap extends React.Component {
 
   displayHeatMap() {
     const coords = this.state.coords;
-    coords.map(coord => {
+    for (let i = 0; i < coords.length; i++) {
       this.heatmap = new google.maps.visualization.HeatmapLayer({
-        data: [new google.maps.LatLng(coord[0], coord[1])],
-        map: this.map
+        data: [new google.maps.LatLng(coords[i][0], coords[i][1])],
+        map: this.map,
+        radius: 30
       });
-    });
+    }
   }
 
   componentDidMount() {
@@ -63,6 +64,7 @@ export default class HeatMap extends React.Component {
               aria-hidden="true"></i></span>
           </div>
         </div>
+        <button className="standardMapView roboto-font" style={{ zIndex: 1 }}>Standard Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
