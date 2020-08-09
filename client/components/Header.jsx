@@ -4,9 +4,15 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="header">
-        <h1 className="crime">Crime <span className="crime-icon"><i className="fas fa-search"></i></span> Watch</h1>
-      </header>
+      <>
+        <div className="logo">
+          <img className="logo" src="../images/logo.png"></img>
+        </div>
+        <header className="header d-flex justify-content-center">
+          <h1 className="crime-watch-title">Crime <span className="crime-icon"><i className="fas fa-search" style={{ color: 'black' }}></i></span> Watch</h1>
+        </header>
+      </>
+
     );
   }
 }
