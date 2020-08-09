@@ -1,7 +1,6 @@
 body {
   background-color: #F0F0F0;
 }
-
 .quantico-font {
   font-family: Quantico;
   font-size: 36px;
@@ -16,4 +15,21 @@ body {
 .images {
   width: 40px;
   height: 40px;
+}
+
+.backButton {
+  border: none;
+  color:gray;
+}
+.bk {
+  border:none;
+  font-size: 2rem;
+  position: relative;
+  left: 2.5rem;
+}
+.flex-container {
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

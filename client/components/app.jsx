@@ -4,7 +4,8 @@ import React from 'react';
 
 // import Map from './map';
 
-import SearchPage from './search';
+// import SearchPage from './search';
+import SingleIncident from './single-incident';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <SearchPage />
+      <SingleIncident />
 
     );
   }
