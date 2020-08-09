@@ -7,7 +7,9 @@ function SearchPage(props) {
     <div className="main">
       <Header />
       <SearchBar setView={props.setView}/>
-      <button type="button" className="btn btn-primary two-location">Compare two locations</button>
+      <div className="d-flex justify-content-center">
+        <button type="button" className="btn btn-primary btn-color" >Compare two locations</button>
+      </div>
     </div>
   );
 }

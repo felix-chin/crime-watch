@@ -1,28 +1,12 @@
 import React from 'react';
-import SearchBar from './search-bar';
-export default class Map extends React.Component {
+
+export default class IncidentMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = { crimes: [], coords: [] };
     this.googleMapContainerRef = React.createRef();
 
-    this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
-  }
-
-  getData() {
-    fetch('/api/crimes')
-      .then(response => response.json())
-      .then(data => {
-        const cityArray = [];
-        for (let i = 0; i < data.incidents.length; i++) {
-          const latitude = data.incidents[i].incident_latitude;
-          const longitude = data.incidents[i].incident_longitude;
-          const cityCoords = { lat: latitude, lng: longitude, type: data.incidents[i].incident_offense_description, icon: '' };
-          cityArray.push(cityCoords);
-        }
-        this.setState({ crimes: data.incidents, coords: cityArray });
-      });
   }
 
   displayMarkers() {
@@ -116,23 +100,24 @@ export default class Map extends React.Component {
       },
       disableDefaultUI: true
     });
-    this.getData();
+
+    this.setState({ coords: [{ lat: this.props.lat, lng: this.props.lng, type: this.props.type }] });
+
   }
 
   render() {
     return (
-      <>
-        <SearchBar className="py-4 position-absolute" />
-        <button className="standardMapView roboto-font" style={{ zIndex: 1 }}>HeatMap</button>
+      <div>
+        <div className="d-flex position-absolute" style={{ zIndex: 1 }}>
+        </div>
         <div
           ref={this.googleMapContainerRef}
-          style={{ width: '100vw', height: '100vh' }}
+          style={{ height: '50vh' }}
           className="d-flex"
         >
           {this.displayMarkers()}
         </div>
-      </>
-
+      </div>
     );
   }
 }

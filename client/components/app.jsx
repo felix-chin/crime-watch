@@ -1,8 +1,10 @@
 import React from 'react';
+import SingleIncident from './single-incident';
 import Map from './map';
 import EditProfile from './edit-profile';
 import CrimeRateList from './crime-rate-list';
 import SearchPage from './search';
+import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
 
@@ -67,8 +69,12 @@ export default class App extends React.Component {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
       renderPage = <Map />;
+    } else if (view === 'heat-map') {
+      renderPage = <HeatMap />;
     } else if (view === 'edit-profile') {
       renderPage = <EditProfile edit={this.editProfile} />;
+    } else if (view === 'incident') {
+      renderPage = <SingleIncident />;
     }
     return (
       <>
