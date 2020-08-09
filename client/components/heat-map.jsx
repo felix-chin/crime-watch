@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default class HeatMap extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +38,7 @@ export default class HeatMap extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-    const coords = this.state.coords;
+    // const coords = this.state.coords;
 
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 13,

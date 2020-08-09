@@ -11,14 +11,12 @@ import NavBar from './navbar';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       view: {
         name: 'search',
         params: {}
       },
-      users: [],
-      location: ''
+      users: []
     };
     this.setView = this.setView.bind(this);
     this.editProfile = this.editProfile.bind(this);
