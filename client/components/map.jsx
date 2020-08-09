@@ -130,6 +130,7 @@ export default class Map extends React.Component {
             </span>
           </div>
         </div>
+        <button className="standardMapView roboto-font" style={{ zIndex: 1 }}>HeatMap</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}

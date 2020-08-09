@@ -47,3 +47,17 @@ body {
 .back {
   font-size: 18px;
 }
+
+.standardMapView {
+  position: absolute;
+  border-radius: 20px;
+  border-style: none;
+  background-color: #fff;
+  padding: 5px 15px;
+  bottom: 30px;
+  right: 10px
+}
+
+.standardMapView:hover {
+  background-color: rgb(181, 181, 181);
+}

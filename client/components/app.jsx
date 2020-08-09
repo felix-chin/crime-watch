@@ -3,6 +3,7 @@ import Map from './map';
 import EditProfile from './edit-profile';
 import CrimeRateList from './crime-rate-list';
 import SearchPage from './search';
+import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
 
@@ -75,6 +76,8 @@ export default class App extends React.Component {
     return (
       <>
         <div>
+          {/* <HeatMap /> */}
+          {/* <EditProfile edit={this.editProfile} /> */}
           {renderPage}
         </div>
         <NavBar view={this.state.view.name} setView={this.setView} />
