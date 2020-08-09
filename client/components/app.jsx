@@ -1,26 +1,43 @@
 import React from 'react';
 import Map from './map';
 import EditProfile from './edit-profile';
-// import CrimeRateList from './crime-rate-list';
+import CrimeRateList from './crime-rate-list';
 import SearchPage from './search';
 import HeatMap from './heat-map';
+import CrimeDetailsList from './crime-details-list';
+import NavBar from './navbar';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { users: [] };
-    // this.getStats = this.getStats.bind(this);
+    this.state = {
+      view: {
+        name: 'search',
+        params: {}
+      },
+      users: [],
+      location: ''
+    };
+    this.setView = this.setView.bind(this);
     this.editProfile = this.editProfile.bind(this);
+  }
 
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: name,
+        params: params
+      }
+    });
   }
 
   componentDidMount() {
-    fetch('/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ users: data });
-      });
+    // fetch('/api/users')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     this.setState({ users: data });
+    //   });
   }
 
   editProfile(profile) {
@@ -43,12 +60,28 @@ export default class App extends React.Component {
   }
 
   render() {
+    const view = this.state.view.name;
+    let renderPage;
+    if (view === 'search') {
+      renderPage = <SearchPage setView={this.setView}/>;
+    } else if (view === 'crime-rates') {
+      renderPage = <CrimeRateList setView={this.setView}/>;
+    } else if (view === 'crime-details') {
+      renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
+    } else if (view === 'map') {
+      renderPage = <Map />;
+    } else if (view === 'edit-profile') {
+      renderPage = <EditProfile edit={this.editProfile} />;
+    }
     return (
-      <div>
-        {/* <HeatMap /> */}
-        {/* <EditProfile edit={this.editProfile} /> */}
-      </div>
-
+      <>
+        <div>
+          {/* <HeatMap /> */}
+          {/* <EditProfile edit={this.editProfile} /> */}
+          {renderPage}
+        </div>
+        <NavBar view={this.state.view.name} setView={this.setView} />
+      </>
     );
   }
 }

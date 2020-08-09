@@ -21,9 +21,31 @@ body {
   background-color: #1244A5;
   color: white;
 }
+
 .images {
-  width: 40px;
-  height: 40px;
+  min-width: 43px;
+  height: 43px;
+}
+
+.nav {
+  background-color: #1244A5;
+}
+
+.nav-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.list-type-none {
+  list-style-type: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.back {
+  font-size: 18px;
 }
 
 .standardMapView {
