@@ -27,15 +27,17 @@ class SearchPage extends React.Component {
     return (
       <div className="main">
         <Header />
-        <form className="form-group location" onSubmit={this.handleSubmit}>
-          <div className="input-group row">
-            <input type="text" className="form-control " name="location" placeholder="Enter location" onChange={this.handleChange} />
-            <span>
-              <input type="submit" className="btn btn-outline-dark"></input>
-            </span>
+        <div className="p-4 input-group input-group-lg md-form form-sm form-2" style={{ zIndex: 1 }}>
+          <input className="form-control my-0 py-1" type="text" placeholder="Enter Location" aria-label="Search"></input>
+          <div className="input-group-append">
+            <span className="input-group-text red lighten-3" id="basic-text1"><i onClick={this.handleSubmit} className="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
           </div>
-        </form>
-        <button type="button" className="btn btn-primary two-location" >Compare two locations</button>
+        </div>
+        <div className="d-flex justify-content-center">
+          <button type="button" className="btn btn-primary btn-color" >Compare two locations</button>
+        </div>
+
       </div>
     );
   }

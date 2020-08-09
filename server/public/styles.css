@@ -13,6 +13,13 @@ body {
   color: #1244A5
 }
 
+.crime-watch-title {
+  font-family: Quantico;
+  font-size: 48px;
+  font-weight: bold;
+  color: #1244A5
+}
+
 .roboto-font {
   font-family: Roboto;
 }
@@ -20,6 +27,13 @@ body {
 .btn-color {
   background-color: #1244A5;
   color: white;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  left: 7%;
 }
 
 .images {
@@ -46,6 +60,11 @@ body {
 
 .back {
   font-size: 18px;
+}
+
+.main {
+  position: relative;
+  top: 15rem;
 }
 
 .standardMapView {
