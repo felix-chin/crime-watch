@@ -126,10 +126,11 @@ export default class Map extends React.Component {
   }
 
   render() {
+    const setView = this.props.setView;
     return (
       <>
         <SearchBar className="py-4 position-absolute" />
-        <button className="standardMapView roboto-font" style={{ zIndex: 1 }}>HeatMap</button>
+        <button onClick={() => setView('heat-map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Heat Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
