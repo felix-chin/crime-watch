@@ -17,7 +17,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
-
 ALTER TABLE ONLY public.searches DROP CONSTRAINT searches_pkey;
 ALTER TABLE ONLY public.bookmarks DROP CONSTRAINT bookmarks_pkey;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
@@ -29,7 +28,6 @@ DROP SEQUENCE public."searches_searchId_seq";
 DROP TABLE public.searches;
 DROP SEQUENCE public."bookmarks_bookmarkId_seq";
 DROP TABLE public.bookmarks;
-
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -65,7 +63,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
-
 -- Name: bookmarks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -130,7 +127,6 @@ ALTER SEQUENCE public."searches_searchId_seq" OWNED BY public.searches."searchId
 
 
 --
-
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -163,7 +159,6 @@ ALTER SEQUENCE public."users_userId_seq" OWNED BY public.users."userId";
 
 
 --
-
 -- Name: bookmarks bookmarkId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -178,7 +173,6 @@ ALTER TABLE ONLY public.searches ALTER COLUMN "searchId" SET DEFAULT nextval('pu
 
 
 --
-
 -- Name: users userId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -186,7 +180,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 
 
 --
-
 -- Data for Name: bookmarks; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -203,17 +196,17 @@ COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
 
 
 --
-
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
-
+1	ashraf_animelover	Uzair Ashraf	Los Angeles
+2	final_boss	Tim Davis	San Francisco
+3	I_LikeFood	Guy Fieri	Chicago
 \.
 
 
 --
-
 -- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -231,7 +224,7 @@ SELECT pg_catalog.setval('public."searches_searchId_seq"', 1, false);
 -- Name: users_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."users_userId_seq"', 1, false);
+SELECT pg_catalog.setval('public."users_userId_seq"', 3, true);
 
 
 --
@@ -248,7 +241,6 @@ ALTER TABLE ONLY public.bookmarks
 
 ALTER TABLE ONLY public.searches
     ADD CONSTRAINT searches_pkey PRIMARY KEY ("searchId");
-
 
 
 --
