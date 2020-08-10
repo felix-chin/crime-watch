@@ -7,7 +7,7 @@ import SearchPage from './search';
 import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
-
+import Compare from './compare';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -63,14 +63,16 @@ export default class App extends React.Component {
     let renderPage;
     if (view === 'search') {
       renderPage = <SearchPage setView={this.setView}/>;
+    } else if (view === 'compare') {
+      renderPage = <Compare setView={this.setView} />;
     } else if (view === 'crime-rates') {
       renderPage = <CrimeRateList setView={this.setView}/>;
     } else if (view === 'crime-details') {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
-      renderPage = <Map />;
+      renderPage = <Map setView={this.setView}/>;
     } else if (view === 'heat-map') {
-      renderPage = <HeatMap />;
+      renderPage = <HeatMap setView={this.setView}/>;
     } else if (view === 'edit-profile') {
       renderPage = <EditProfile edit={this.editProfile} />;
     } else if (view === 'incident') {

@@ -3,12 +3,13 @@ import Header from './Header';
 import SearchBar from './search-bar';
 
 function SearchPage(props) {
+  const setView = props.setView;
   return (
     <div className="main">
       <Header />
       <SearchBar setView={props.setView}/>
       <div className="d-flex justify-content-center">
-        <button type="button" className="btn btn-primary btn-color" >Compare two locations</button>
+        <button type="button" onClick={() => setView('compare', {})} className="btn btn-color">Compare two locations</button>
       </div>
     </div>
   );

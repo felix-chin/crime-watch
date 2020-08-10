@@ -1,5 +1,6 @@
 import React from 'react';
 import CrimeRateListItem from './crime-rate-list-item';
+import SearchBar from './search-bar';
 
 export default class CrimeRateList extends React.Component {
   constructor(props) {
@@ -35,7 +36,8 @@ export default class CrimeRateList extends React.Component {
     });
     return (
       <div className="container">
-        <h1 className="my-5 text-center quantico-font">Crime Rates</h1>
+        <SearchBar setView={this.props.setView}/>
+        <h1 className="my-4 text-center quantico-font">Crime Rates</h1>
         <div className="mx-3">
           {crimeRateListItems}
         </div>
