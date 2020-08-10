@@ -20,6 +20,13 @@ body {
   color: #1244A5
 }
 
+.login-title {
+  font-family: Quantico;
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+
 .roboto-font {
   font-family: Roboto;
 }
@@ -27,6 +34,13 @@ body {
 .btn-color {
   background-color: #1244A5;
   color: white;
+}
+
+.login-container {
+  background-color: #1244A5;
+  color: white;
+  width: 100vw;
+  height: 100vh;
 }
 
 .logo {

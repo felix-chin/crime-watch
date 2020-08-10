@@ -7,6 +7,7 @@ import SearchPage from './search';
 import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
+import Login from './login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -79,7 +80,8 @@ export default class App extends React.Component {
     return (
       <>
         <div>
-          {renderPage}
+          <Login />
+          {/* {renderPage} */}
         </div>
         <NavBar view={this.state.view.name} setView={this.setView} />
       </>
