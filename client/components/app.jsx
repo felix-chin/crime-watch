@@ -8,6 +8,7 @@ import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
 import Compare from './compare';
+import CompareRateList from './compare-rate-list';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,10 +18,12 @@ export default class App extends React.Component {
         params: {}
       },
       users: [],
-      stats: []
+      stats1: [],
+      stats2: []
     };
     this.setView = this.setView.bind(this);
-    this.getStats = this.getStats.bind(this);
+    this.getStats1 = this.getStats1.bind(this);
+    this.getStats2 = this.getStats2.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
 
@@ -41,10 +44,17 @@ export default class App extends React.Component {
     //   });
   }
 
-  getStats(location) {
+  getStats1(location) {
     fetch('/api/stats')
       .then(res => res.json())
-      .then(data => this.setState({ stats: data }))
+      .then(data => this.setState({ stats1: data }))
+      .catch(err => console.error(err));
+  }
+
+  getStats2(location) {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => this.setState({ stats2: data }))
       .catch(err => console.error(err));
   }
 
@@ -71,11 +81,13 @@ export default class App extends React.Component {
     const view = this.state.view.name;
     let renderPage;
     if (view === 'search') {
-      renderPage = <SearchPage getStats={this.getStats} setView={this.setView}/>;
+      renderPage = <SearchPage getStats={this.getStats1} setView={this.setView}/>;
     } else if (view === 'compare') {
-      renderPage = <Compare setView={this.setView} />;
+      renderPage = <Compare getStats1={this.getStats1} getStats2={this.getStats2} setView={this.setView} />;
+    } else if (view === 'compare-rate-list') {
+      renderPage = <CompareRateList locations={this.state.view.params} stats1={this.state.stats1} stats2={this.state.stats2} setView={this.setView} />;
     } else if (view === 'crime-rates') {
-      renderPage = <CrimeRateList stats={this.state.stats} setView={this.setView}/>;
+      renderPage = <CrimeRateList stats={this.state.stats1} setView={this.setView}/>;
     } else if (view === 'crime-details') {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {

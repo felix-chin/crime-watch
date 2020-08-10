@@ -19,8 +19,12 @@ export default class Compare extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const getStats1 = this.props.getStats1;
+    const getStats2 = this.props.getStats2;
     const setView = this.props.setView;
-    setView('compare-list', {});
+    getStats1(this.state.location1);
+    getStats2(this.state.location2);
+    setView('compare-rate-list', { location1: this.state.location1, location2: this.state.location2 });
   }
 
   render() {
