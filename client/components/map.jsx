@@ -27,18 +27,19 @@ export default class Map extends React.Component {
 
   displayMarkers() {
     const coords = this.state.coords;
-
-    // for (let i = 0; i < crimes.length; i++) {
-    //   this.infoWindowText =
-    //     ` Date: ${crimes[i].incident_date}<br />
-    //      @ ${crimes[i].incident_address}<br />
-    //      Description: ${crimes[i].incident_offense_description}
-    //     `;
-    // }
-    // this.infoWindow = new google.maps.InfoWindow({
-    //   content: this.infoWindowText
-    // });
-
+    const crimes = this.state.crimes;
+    for (let i = 0; i < crimes.length; i++) {
+      const date = crimes[i].incident_date;
+      const newDate = date.slice(0, date.indexOf('T'));
+      this.infoWindowText =
+        `<div class='info-window'>
+          <h1 class='info-window-title'>Incident</h1>
+          <p class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}<p>
+          <p class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[i].incident_address}<p>
+          <p class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[i].incident_offense_description}<p>
+         </div>
+        `;
+    }
     const typeMap = {
       'Theft From Motor Vehicle': 'property',
       'All Other Larceny': 'property',
@@ -97,12 +98,17 @@ export default class Map extends React.Component {
         position: { lat: coord.lat, lng: coord.lng },
         map: this.map,
         icon: icons[typeMap[coord.type]]
-      });
-      // .addListener('click', () => {
-      //   this.infoWindow.open(this.map, this.marker);
-      //   setTimeout(() => { this.infoWindow.close(); }, 5000);
-      // });
+      })
+        .addListener('click', event => {
+          this.infoWindow = new google.maps.InfoWindow({
+            content: this.infoWindowText
+          });
+          this.infoWindow.setPosition(event.latLng);
+          this.infoWindow.open(this.map);
+          setTimeout(() => { this.infoWindow.close(); }, 5000);
+        });
     });
+
   }
 
   componentDidMount() {
