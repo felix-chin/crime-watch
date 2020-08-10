@@ -31,7 +31,7 @@ export default class Compare extends React.Component {
     return (
       <div className="container">
         <h1 className="my-5 text-center quantico-font">Crime Comparison</h1>
-        <form onSubmit={this.handleSubmit} className="container">
+        <form onSubmit={this.handleSubmit} className="container pt-2">
           <div className="form-group my-5 pt-3">
             <label htmlFor="location1" className="ml-2">Compare:</label>
             <input
