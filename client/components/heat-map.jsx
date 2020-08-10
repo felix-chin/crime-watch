@@ -26,22 +26,24 @@ export default class HeatMap extends React.Component {
 
   displayHeatMap() {
     const coords = this.state.coords;
-    for (let i = 0; i < coords.length; i++) {
-      this.heatmap = new google.maps.visualization.HeatmapLayer({
-        data: [new google.maps.LatLng(coords[i][0], coords[i][1])],
-        map: this.map,
-        radius: 30
-      });
-    }
+
+    this.heatmap = new google.maps.visualization.HeatmapLayer({
+      data: coords.map(coord => {
+        return new google.maps.LatLng(coord[0], coord[1]);
+      }),
+      map: this.map,
+      radius: 40,
+      opacity: 0.4
+    });
   }
 
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-    // const coords = this.state.coords;
+    const coords = this.state.coords;
 
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
-      zoom: 13,
+      zoom: 10,
       center: {
         lat: 34.052235,
         lng: -118.243683
