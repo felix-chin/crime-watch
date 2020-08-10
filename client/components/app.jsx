@@ -16,9 +16,11 @@ export default class App extends React.Component {
         name: 'search',
         params: {}
       },
-      users: []
+      users: [],
+      stats: []
     };
     this.setView = this.setView.bind(this);
+    this.getStats = this.getStats.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
 
@@ -37,6 +39,13 @@ export default class App extends React.Component {
     //   .then(data => {
     //     this.setState({ users: data });
     //   });
+  }
+
+  getStats(location) {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => this.setState({ stats: data }))
+      .catch(err => console.error(err));
   }
 
   editProfile(profile) {
@@ -62,11 +71,11 @@ export default class App extends React.Component {
     const view = this.state.view.name;
     let renderPage;
     if (view === 'search') {
-      renderPage = <SearchPage setView={this.setView}/>;
+      renderPage = <SearchPage getStats={this.getStats} setView={this.setView}/>;
     } else if (view === 'compare') {
       renderPage = <Compare setView={this.setView} />;
     } else if (view === 'crime-rates') {
-      renderPage = <CrimeRateList setView={this.setView}/>;
+      renderPage = <CrimeRateList stats={this.state.stats} setView={this.setView}/>;
     } else if (view === 'crime-details') {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {

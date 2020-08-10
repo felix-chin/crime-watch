@@ -18,7 +18,9 @@ export default class SearchBar extends React.Component {
 
   handleSubmit() {
     event.preventDefault();
+    const getStats = this.props.getStats;
     const setView = this.props.setView;
+    getStats(this.state.location);
     setView('crime-rates', {});
     // needs method to post search location to Search History database
   }
