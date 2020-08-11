@@ -10,13 +10,14 @@ import NavBar from './navbar';
 // import Login from './login';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
+import SearchHistory from './search-history';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'search',
+        name: 'search-history',
         params: {}
       },
       users: [],
@@ -100,11 +101,12 @@ export default class App extends React.Component {
       renderPage = <EditProfile edit={this.editProfile} />;
     } else if (view === 'incident') {
       renderPage = <SingleIncident />;
+    } else if (view === 'search-history') {
+      renderPage = <SearchHistory />;
     }
     return (
       <>
         <div>
-          {/* <Login /> */}
           {renderPage}
         </div>
         <NavBar view={this.state.view.name} setView={this.setView} />
