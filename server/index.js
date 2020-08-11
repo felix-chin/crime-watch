@@ -59,19 +59,6 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
-app.get('/api/search', (req, res, next) => {
-  const result = [];
-  for (let i = 0; i < 10; i++) {
-    result.push(
-      {
-        type: statsJSON.report_types[i].type,
-        percent: ((statsJSON.report_types[i].count / statsJSON.total_incidents) * 100).toFixed(2)
-      }
-    );
-  }
-  res.status(200).json(result);
-});
-
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
@@ -81,7 +68,6 @@ app.get('/api/health-check', (req, res, next) => {
 app.get('/api/crimes', (req, res, next) => {
   res.json(crimesJSON);
 });
-
 
 app.get('/api/crime-details', (req, res, next) => {
   res.json(incidentsList);
@@ -122,7 +108,6 @@ app.post('/api/users', (req, res, next) => {
       }
     })
     .catch(err => next(err));
-
 });
 
 app.patch('/api/users/:userId', (req, res, next) => {
@@ -130,7 +115,6 @@ app.patch('/api/users/:userId', (req, res, next) => {
   const defaultLocation = req.body.defaultLocation;
   const name = req.body.name;
   const params = [name, defaultLocation, userId];
-
   const sql = `
     update "users"
     set "name"            = $1,
@@ -138,7 +122,6 @@ app.patch('/api/users/:userId', (req, res, next) => {
     where "userId"        = $3
     returning *;
   `;
-
   db.query(sql, params)
     .then(result => {
       const editProfile = result.rows[0];
@@ -148,6 +131,20 @@ app.patch('/api/users/:userId', (req, res, next) => {
         res.status(201).json(editProfile);
       }
     })
+    .catch(err => next(err));
+});
+
+app.post('/api/searches/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const location = req.body.location;
+  const sql = `
+    insert into "searches" ("userId", "location")
+    values ($1, $2)
+    returning *;
+  `;
+  const params = [userId, location];
+  return db.query(sql, params)
+    .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
 
@@ -162,7 +159,6 @@ app.get('/api/stats', (req, res, next) => {
     other: 0,
     total: 0
   };
-
   const crimeRates = {
     violent: {
       crimeType: 'Violent',
@@ -200,7 +196,6 @@ app.get('/api/stats', (req, res, next) => {
       rate: 0
     }
   };
-
   stats.forEach(stat => {
     if (stat.type in typeMap) {
       crimeCounts[typeMap[stat.type]] += stat.count;
@@ -209,11 +204,9 @@ app.get('/api/stats', (req, res, next) => {
     }
     crimeCounts.total += stat.count;
   });
-
   for (const key in crimeRates) {
     crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
   }
-
   res.send(crimeRates);
 });
 
