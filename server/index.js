@@ -33,7 +33,7 @@ app.get('/api/crime-details', (req, res, next) => {
   res.json(crimesJSON.incidents);
 });
 
-app.get('/api/default-location', (req, res, next) => {
+app.get('/api/users', (req, res, next) => {
   const sql = `
     select *
     from "users"
@@ -43,6 +43,19 @@ app.get('/api/default-location', (req, res, next) => {
       const users = result.rows;
       res.json(users);
     })
+    .catch(err => next(err));
+});
+
+app.get('/api/users/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const sql = `
+    select *
+    from "users"
+    where "userId" = $1;
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 
