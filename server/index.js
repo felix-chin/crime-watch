@@ -86,6 +86,39 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/bookmarks', (req, res, next) => {
+  const sql = `
+    select *
+    from "bookmarks"
+  `;
+
+  db.query(sql)
+    .then(result => {
+      const bookmarks = result.rows;
+      res.json(bookmarks);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const incident = req.body.incident;
+
+  const sql = `
+    insert into "bookmarks" ("userId", "incident")
+    values ($1, $2)
+    returning *
+  `;
+  const params = [userId, incident];
+
+  db.query(sql, params)
+    .then(result => {
+      const bookmarkedIncident = result.rows[0];
+      res.status(201).json(bookmarkedIncident);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/users', (req, res, next) => {
   const sql = `
     insert into "users" ("username", "name", "defaultLocation")
