@@ -6,7 +6,7 @@ export default function NavBar(props) {
   let search;
   let place;
   let user;
-  if (view === 'map') {
+  if (view === 'map' || view === 'heat-map') {
     search = './images/search.png';
     place = './images/place_black.png';
     user = './images/user.png';

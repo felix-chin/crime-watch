@@ -19,19 +19,6 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
-app.get('/api/search', (req, res, next) => {
-  const result = [];
-  for (let i = 0; i < 10; i++) {
-    result.push(
-      {
-        type: statsJSON.report_types[i].type,
-        percent: ((statsJSON.report_types[i].count / statsJSON.total_incidents) * 100).toFixed(2)
-      }
-    );
-  }
-  res.status(200).json(result);
-});
-
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
@@ -59,7 +46,40 @@ app.get('/api/default-location', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/default-location', (req, res, next) => {
+app.get('/api/bookmarks', (req, res, next) => {
+  const sql = `
+    select *
+    from "bookmarks"
+  `;
+
+  db.query(sql)
+    .then(result => {
+      const bookmarks = result.rows;
+      res.json(bookmarks);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const incident = req.body.incident;
+
+  const sql = `
+    insert into "bookmarks" ("userId", "incident")
+    values ($1, $2)
+    returning *
+  `;
+  const params = [userId, incident];
+
+  db.query(sql, params)
+    .then(result => {
+      const bookmarkedIncident = result.rows[0];
+      res.status(201).json(bookmarkedIncident);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/users', (req, res, next) => {
   const sql = `
     insert into "users" ("username", "name", "defaultLocation")
     values ($1, $2, $3)
@@ -81,7 +101,44 @@ app.post('/api/default-location', (req, res, next) => {
       }
     })
     .catch(err => next(err));
+});
 
+app.patch('/api/users/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const defaultLocation = req.body.defaultLocation;
+  const name = req.body.name;
+  const params = [name, defaultLocation, userId];
+  const sql = `
+    update "users"
+    set "name"            = $1,
+         "defaultLocation" = $2
+    where "userId"        = $3
+    returning *;
+  `;
+  db.query(sql, params)
+    .then(result => {
+      const editProfile = result.rows[0];
+      if (!editProfile) {
+        throw new ClientError(`cannot find user with id ${userId}`, 400);
+      } else {
+        res.status(201).json(editProfile);
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/searches/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const location = req.body.location;
+  const sql = `
+    insert into "searches" ("userId", "location")
+    values ($1, $2)
+    returning *;
+  `;
+  const params = [userId, location];
+  return db.query(sql, params)
+    .then(result => res.json(result.rows[0]))
+    .catch(err => next(err));
 });
 
 app.get('/api/stats', (req, res, next) => {
@@ -135,7 +192,6 @@ app.get('/api/stats', (req, res, next) => {
     other: 0,
     total: 0
   };
-
   const crimeRates = {
     violent: {
       crimeType: 'Violent',
@@ -173,7 +229,6 @@ app.get('/api/stats', (req, res, next) => {
       rate: 0
     }
   };
-
   stats.forEach(stat => {
     if (stat.type in typeMap) {
       crimeCounts[typeMap[stat.type]] += stat.count;
@@ -182,11 +237,9 @@ app.get('/api/stats', (req, res, next) => {
     }
     crimeCounts.total += stat.count;
   });
-
   for (const key in crimeRates) {
     crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
   }
-
   res.send(crimeRates);
 });
 
