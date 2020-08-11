@@ -74,7 +74,13 @@ export default class App extends React.Component {
     } else if (view === 'edit-profile') {
       renderPage = <EditProfile edit={this.editProfile} />;
     } else if (view === 'incident') {
-      renderPage = <SingleIncident />;
+      renderPage = <SingleIncident setView={this.setView}
+        time={this.state.view.params.time}
+        address={this.state.view.params.address}
+        description={this.state.view.params.description}
+        lat={this.state.view.params.lat}
+        lng={this.state.view.params.lng}
+        type={this.state.view.params.type}/>;
     }
     return (
       <>
