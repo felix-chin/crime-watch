@@ -33,7 +33,7 @@ app.get('/api/crime-details', (req, res, next) => {
   res.json(crimesJSON.incidents);
 });
 
-app.get('/api/default-location', (req, res, next) => {
+app.get('/api/users', (req, res, next) => {
   const sql = `
     select *
     from "users"
@@ -53,6 +53,25 @@ app.get('/api/bookmarks', (req, res, next) => {
   `;
 
   db.query(sql)
+    .then(result => {
+      const bookmarks = result.rows;
+      res.json(bookmarks);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+
+  const sql = `
+    select *
+    from "bookmarks"
+    where "userId" = $1
+  `;
+
+  const params = [userId];
+
+  db.query(sql, params)
     .then(result => {
       const bookmarks = result.rows;
       res.json(bookmarks);

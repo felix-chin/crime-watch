@@ -10,6 +10,7 @@ import NavBar from './navbar';
 // import Login from './login';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
+// import Bookmarks from './bookmarks-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -112,6 +113,7 @@ export default class App extends React.Component {
         <div>
           {/* <Login /> */}
           {renderPage}
+          {/* <Bookmarks /> */}
         </div>
         <NavBar view={this.state.view.name} setView={this.setView} />
       </>
