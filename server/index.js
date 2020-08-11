@@ -1,58 +1,18 @@
 require('dotenv/config');
 const express = require('express');
-const db = require('./database');
-const ClientError = require('./client-error');
 
 const crimesJSON = require('../data/crimes1.json');
+
 const statsJSON = require('../data/stats1.json');
 
+const db = require('./database');
+const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
 
 const app = express();
 
 const stats = statsJSON.report_types;
-const incidentsList = crimesJSON.incidents;
-
-const typeMap = {
-  'Theft From Motor Vehicle': 'property',
-  'All Other Larceny': 'property',
-  'Simple Assault': 'violent',
-  'Destruction/Damage/Vandalism of Property': 'property',
-  'Motor Vehicle Theft': 'property',
-  'Aggravated Assault': 'violent',
-  'Burglary/Breaking & Entering': 'property',
-  'Domestic Violence/Simple Assault': 'violent',
-  Robbery: 'property',
-  'Identity Theft': 'whiteCollar',
-  Shoplifting: 'property',
-  Intimidation: 'organized',
-  'Weapon Law Violations': 'organized',
-  'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
-  'Trespass of Real Property': 'property',
-  'Domestic Violence/Aggravated Assault': 'violent',
-  'Child Abuse/Simple/Psychological abuse': 'violent',
-  Rape: 'violent',
-  'Counterfeiting/Forgery': 'whiteCollar',
-  'Human Trafficking, Commercial Sex Acts': 'organized',
-  'Human Trafficking, Involuntary Servitude': 'organized',
-  'Assisting or Promoting Prostitution': 'organized',
-  Embezzlement: 'whiteCollar',
-  'Sexual Battery': 'violent',
-  'Stolen Property Offenses': 'property',
-  'Drug Equipment Violations': 'publicOrder',
-  Drunkenness: 'publicOrder',
-  Arson: 'property',
-  'Drug/Narcotic Violations': 'publicOrder',
-  'Disorderly Conduct': 'publicOrder',
-  'Driving Under the Influence': 'publicOrder',
-  'Kidnapping/Abduction': 'organized',
-  'Extortion/Blackmail': 'highTech',
-  'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
-  'Hacking/Computer Invasion': 'highTech',
-  'Credit Card/Automated Teller Machine Fraud': 'highTech',
-  'Murder & Non-negligent Manslaughter': 'violent'
-};
 
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
@@ -70,10 +30,10 @@ app.get('/api/crimes', (req, res, next) => {
 });
 
 app.get('/api/crime-details', (req, res, next) => {
-  res.json(incidentsList);
+  res.json(crimesJSON.incidents);
 });
 
-app.get('/api/users', (req, res, next) => {
+app.get('/api/default-location', (req, res, next) => {
   const sql = `
     select *
     from "users"
@@ -82,6 +42,39 @@ app.get('/api/users', (req, res, next) => {
     .then(result => {
       const users = result.rows;
       res.json(users);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/bookmarks', (req, res, next) => {
+  const sql = `
+    select *
+    from "bookmarks"
+  `;
+
+  db.query(sql)
+    .then(result => {
+      const bookmarks = result.rows;
+      res.json(bookmarks);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const incident = req.body.incident;
+
+  const sql = `
+    insert into "bookmarks" ("userId", "incident")
+    values ($1, $2)
+    returning *
+  `;
+  const params = [userId, incident];
+
+  db.query(sql, params)
+    .then(result => {
+      const bookmarkedIncident = result.rows[0];
+      res.status(201).json(bookmarkedIncident);
     })
     .catch(err => next(err));
 });
@@ -162,6 +155,46 @@ app.post('/api/searches/:userId', (req, res, next) => {
 });
 
 app.get('/api/stats', (req, res, next) => {
+  const typeMap = {
+    'Theft From Motor Vehicle': 'property',
+    'All Other Larceny': 'property',
+    'Simple Assault': 'violent',
+    'Destruction/Damage/Vandalism of Property': 'property',
+    'Motor Vehicle Theft': 'property',
+    'Aggravated Assault': 'violent',
+    'Burglary/Breaking & Entering': 'property',
+    'Domestic Violence/Simple Assault': 'violent',
+    Robbery: 'property',
+    'Identity Theft': 'whiteCollar',
+    Shoplifting: 'property',
+    Intimidation: 'organized',
+    'Weapon Law Violations': 'organized',
+    'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
+    'Trespass of Real Property': 'property',
+    'Domestic Violence/Aggravated Assault': 'violent',
+    'Child Abuse/Simple/Psychological abuse': 'violent',
+    Rape: 'violent',
+    'Counterfeiting/Forgery': 'whiteCollar',
+    'Human Trafficking, Commercial Sex Acts': 'organized',
+    'Human Trafficking, Involuntary Servitude': 'organized',
+    'Assisting or Promoting Prostitution': 'organized',
+    Embezzlement: 'whiteCollar',
+    'Sexual Battery': 'violent',
+    'Stolen Property Offenses': 'property',
+    'Drug Equipment Violations': 'publicOrder',
+    Drunkenness: 'publicOrder',
+    Arson: 'property',
+    'Drug/Narcotic Violations': 'publicOrder',
+    'Disorderly Conduct': 'publicOrder',
+    'Driving Under the Influence': 'publicOrder',
+    'Kidnapping/Abduction': 'organized',
+    'Extortion/Blackmail': 'highTech',
+    'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
+    'Hacking/Computer Invasion': 'highTech',
+    'Credit Card/Automated Teller Machine Fraud': 'highTech',
+    'Murder & Non-negligent Manslaughter': 'violent'
+  };
+
   const crimeCounts = {
     violent: 0,
     property: 0,

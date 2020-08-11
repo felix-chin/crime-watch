@@ -14,26 +14,26 @@ class SingleIncident extends React.Component {
   render() {
     return (
       <div className="container">
-        <button className="backButton">Back</button>
+        <button className="backButton" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</button>
         <header className="row justify-content-center">
           <h1>Incident</h1>
           <span><button className="bk"><i className="far fa-bookmark bk"></i></button></span>
         </header>
         <div className="row">
-          <div className="main col align-self-end flex-container">
+          <div className="flex-container">
             <div className="time-address flex1">
               <div className="time">
-                  12/30/2019 2:01 AM
+                {this.props.time}
               </div>
               <div className="address">
-                  @ 1231 S Hill St.
+                {this.props.address}
               </div>
             </div>
             <div className="description flex3">
-              A wife hits her husband because of his bad choice for a dinner
+              {this.props.description}
             </div>
             <div className="flex2">
-              <IncidentMap lat={34.0719} lng={-118.3635} type={'Simple Assault'}/>
+              <IncidentMap lat={this.props.lat} lng={this.props.lng} type={'Simple Assault'}/>
             </div>
           </div>
         </div>

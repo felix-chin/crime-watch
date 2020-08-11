@@ -120,7 +120,7 @@ body {
   left: 2.5rem;
 }
 .flex-container {
-  height: 88vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

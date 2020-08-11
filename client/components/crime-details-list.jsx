@@ -72,7 +72,15 @@ export default class CrimeDetailsList extends React.Component {
       return (
         <CrimeDetailsListItem
           key={i}
-          setView={() => setView('incident', {})}
+          setView={() => setView('incident',
+            {
+              time: newDate,
+              address: incident.incident_address,
+              description: incident.incident_offense_detail_description,
+              lat: incident.incident_latitude,
+              lng: incident.incident_longitude,
+              type: type
+            })}
           date={newDate}
           address={incident.incident_address}
           detail={incident.incident_offense_description} />
