@@ -55,6 +55,11 @@ body {
   height: 43px;
 }
 
+.images-compare {
+  min-width: 35px;
+  height: 35px;
+}
+
 .nav {
   background-color: #1244A5;
 }
@@ -78,6 +83,10 @@ body {
 
 .back {
   font-size: 18px;
+}
+
+.font-size-compare{
+  font-size: 1.125rem;
 }
 
 .main {

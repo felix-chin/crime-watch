@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SearchBar from './search-bar';
 export default class HeatMap extends React.Component {
   constructor(props) {
     super(props);
@@ -56,16 +56,11 @@ export default class HeatMap extends React.Component {
   }
 
   render() {
+    const setView = this.props.setView;
     return (
       <>
-        <div className="d-flex p-4 input-group input-group-lg md-form form-sm form-2 position-absolute" style={{ zIndex: 1 }}>
-          <input className="form-control my-0 py-1 red-border shadow" type="text" placeholder="Search" aria-label="Search"></input>
-          <div className="input-group-append">
-            <span className="input-group-text red lighten-3" id="basic-text1"><i className="fas fa-search text-grey"
-              aria-hidden="true"></i></span>
-          </div>
-        </div>
-        <button className="standardMapView roboto-font" style={{ zIndex: 1 }}>Standard Map</button>
+        <SearchBar className="py-4 position-absolute" />
+        <button onClick={() => setView('map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Standard Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
