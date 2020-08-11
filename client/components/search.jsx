@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from './header';
 import SearchBar from './search-bar';
 
 function SearchPage(props) {

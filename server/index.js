@@ -127,6 +127,19 @@ app.patch('/api/users/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/searches/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const sql = `
+    select *
+    from "searches"
+    where "userId" = $1;
+  `;
+  const params = [userId];
+  return db.query(sql, params)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.post('/api/searches/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const location = req.body.location;
