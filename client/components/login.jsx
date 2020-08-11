@@ -13,7 +13,6 @@ export default class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('User:' + this.state.value);
     event.preventDefault();
   }
 
