@@ -25,6 +25,17 @@ export default class SearchBar extends React.Component {
     // needs method to post search location to Search History database
   }
 
+  saveSearch() {
+    fetch(`/api/searches/${1}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state.location)
+    })
+      .then(res => res.json())
+      .then()
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <div className={this.props.className + ' container my-4'}>
