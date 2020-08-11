@@ -184,6 +184,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 --
 
 COPY public.bookmarks ("bookmarkId", "userId", incident, "createdAt") FROM stdin;
+1	2	{ "city_key": "LAX", "incident_code": "190717711", "incident_date": "2019-10-07T18:00:00.000Z", "incident_offense": "Larceny/Theft Offenses", "incident_offense_code": "23F", "incident_offense_description": "Theft From Motor Vehicle", "incident_offense_detail_description": "BURGLARY FROM VEHICLE in the OTHER BUSINESS at 7900 W 3RD ST, Wilshire", "incident_offense_crime_against": "Property", "incident_offense_action": "C", "incident_source_original_type": "BURGLARY FROM VEHICLE", "incident_source_name": "LosAngeles_Police_Departments", "incident_latitude": 34.0719, "incident_longitude": -118.3635, "incident_address": "7900 W 3RD ST, Wilshire"}	2020-08-11 11:01:33.706494-07
 \.
 
 
@@ -210,7 +211,7 @@ COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
 -- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."bookmarks_bookmarkId_seq"', 1, false);
+SELECT pg_catalog.setval('public."bookmarks_bookmarkId_seq"', 1, true);
 
 
 --
