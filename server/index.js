@@ -1,6 +1,6 @@
 require('dotenv/config');
 const express = require('express');
-
+// const axios = require('axios');
 const crimesJSON = require('../data/crimes1.json');
 
 const statsJSON = require('../data/stats1.json');
@@ -25,9 +25,19 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/crimes', (req, res, next) => {
-  res.json(crimesJSON);
-});
+// to request from crimeometer API
+// app.get('/api/crimes', (req, res, next) => {
+//   axios({
+//     method: 'GET',
+//     url: `https://api.crimeometer.com/v1/incidents/raw-data?lat=34.050&lon=-118.329&distance=10mi&datetime_ini=2020-07-01T18:00:00.000Z&datetime_end=2020-07-31T18:00:00.000Z`,
+//     headers: {
+//       "content-type": "application/json",
+//       "x-api-key": "qxvlF9JKtS7VYumxoesEL2jdw3klKOkW236LkgD3"
+//     }
+//   })
+//   .then(result => res.json(result.data["incidents"]))
+//   .catch(err => console.error(err))
+// });
 
 app.get('/api/crime-details', (req, res, next) => {
   res.json(crimesJSON.incidents);
@@ -251,6 +261,7 @@ app.get('/api/stats', (req, res, next) => {
     other: 0,
     total: 0
   };
+
   const crimeRates = {
     violent: {
       crimeType: 'Violent',
@@ -296,11 +307,40 @@ app.get('/api/stats', (req, res, next) => {
     }
     crimeCounts.total += stat.count;
   });
+
   for (const key in crimeRates) {
     crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
   }
   res.send(crimeRates);
 });
+
+// to request from crimeometer API
+// axios({
+//   method: 'GET',
+//   url: 'https://api.crimeometer.com/v1/incidents/stats?lat=34.050&lon=-118.329&distance=10mi&datetime_ini=2019-01-01T18:00:00.000Z&datetime_end=2019-12-317T18:00:00.000Z&source=1',
+//   headers: {
+//     "content-type": "application/json",
+//     "x-api-key": "qxvlF9JKtS7VYumxoesEL2jdw3klKOkW236LkgD3"
+//   }
+// })
+//   .then(result => {
+//     const stats = result.data['report_types'];
+//     stats.forEach(stat => {
+//       if (stat.type in typeMap) {
+//         crimeCounts[typeMap[stat.type]] += stat.count;
+//       } else {
+//         crimeCounts.other += stat.count;
+//       }
+//       crimeCounts.total += stat.count;
+//     });
+
+//     for (const key in crimeRates) {
+//       crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
+//     }
+
+//     res.json(crimeRates)
+//   })
+//   .catch(err => console.error(err))
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
