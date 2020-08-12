@@ -73,6 +73,25 @@ app.get('/api/bookmarks', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+
+  const sql = `
+    select *
+    from "bookmarks"
+    where "userId" = $1
+  `;
+
+  const params = [userId];
+
+  db.query(sql, params)
+    .then(result => {
+      const bookmarks = result.rows;
+      res.json(bookmarks);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/bookmarks/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const incident = req.body.incident;

@@ -155,6 +155,14 @@ body {
   background-color: white;
 }
 
+.horizontal-row {
+  position: relative;
+
+  border: 1px solid #F0F0F0;
+  width: 100vw;
+
+}
+
 .login-btn {
   padding: .5rem 6rem;
 }
