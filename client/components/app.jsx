@@ -11,13 +11,15 @@ import NavBar from './navbar';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
 // import Bookmarks from './bookmarks-page';
+import SearchHistory from './search-history';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'search',
+        name: 'search-history',
         params: {}
       },
       users: [],
@@ -106,12 +108,13 @@ export default class App extends React.Component {
         description={this.state.view.params.description}
         lat={this.state.view.params.lat}
         lng={this.state.view.params.lng}
-        type={this.state.view.params.type}/>;
+        type={this.state.view.params.type} />;
+    } else if (view === 'search-history') {
+      renderPage = <SearchHistory />;
     }
     return (
       <>
         <div>
-          {/* <Login /> */}
           {renderPage}
           {/* <Bookmarks /> */}
         </div>
