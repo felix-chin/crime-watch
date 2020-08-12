@@ -43,6 +43,10 @@ app.get('/api/crime-details', (req, res, next) => {
   res.json(crimesJSON.incidents);
 });
 
+app.get('/api/crimes', (req, res, next) => {
+  res.json(crimesJSON);
+});
+
 app.get('/api/users', (req, res, next) => {
   const sql = `
     select *

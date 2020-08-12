@@ -10,7 +10,7 @@ import NavBar from './navbar';
 import Login from './login';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
-// import Bookmarks from './bookmarks-page';
+import Bookmarks from './bookmarks-page';
 import SearchHistory from './search-history';
 import Profile from './profile';
 export default class App extends React.Component {
@@ -118,6 +118,8 @@ export default class App extends React.Component {
         offenseDescription={this.state.view.params.offenseDescription} />;
     } else if (view === 'search-history') {
       renderPage = <SearchHistory profile={this.state.profile}/>;
+    } else if (view === 'bookmarks') {
+      renderPage = <Bookmarks profile={this.state.profile} />;
     }
     return (
       <>

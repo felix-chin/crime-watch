@@ -19,8 +19,9 @@ export default class Bookmarks extends React.Component {
   }
 
   getUserBookmarks() {
+    const profile = this.props.profile;
     const dataArray = [];
-    fetch(`/api/bookmarks/${2}`)
+    fetch(`/api/bookmarks/${profile.userId}`)
       .then(response => response.json())
       .then(data => {
         data.map(incident => {
