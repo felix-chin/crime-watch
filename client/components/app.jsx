@@ -13,7 +13,6 @@ import CompareRateList from './compare-rate-list';
 // import Bookmarks from './bookmarks-page';
 import SearchHistory from './search-history';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -103,12 +102,14 @@ export default class App extends React.Component {
       renderPage = <EditProfile edit={this.editProfile} />;
     } else if (view === 'incident') {
       renderPage = <SingleIncident setView={this.setView}
-        time={this.state.view.params.time}
+        date={this.state.view.params.date}
         address={this.state.view.params.address}
         description={this.state.view.params.description}
         lat={this.state.view.params.lat}
         lng={this.state.view.params.lng}
-        type={this.state.view.params.type} />;
+        type={this.state.view.params.type}
+        code={this.state.view.params.code}
+        offenseDescription={this.state.view.params.offenseDescription} />;
     } else if (view === 'search-history') {
       renderPage = <SearchHistory />;
     }

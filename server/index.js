@@ -94,8 +94,7 @@ app.get('/api/bookmarks/:userId', (req, res, next) => {
 
 app.post('/api/bookmarks/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
-  const incident = req.body.incident;
-
+  const incident = req.body;
   const sql = `
     insert into "bookmarks" ("userId", "incident")
     values ($1, $2)
@@ -154,6 +153,21 @@ app.patch('/api/users/:userId', (req, res, next) => {
         throw new ClientError(`cannot find user with id ${userId}`, 400);
       } else {
         res.status(201).json(editProfile);
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/bookmarks/:bookmarkId', (req, res, next) => {
+  const bookmarkId = parseInt(req.params.bookmarkId, 10);
+  const sql = 'delete from "bookmarks" where "bookmarkId" = $1 returning *';
+  db.query(sql, [bookmarkId])
+    .then(result => {
+      const deletedBookmark = result.rows[0];
+      if (!deletedBookmark) {
+        throw new ClientError(`cannot find the bookmarkId  ${bookmarkId}`, 400);
+      } else {
+        res.status(201).json(deletedBookmark);
       }
     })
     .catch(err => next(err));

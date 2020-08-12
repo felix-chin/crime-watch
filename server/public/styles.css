@@ -117,7 +117,7 @@ body {
   border:none;
   font-size: 2rem;
   position: relative;
-  left: 2.5rem;
+  left: 5rem;
 }
 .flex-container {
   height: 85vh;
@@ -169,4 +169,7 @@ body {
 
 option:hover {
   background-color: blue;
+}
+.des {
+  margin: 1rem;
 }
