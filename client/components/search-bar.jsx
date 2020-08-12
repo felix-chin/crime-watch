@@ -1,10 +1,12 @@
 import React from 'react';
+import Geocode from 'react-geocode';
 
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: ''
+      location: '',
+      coords: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,9 +22,29 @@ export default class SearchBar extends React.Component {
     event.preventDefault();
     const getStats = this.props.getStats;
     const setView = this.props.setView;
+    const getCoords = this.props.getCoords;
     getStats(this.state.location);
     setView('crime-rates', {});
     // needs method to post search location to Search History database
+
+    Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
+    Geocode.setLanguage('en');
+    Geocode.enableDebug();
+
+    // Get latidude & longitude from address.
+    const location = this.state.location;
+    const coords = [];
+    Geocode.fromAddress(location).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        coords.push(lat, lng);
+        getCoords(coords);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+    this.setState({ coords: coords });
   }
 
   saveSearch() {

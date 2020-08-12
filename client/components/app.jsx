@@ -24,13 +24,19 @@ export default class App extends React.Component {
       users: [],
       profile: {},
       stats1: [],
-      stats2: []
+      stats2: [],
+      coords: []
     };
     this.setView = this.setView.bind(this);
     this.getStats1 = this.getStats1.bind(this);
     this.getStats2 = this.getStats2.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.editProfile = this.editProfile.bind(this);
+    this.getCoords = this.getCoords.bind(this);
+  }
+
+  getCoords(coordsArray) {
+    this.setState({ coords: coordsArray });
   }
 
   setView(name, params) {
@@ -89,7 +95,7 @@ export default class App extends React.Component {
     if (view === 'login') {
       renderPage = <Login getProfile={this.getProfile} setView={this.setView}/>;
     } else if (view === 'search') {
-      renderPage = <SearchPage getStats={this.getStats1} setView={this.setView}/>;
+      renderPage = <SearchPage getStats={this.getStats1} setView={this.setView} getCoords={this.getCoords}/>;
     } else if (view === 'compare') {
       renderPage = <Compare getStats1={this.getStats1} getStats2={this.getStats2} setView={this.setView} />;
     } else if (view === 'compare-rate-list') {
@@ -99,7 +105,7 @@ export default class App extends React.Component {
     } else if (view === 'crime-details') {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
-      renderPage = <Map setView={this.setView}/>;
+      renderPage = <Map setView={this.setView} mapCenter={this.state.coords}/>;
     } else if (view === 'heat-map') {
       renderPage = <HeatMap setView={this.setView}/>;
     } else if (view === 'profile') {
