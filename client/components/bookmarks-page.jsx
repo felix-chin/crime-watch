@@ -6,7 +6,6 @@ export default class Bookmarks extends React.Component {
     super(props);
     this.state = { allBookmarks: [], userId: null, userBookmarks: [] };
     this.getUserBookmarks = this.getUserBookmarks.bind(this);
-    this.getInformation = this.getInformation.bind(this);
   }
 
   componentDidMount() {
