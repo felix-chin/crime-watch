@@ -1,13 +1,14 @@
 import React from 'react';
-import SearchBar from './search-bar';
+// import SearchBar from './search-bar';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { crimes: [], coords: [] };
+    this.state = { crimes: [], coords: [], mapCenter: [] };
     this.googleMapContainerRef = React.createRef();
 
     this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
+    this.displayCenter = this.displayCenter.bind(this);
   }
 
   getData() {
@@ -108,34 +109,42 @@ export default class Map extends React.Component {
           setTimeout(() => { this.infoWindow.close(); }, 5000);
         });
     });
-
   }
 
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
+
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 13,
-      center: {
-        lat: 34.052235,
-        lng: -118.243683
-      },
+      center: { lat: 37.09024, lng: -95.712891 },
       disableDefaultUI: true
     });
+
     this.getData();
+    this.setState({ mapCenter: this.props.mapCenter });
+  }
+
+  displayCenter() {
+    const mapCenter = this.state.mapCenter;
+    for (let i = 0; i < mapCenter.length; i++) {
+      this.map.setCenter({ lat: mapCenter[0], lng: mapCenter[1] });
+    }
   }
 
   render() {
     const setView = this.props.setView;
+
     return (
       <>
-        <SearchBar className="py-4 position-absolute" />
+        {/* <SearchBar className="py-4 position-absolute" getCoords={this.props.getCoords} /> */}
         <button onClick={() => setView('heat-map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Heat Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
           className="d-flex"
         >
+          {this.displayCenter()}
           {this.displayMarkers()}
         </div>
       </>
