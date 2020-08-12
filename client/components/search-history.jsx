@@ -15,7 +15,8 @@ export default class SearchHistory extends React.Component {
   }
 
   getHistory() {
-    fetch(`/api/searches/${1}`)
+    const profile = this.props.profile;
+    fetch(`/api/searches/${profile.userId}`)
       .then(res => res.json())
       .then(data => this.setState({ searches: data }))
       .catch(err => console.error(err));

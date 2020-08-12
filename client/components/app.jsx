@@ -55,15 +55,15 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  getProfile(profile) {
-    fetch(`/api/users/${profile}`)
+  getProfile(userId) {
+    fetch(`/api/users/${userId}`)
       .then(res => res.json())
       .then(data => this.setState({ profile: data }))
       .catch(err => console.error(err));
   }
 
-  editProfile(profile) {
-    fetch(`/api/users/${6}`, {
+  editProfile(userId, profile) {
+    fetch(`/api/users/${userId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(profile)
@@ -80,7 +80,6 @@ export default class App extends React.Component {
         this.setState({ users: newUsers });
       })
       .catch(err => console.error(err));
-
   }
 
   render() {
@@ -103,9 +102,9 @@ export default class App extends React.Component {
     } else if (view === 'heat-map') {
       renderPage = <HeatMap setView={this.setView}/>;
     } else if (view === 'profile') {
-      renderPage = <Profile profile={this.state.profile} />;
+      renderPage = <Profile profile={this.state.profile} setView={this.setView} getProfile={this.getProfile}/>;
     } else if (view === 'edit-profile') {
-      renderPage = <EditProfile edit={this.editProfile} />;
+      renderPage = <EditProfile profile={this.state.profile} edit={this.editProfile} setView={this.setView}/>;
     } else if (view === 'incident') {
       renderPage = <SingleIncident setView={this.setView}
         time={this.state.view.params.time}
@@ -115,7 +114,7 @@ export default class App extends React.Component {
         lng={this.state.view.params.lng}
         type={this.state.view.params.type} />;
     } else if (view === 'search-history') {
-      renderPage = <SearchHistory />;
+      renderPage = <SearchHistory profile={this.state.profile}/>;
     }
     return (
       <>

@@ -3,7 +3,9 @@ import React from 'react';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { users: [], activeUser: '' };
+    this.state = {
+      activeUser: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,14 +20,6 @@ export default class Login extends React.Component {
     const getProfile = this.props.getProfile;
     getProfile(this.state.activeUser);
     setView('search', {});
-  }
-
-  componentDidMount() {
-    fetch('/api/users')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ users: data });
-      });
   }
 
   render() {
