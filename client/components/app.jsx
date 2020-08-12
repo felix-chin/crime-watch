@@ -7,27 +7,29 @@ import SearchPage from './search';
 import HeatMap from './heat-map';
 import CrimeDetailsList from './crime-details-list';
 import NavBar from './navbar';
-// import Login from './login';
+import Login from './login';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
 // import Bookmarks from './bookmarks-page';
 import SearchHistory from './search-history';
-
+import Profile from './profile';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'search-history',
+        name: 'login',
         params: {}
       },
       users: [],
+      profile: {},
       stats1: [],
       stats2: []
     };
     this.setView = this.setView.bind(this);
     this.getStats1 = this.getStats1.bind(this);
     this.getStats2 = this.getStats2.bind(this);
+    this.getProfile = this.getProfile.bind(this);
     this.editProfile = this.editProfile.bind(this);
   }
 
@@ -38,14 +40,6 @@ export default class App extends React.Component {
         params: params
       }
     });
-  }
-
-  componentDidMount() {
-    // fetch('/api/users')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.setState({ users: data });
-    //   });
   }
 
   getStats1(location) {
@@ -62,8 +56,15 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  editProfile(profile) {
-    fetch(`/api/users/${6}`, {
+  getProfile(userId) {
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => this.setState({ profile: data }))
+      .catch(err => console.error(err));
+  }
+
+  editProfile(userId, profile) {
+    fetch(`/api/users/${userId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(profile)
@@ -78,13 +79,16 @@ export default class App extends React.Component {
           }
         });
         this.setState({ users: newUsers });
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
     const view = this.state.view.name;
     let renderPage;
-    if (view === 'search') {
+    if (view === 'login') {
+      renderPage = <Login getProfile={this.getProfile} setView={this.setView}/>;
+    } else if (view === 'search') {
       renderPage = <SearchPage getStats={this.getStats1} setView={this.setView}/>;
     } else if (view === 'compare') {
       renderPage = <Compare getStats1={this.getStats1} getStats2={this.getStats2} setView={this.setView} />;
@@ -98,8 +102,10 @@ export default class App extends React.Component {
       renderPage = <Map setView={this.setView}/>;
     } else if (view === 'heat-map') {
       renderPage = <HeatMap setView={this.setView}/>;
+    } else if (view === 'profile') {
+      renderPage = <Profile profile={this.state.profile} setView={this.setView} getProfile={this.getProfile}/>;
     } else if (view === 'edit-profile') {
-      renderPage = <EditProfile edit={this.editProfile} />;
+      renderPage = <EditProfile profile={this.state.profile} edit={this.editProfile} setView={this.setView}/>;
     } else if (view === 'incident') {
       renderPage = <SingleIncident setView={this.setView}
         date={this.state.view.params.date}
@@ -111,7 +117,7 @@ export default class App extends React.Component {
         code={this.state.view.params.code}
         offenseDescription={this.state.view.params.offenseDescription} />;
     } else if (view === 'search-history') {
-      renderPage = <SearchHistory />;
+      renderPage = <SearchHistory profile={this.state.profile}/>;
     }
     return (
       <>
@@ -119,7 +125,9 @@ export default class App extends React.Component {
           {renderPage}
           {/* <Bookmarks /> */}
         </div>
-        <NavBar view={this.state.view.name} setView={this.setView} />
+        { this.state.view.name !== 'login' &&
+          <NavBar view={this.state.view.name} setView={this.setView} />
+        }
       </>
     );
   }

@@ -55,7 +55,7 @@ app.get('/api/users/:userId', (req, res, next) => {
   `;
   const params = [userId];
   db.query(sql, params)
-    .then(result => res.json(result.rows))
+    .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
 

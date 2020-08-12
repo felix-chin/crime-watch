@@ -2,10 +2,6 @@ body {
   background-color: #F0F0F0;
 }
 
-.profilePic {
-  border-radius: 50%;
-}
-
 .quantico-font {
   font-family: Quantico;
   font-size: 36px;
@@ -22,9 +18,47 @@ body {
 
 .login-title {
   font-family: Quantico;
-  font-size: 40px;
+  font-size: 48px;
   font-weight: bold;
   color: white;
+}
+
+.menu-icon {
+  font-size: 40px;
+}
+
+.shade {
+  background-color: #8F8585;
+  opacity: 75%;
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  background-color: #535353;
+  border-radius: 15px 15px 0px 0px;
+  position: fixed;
+  width: 100%;
+}
+
+.menu > h3 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.animate {
+  animation-name: animate;
+  animation-duration: 0.7s;
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 75%;
+  }
 }
 
 .roboto-font {
@@ -44,10 +78,8 @@ body {
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
-  position: relative;
-  left: 7%;
+  width: 50px;
+  height: 50px;
 }
 
 .images {
@@ -109,16 +141,24 @@ body {
   background-color: rgb(181, 181, 181);
 }
 
+.profile-pic {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px
+}
+
 .backButton {
   border: none;
   color:gray;
 }
+
 .bk {
   border:none;
   font-size: 2rem;
   position: relative;
   left: 5rem;
 }
+
 .flex-container {
   height: 85vh;
   display: flex;
@@ -150,7 +190,6 @@ body {
   font-family: Quantico;
 }
 
-
 .select-option, .login-btn {
   background-color: white;
 }
@@ -164,7 +203,8 @@ body {
 }
 
 .login-btn {
-  padding: .5rem 6rem;
+  padding: .5rem 4rem;
+  font-weight: bold;
 }
 
 option:hover {

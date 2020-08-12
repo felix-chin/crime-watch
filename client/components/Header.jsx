@@ -5,11 +5,11 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <div className="logo">
+        <div className="ml-4">
           <img className="logo" src="../images/logo.png"></img>
         </div>
         <header className="header d-flex justify-content-center">
-          <h1 className="crime-watch-title">Crime <span className="crime-icon"><i className="fas fa-search" style={{ color: 'black' }}></i></span> Watch</h1>
+          <h1 className="crime-watch-title">Crime<i className="fas fa-search" style={{ color: 'black' }}></i>Watch</h1>
         </header>
       </>
 
