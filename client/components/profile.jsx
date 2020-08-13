@@ -11,9 +11,9 @@ export default class Profile extends React.Component {
     const profile = this.props.profile;
     let profilePic;
     if (profile.userId === 1) {
-      profilePic = './images/uzair.jpg';
+      profilePic = './images/uzair.png';
     } else if (profile.userId === 2) {
-      profilePic = './images/tim.jpg';
+      profilePic = './images/tim.png';
     } else if (profile.userId === 3) {
       profilePic = './images/guy.jpg';
     }

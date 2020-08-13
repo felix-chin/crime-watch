@@ -34,7 +34,7 @@ export default class Login extends React.Component {
               <h1 className="login-title">Crime<i className="fas fa-search" style={{ color: 'black' }}></i>Watch</h1>
             </header>
             <form className='d-flex flex-column justify-content-center align-items-center mt-3' onSubmit={this.handleSubmit}>
-              <p>Select user to log in</p>
+              <p>Select a user to log in</p>
               <select style={{ fontSize: '18px' }} className='select-option btn btn-group dropdown roboto-font w-75' type="button" value={this.state.activeUser} required onChange={this.handleChange}>
                 <option style={{ fontSize: '12px' }} className='dropdown-item' value="" disabled >Select User</option>
                 <option style={{ fontSize: '12px' }} className='dropdown-item' value="1">ashraf_animelover</option>

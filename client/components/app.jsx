@@ -121,7 +121,8 @@ export default class App extends React.Component {
         lng={this.state.view.params.lng}
         type={this.state.view.params.type}
         code={this.state.view.params.code}
-        offenseDescription={this.state.view.params.offenseDescription} />;
+        offenseDescription={this.state.view.params.offenseDescription}
+        profile={this.state.profile} />;
     } else if (view === 'search-history') {
       renderPage = <SearchHistory profile={this.state.profile}/>;
     } else if (view === 'bookmarks') {
@@ -131,7 +132,6 @@ export default class App extends React.Component {
       <>
         <div>
           {renderPage}
-          {/* <Bookmarks /> */}
         </div>
         { this.state.view.name !== 'login' &&
           <NavBar view={this.state.view.name} setView={this.setView} />

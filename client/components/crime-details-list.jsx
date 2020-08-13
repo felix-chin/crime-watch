@@ -67,14 +67,14 @@ export default class CrimeDetailsList extends React.Component {
         heading = 'Other';
     }
     const renderIncidents = incidents.map((incident, i) => {
-      const date = incident.incident_date;
-      const newDate = date.slice(0, date.indexOf('T'));
+      const timestamp = incident.incident_date;
+      const date = timestamp.slice(0, timestamp.indexOf('T'));
       return (
         <CrimeDetailsListItem
           key={i}
           setView={() => setView('incident',
             {
-              date: newDate,
+              date: date,
               address: incident.incident_address,
               description: incident.incident_offense_detail_description,
               lat: incident.incident_latitude,
@@ -83,17 +83,17 @@ export default class CrimeDetailsList extends React.Component {
               code: incident.incident_code,
               offenseDescription: incident.incident_offense_description
             })}
-          date={newDate}
+          date={date}
           address={incident.incident_address}
           detail={incident.incident_offense_description} />
       );
     });
     return (
-      <div className="container pt-3">
-        <span onClick={() => setView('crime-rates')} className="mx-3 text-muted cursor-pointer back">Back</span>
+      <div className="container nav-padding pt-3">
+        <span onClick={() => setView('crime-rates', {})} className="text-muted cursor-pointer back">Back</span>
         <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
         <CrimeDetailsHeading image={image} heading={heading} />
-        <div className="mx-3">
+        <div>
           {renderIncidents}
         </div>
       </div>

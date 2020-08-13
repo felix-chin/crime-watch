@@ -60,10 +60,10 @@ export default class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className + ' container my-4'}>
+      <div className='container mt-2 mb-5'>
         <form onSubmit={this.handleSubmit}>
           <div className="input-group border border-secondary rounded" style={{ zIndex: 1 }}>
-            <input className="form-control" type="text" name="location" value={this.state.location} placeholder="Enter location" onChange={this.handleChange} />
+            <input className="form-control" type="text" name="location" value={this.state.location} placeholder="Enter location" required onChange={this.handleChange} />
             <div className="input-group-append">
               <button type="submit" className="d-flex align-items-center btn bg-color input-group-append">
                 <i className="fas fa-search fa-fw search-button" ></i>

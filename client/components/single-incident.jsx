@@ -18,9 +18,10 @@ class SingleIncident extends React.Component {
   // }
 
   componentDidMount() {
+    const profile = this.props.profile;
     let isBookmarked = false;
     let bookmarkId = null;
-    fetch(`/api/bookmarks/${this.state.userId}`)
+    fetch(`/api/bookmarks/${profile.userId}`)
       .then(response => response.json())
       .then(data => {
         for (let i = 0; i < data.length; i++) {
@@ -35,6 +36,7 @@ class SingleIncident extends React.Component {
   }
 
   handleBookmark() {
+    const profile = this.props.profile;
     if (this.state.isBookmarked) {
       fetch(`api/bookmarks/${this.state.bookmarkId}`, {
         method: 'DELETE'
@@ -42,9 +44,8 @@ class SingleIncident extends React.Component {
         .then(() => {
           this.setState({ isBookmarked: false, bookmarkId: null });
         });
-
     } else {
-      fetch(`/api/bookmarks/${this.state.userId}`, {
+      fetch(`/api/bookmarks/${profile.userId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,32 +65,25 @@ class SingleIncident extends React.Component {
   render() {
 
     return (
-      <div className="container">
-        <button className="backButton" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</button>
-        <header className="row justify-content-center">
-          <h1>Incident</h1>
-          <button className="bk noselect" onClick={this.handleBookmark.bind(this) }>
-            {this.state.isBookmarked ? <i className="fas fa-bookmark "></i>
-              : <i className="far fa-bookmark "></i>}
-          </button>
-        </header>
-        <div className="row">
-          <div className="flex-container">
-            <div className="des flex1">
-              <div className="time">
-                {this.props.date}
-              </div>
-              <div className="address">
-                {this.props.address}
-              </div>
-            </div>
-            <div className="des flex3">
-              {this.props.description}
-            </div>
-            <div className="flex2">
-              <IncidentMap lat={this.props.lat} lng={this.props.lng} type={'Simple Assault'}/>
-            </div>
+      <div className="container pt-3">
+        <span className="back text-muted mt-4" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</span>
+        <header className="row justify-content-center align-items-center">
+          <h1 className="quantico-font">Incident</h1>
+          <div onClick={this.handleBookmark.bind(this)} className="position-absolute bookmark">
+            {
+              this.state.isBookmarked
+                ? <img src="./images/bookmark_blue.png" className="images-compare" /> : <img src="./images/bookmark.png" className="images-compare" />
+            }
           </div>
+        </header>
+        <div className="d-flex flex-column main-wrapper">
+          <div className="d-flex flex-column justify-content-space flex-grow-0 my-2">
+            <h5 className="roboto-font">{this.props.offenseDescription}</h5>
+            <p className="roboto-font">Incident occured on {this.props.date}</p>
+            <p className="roboto-font"><span className="font-weight-bold">Location:</span><br /> {this.props.address}</p>
+            <p className="roboto-font mb-2"><span className="font-weight-bold">Description:</span><br />{this.props.description}</p>
+          </div>
+          <IncidentMap lat={this.props.lat} lng={this.props.lng} type={this.props.offenseDescription} />
         </div>
       </div>
     );

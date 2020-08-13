@@ -5,23 +5,11 @@ export default class IncidentMap extends React.Component {
     super(props);
     this.state = { crimes: [], coords: [] };
     this.googleMapContainerRef = React.createRef();
-
     this.displayMarkers = this.displayMarkers.bind(this);
   }
 
   displayMarkers() {
     const coords = this.state.coords;
-
-    // for (let i = 0; i < crimes.length; i++) {
-    //   this.infoWindowText =
-    //     ` Date: ${crimes[i].incident_date}<br />
-    //      @ ${crimes[i].incident_address}<br />
-    //      Description: ${crimes[i].incident_offense_description}
-    //     `;
-    // }
-    // this.infoWindow = new google.maps.InfoWindow({
-    //   content: this.infoWindowText
-    // });
 
     const typeMap = {
       'Theft From Motor Vehicle': 'property',
@@ -68,7 +56,7 @@ export default class IncidentMap extends React.Component {
 
     const icons = {
       highTech: '../images/crimes/high-tech-small.png',
-      organized: '../images/crimes/organized_crime_small.png',
+      organized: '../images/crimes/organized-crime-small.png',
       other: '../images/crimes/other-small.png',
       property: '../images/crimes/property-small.png',
       publicOrder: '../images/crimes/public-order-small.png',
@@ -76,28 +64,27 @@ export default class IncidentMap extends React.Component {
       whiteCollar: '../images/crimes/white-collar-small.png'
     };
 
-    coords.map(coord => {
+    coords.forEach(coord => {
       this.marker = new google.maps.Marker({
         position: { lat: coord.lat, lng: coord.lng },
         map: this.map,
         icon: icons[typeMap[coord.type]]
       });
-      // .addListener('click', () => {
-      //   this.infoWindow.open(this.map, this.marker);
-      //   setTimeout(() => { this.infoWindow.close(); }, 5000);
-      // });
+
     });
   }
 
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
+
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
-      zoom: 13,
+      zoom: 16,
       center: {
-        lat: 34.052235,
-        lng: -118.243683
+        lat: this.props.lat,
+        lng: this.props.lng
       },
+      gestureHandling: 'cooperative',
       disableDefaultUI: true
     });
 
@@ -107,16 +94,11 @@ export default class IncidentMap extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="d-flex position-absolute" style={{ zIndex: 1 }}>
-        </div>
-        <div
-          ref={this.googleMapContainerRef}
-          style={{ height: '50vh' }}
-          className="d-flex"
-        >
-          {this.displayMarkers()}
-        </div>
+      <div
+        ref={this.googleMapContainerRef}
+        style={{ minHeight: '35vh' }}
+        className="row flex-grow-1" >
+        {this.displayMarkers()}
       </div>
     );
   }

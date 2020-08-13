@@ -65,7 +65,7 @@ export default class HeatMap extends React.Component {
     const setView = this.props.setView;
     return (
       <>
-        <button onClick={() => setView('map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Standard Map</button>
+        <button type="button" onClick={() => setView('map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Crime Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
