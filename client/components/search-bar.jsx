@@ -28,11 +28,9 @@ export default class SearchBar extends React.Component {
     this.saveSearch(profile.userId);
     getStats(this.state.location);
     setView('crime-rates', {});
-    // needs method to post search location to Search History database
 
     Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
     Geocode.setLanguage('en');
-    Geocode.enableDebug();
 
     // Get latidude & longitude from address.
     const location = this.state.location;
