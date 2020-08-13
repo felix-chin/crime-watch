@@ -10,6 +10,7 @@ export default class SearchBar extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.saveSearch = this.saveSearch.bind(this);
   }
 
   handleChange(event) {
@@ -23,6 +24,8 @@ export default class SearchBar extends React.Component {
     const getStats = this.props.getStats;
     const setView = this.props.setView;
     const getCoords = this.props.getCoords;
+    const profile = this.props.profile;
+    this.saveSearch(profile.userId);
     getStats(this.state.location);
     setView('crime-rates', {});
     // needs method to post search location to Search History database
@@ -47,14 +50,13 @@ export default class SearchBar extends React.Component {
     this.setState({ coords: coords });
   }
 
-  saveSearch() {
-    fetch(`/api/searches/${1}`, {
+  saveSearch(userId) {
+    fetch(`/api/searches/${userId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state.location)
+      body: JSON.stringify({ location: this.state.location })
     })
       .then(res => res.json())
-      .then()
       .catch(err => console.error(err));
   }
 

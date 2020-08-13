@@ -95,7 +95,7 @@ export default class App extends React.Component {
     if (view === 'login') {
       renderPage = <Login getProfile={this.getProfile} setView={this.setView}/>;
     } else if (view === 'search') {
-      renderPage = <SearchPage getStats={this.getStats1} setView={this.setView} getCoords={this.getCoords}/>;
+      renderPage = <SearchPage profile={this.state.profile} getStats={this.getStats1} setView={this.setView} getCoords={this.getCoords}/>;
     } else if (view === 'compare') {
       renderPage = <Compare getStats1={this.getStats1} getStats2={this.getStats2} setView={this.setView} />;
     } else if (view === 'compare-rate-list') {
