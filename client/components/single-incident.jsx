@@ -18,9 +18,10 @@ class SingleIncident extends React.Component {
   // }
 
   componentDidMount() {
+    const profile = this.props.profile;
     let isBookmarked = false;
     let bookmarkId = null;
-    fetch(`/api/bookmarks/${this.state.userId}`)
+    fetch(`/api/bookmarks/${profile.userId}`)
       .then(response => response.json())
       .then(data => {
         for (let i = 0; i < data.length; i++) {
@@ -35,6 +36,7 @@ class SingleIncident extends React.Component {
   }
 
   handleBookmark() {
+    const profile = this.props.profile;
     if (this.state.isBookmarked) {
       fetch(`api/bookmarks/${this.state.bookmarkId}`, {
         method: 'DELETE'
@@ -44,7 +46,7 @@ class SingleIncident extends React.Component {
         });
 
     } else {
-      fetch(`/api/bookmarks/${this.state.userId}`, {
+      fetch(`/api/bookmarks/${profile.userId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,32 +66,23 @@ class SingleIncident extends React.Component {
   render() {
 
     return (
-      <div className="container">
-        <button className="backButton" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</button>
+      <div className="container pt-3">
+        <span className="back text-muted mt-4" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</span>
         <header className="row justify-content-center">
-          <h1>Incident</h1>
+          <h1 className="quantico-font">Incident</h1>
           <button className="bk noselect" onClick={this.handleBookmark.bind(this) }>
             {this.state.isBookmarked ? <i className="fas fa-bookmark "></i>
               : <i className="far fa-bookmark "></i>}
           </button>
         </header>
-        <div className="row">
-          <div className="flex-container">
-            <div className="des flex1">
-              <div className="time">
-                {this.props.date}
-              </div>
-              <div className="address">
-                {this.props.address}
-              </div>
-            </div>
-            <div className="des flex3">
-              {this.props.description}
-            </div>
-            <div className="flex2">
-              <IncidentMap lat={this.props.lat} lng={this.props.lng} type={'Simple Assault'}/>
-            </div>
-          </div>
+        <div className="d-flex flex-column justify-content-space my-2">
+            <h5 className="roboto-font">{this.props.offenseDescription}</h5>
+          <p className="time roboto-font">Incident occured on {this.props.date}</p>
+          <p className="address roboto-font">Location : {this.props.address}</p>
+          <p className="roboto-font my-2">{this.props.description}</p>
+        </div>
+        <div>
+          <IncidentMap lat={this.props.lat} lng={this.props.lng} type={this.props.offenseDescription} />
         </div>
       </div>
     );

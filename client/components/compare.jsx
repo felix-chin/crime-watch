@@ -40,7 +40,8 @@ export default class Compare extends React.Component {
               value={this.state.location1}
               onChange={this.handleChange}
               placeholder="ex. Los Angeles"
-              className="form-control border border-secondary rounded" />
+              className="form-control border border-secondary rounded"
+              required />
           </div>
           <div className="form-group mb-5">
             <label htmlFor="location2" className="ml-2">With:</label>
@@ -50,7 +51,8 @@ export default class Compare extends React.Component {
               value={this.state.location2}
               onChange={this.handleChange}
               placeholder="ex. New York"
-              className="form-control border border-secondary rounded" />
+              className="form-control border border-secondary rounded"
+              required />
           </div>
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn btn-color">Compare</button>

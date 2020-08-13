@@ -16,7 +16,7 @@ export default class CrimeRateList extends React.Component {
       );
     });
     return (
-      <div className="container">
+      <div className="container pt-3">
         <h1 className="my-4 text-center quantico-font">Crime Rates</h1>
         <div className="mx-3">
           {crimeRateListItems}

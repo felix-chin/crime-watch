@@ -90,10 +90,10 @@ export default class CrimeDetailsList extends React.Component {
     });
     return (
       <div className="container pt-3">
-        <span onClick={() => setView('crime-rates')} className="mx-3 text-muted cursor-pointer back">Back</span>
+        <span onClick={() => setView('crime-rates')} className="text-muted cursor-pointer back">Back</span>
         <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
         <CrimeDetailsHeading image={image} heading={heading} />
-        <div className="mx-3">
+        <div>
           {renderIncidents}
         </div>
       </div>

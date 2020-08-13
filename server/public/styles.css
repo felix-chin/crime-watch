@@ -159,13 +159,6 @@ body {
   left: 5rem;
 }
 
-.flex-container {
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
 .info-window {
   font-size: 24px;
   width: 100%;
@@ -196,10 +189,8 @@ body {
 
 .horizontal-row {
   position: relative;
-
   border: 1px solid #F0F0F0;
   width: 100vw;
-
 }
 
 .login-btn {
@@ -209,7 +200,4 @@ body {
 
 option:hover {
   background-color: blue;
-}
-.des {
-  margin: 1rem;
 }
