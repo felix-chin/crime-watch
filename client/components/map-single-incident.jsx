@@ -11,17 +11,6 @@ export default class IncidentMap extends React.Component {
   displayMarkers() {
     const coords = this.state.coords;
 
-    // for (let i = 0; i < crimes.length; i++) {
-    //   this.infoWindowText =
-    //     ` Date: ${crimes[i].incident_date}<br />
-    //      @ ${crimes[i].incident_address}<br />
-    //      Description: ${crimes[i].incident_offense_description}
-    //     `;
-    // }
-    // this.infoWindow = new google.maps.InfoWindow({
-    //   content: this.infoWindowText
-    // });
-
     const typeMap = {
       'Theft From Motor Vehicle': 'property',
       'All Other Larceny': 'property',

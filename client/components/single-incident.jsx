@@ -76,7 +76,7 @@ class SingleIncident extends React.Component {
           </button>
         </header>
         <div className="d-flex flex-column justify-content-space my-2">
-            <h5 className="roboto-font">{this.props.offenseDescription}</h5>
+          <h5 className="roboto-font">{this.props.offenseDescription}</h5>
           <p className="time roboto-font">Incident occured on {this.props.date}</p>
           <p className="address roboto-font">Location : {this.props.address}</p>
           <p className="roboto-font my-2">{this.props.description}</p>
