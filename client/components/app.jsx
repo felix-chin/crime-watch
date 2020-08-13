@@ -107,7 +107,7 @@ export default class App extends React.Component {
     } else if (view === 'map') {
       renderPage = <Map setView={this.setView} mapCenter={this.state.coords}/>;
     } else if (view === 'heat-map') {
-      renderPage = <HeatMap setView={this.setView}/>;
+      renderPage = <HeatMap setView={this.setView} mapCenter={this.state.coords}/>;
     } else if (view === 'profile') {
       renderPage = <Profile profile={this.state.profile} setView={this.setView} getProfile={this.getProfile}/>;
     } else if (view === 'edit-profile') {

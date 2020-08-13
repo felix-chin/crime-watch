@@ -9,6 +9,7 @@ export default class Map extends React.Component {
     this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
     this.displayCenter = this.displayCenter.bind(this);
+    this.displayInfoWindowText = this.displayInfoWindowText.bind(this);
   }
 
   getData() {
@@ -22,27 +23,19 @@ export default class Map extends React.Component {
           const cityCoords = { lat: latitude, lng: longitude, type: data.incidents[i].incident_offense_description, icon: '' };
           cityArray.push(cityCoords);
         }
-        this.setState({ crimes: data.incidents, coords: cityArray });
+
+        this.setState({ crimes: data.incidents, coords: cityArray }, this.displayMarkers);
       });
   }
 
   displayMarkers() {
     const coords = this.state.coords;
-    const crimes = this.state.crimes;
-    for (let i = 0; i < crimes.length; i++) {
-      const date = crimes[i].incident_date;
-      const newDate = date.slice(0, date.indexOf('T'));
-      this.infoWindowText =
-        `<div class='info-window'>
-          <h1 class='info-window-title'>Incident</h1>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}<p>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[i].incident_address}<p>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[i].incident_offense_description}<p>
-         </div>
-        `;
-    }
     const typeMap = {
       'Theft From Motor Vehicle': 'property',
+      'Theft From Building': 'property',
+      'Suspicious Activity/All Other': 'other',
+      'Family Offenses/All Other': 'other',
+      'Negligent Manslaughter': 'violent',
       'All Other Larceny': 'property',
       'Simple Assault': 'violent',
       'Destruction/Damage/Vandalism of Property': 'property',
@@ -94,19 +87,19 @@ export default class Map extends React.Component {
       whiteCollar: '../images/crimes/white-collar-small.png'
     };
 
-    coords.map(coord => {
-      this.marker = new google.maps.Marker({
+    coords.forEach((coord, index) => {
+      new google.maps.Marker({
         position: { lat: coord.lat, lng: coord.lng },
         map: this.map,
         icon: icons[typeMap[coord.type]]
       })
         .addListener('click', event => {
-          this.infoWindow = new google.maps.InfoWindow({
-            content: this.infoWindowText
+          const infoWindow = new google.maps.InfoWindow({
+            content: this.displayInfoWindowText(index)
           });
-          this.infoWindow.setPosition(event.latLng);
-          this.infoWindow.open(this.map);
-          setTimeout(() => { this.infoWindow.close(); }, 5000);
+          infoWindow.setPosition(event.latLng);
+          infoWindow.open(this.map);
+          setTimeout(() => { infoWindow.close(); }, 5000);
         });
     });
   }
@@ -123,6 +116,19 @@ export default class Map extends React.Component {
 
     this.getData();
     this.setState({ mapCenter: this.props.mapCenter });
+  }
+
+  displayInfoWindowText(crimeIndex) {
+    const crimes = this.state.crimes;
+    const date = crimes[crimeIndex].incident_date;
+    const newDate = date.slice(0, date.indexOf('T'));
+    return `<div class='info-window'>
+                  <h1 class='info-window-title'>Incident</h1>
+                  <p class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}<p>
+                  <p class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[crimeIndex].incident_address}<p>
+                  <p class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[crimeIndex].incident_offense_description}<p>
+                 </div>
+                `;
   }
 
   displayCenter() {
@@ -145,7 +151,6 @@ export default class Map extends React.Component {
           className="d-flex"
         >
           {this.displayCenter()}
-          {this.displayMarkers()}
         </div>
       </>
 
