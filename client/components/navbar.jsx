@@ -14,6 +14,10 @@ export default function NavBar(props) {
     search = './images/search.png';
     place = './images/place.png';
     user = './images/user_black.png';
+  } else if (view === 'search') {
+    search = './images/search_black.png';
+    place = './images/place.png';
+    user = './images/user.png';
   } else {
     search = './images/search_black.png';
     place = './images/place.png';

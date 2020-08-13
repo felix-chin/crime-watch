@@ -132,7 +132,6 @@ export default class App extends React.Component {
       <>
         <div>
           {renderPage}
-          {/* <Bookmarks /> */}
         </div>
         { this.state.view.name !== 'login' &&
           <NavBar view={this.state.view.name} setView={this.setView} />

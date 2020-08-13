@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBar from './search-bar';
 export default class HeatMap extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +39,6 @@ export default class HeatMap extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-    const coords = this.state.coords;
 
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 10,
@@ -59,8 +57,7 @@ export default class HeatMap extends React.Component {
     const setView = this.props.setView;
     return (
       <>
-        <SearchBar className="py-4 position-absolute" />
-        <button onClick={() => setView('map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Standard Map</button>
+        <button type="button" onClick={() => setView('map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Crime Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}

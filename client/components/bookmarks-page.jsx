@@ -37,7 +37,7 @@ export default class Bookmarks extends React.Component {
       <>
         <div className="container ">
           <header className='d-flex justify-content-center mt-3'>
-            <h1 className="quantico-font w-50 text-center">Bookmarked Incidents</h1>
+            <h1 className="quantico-font text-center">Bookmarked Incidents</h1>
           </header>
           <div className='row mt-3 align-items-center roboto-font'>
             <BookmarkList bookmarks={this.state.userBookmarks} />

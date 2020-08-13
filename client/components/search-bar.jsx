@@ -60,7 +60,7 @@ export default class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className + ' container my-4'}>
+      <div className='container mt-2 mb-5'>
         <form onSubmit={this.handleSubmit}>
           <div className="input-group border border-secondary rounded" style={{ zIndex: 1 }}>
             <input className="form-control" type="text" name="location" value={this.state.location} placeholder="Enter location" required onChange={this.handleChange} />

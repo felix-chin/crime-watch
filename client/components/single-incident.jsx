@@ -44,7 +44,6 @@ class SingleIncident extends React.Component {
         .then(() => {
           this.setState({ isBookmarked: false, bookmarkId: null });
         });
-
     } else {
       fetch(`/api/bookmarks/${profile.userId}`, {
         method: 'POST',
@@ -68,20 +67,22 @@ class SingleIncident extends React.Component {
     return (
       <div className="container pt-3">
         <span className="back text-muted mt-4" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</span>
-        <header className="row justify-content-center">
+        <header className="row justify-content-center align-items-center">
           <h1 className="quantico-font">Incident</h1>
-          <button className="bk noselect" onClick={this.handleBookmark.bind(this) }>
-            {this.state.isBookmarked ? <i className="fas fa-bookmark "></i>
-              : <i className="far fa-bookmark "></i>}
-          </button>
+          <div onClick={this.handleBookmark.bind(this)} className="position-absolute bookmark">
+            {
+              this.state.isBookmarked
+                ? <img src="./images/bookmark_blue.png" className="images-compare" /> : <img src="./images/bookmark.png" className="images-compare" />
+            }
+          </div>
         </header>
-        <div className="d-flex flex-column justify-content-space my-2">
-          <h5 className="roboto-font">{this.props.offenseDescription}</h5>
-          <p className="time roboto-font">Incident occured on {this.props.date}</p>
-          <p className="address roboto-font">Location : {this.props.address}</p>
-          <p className="roboto-font my-2">{this.props.description}</p>
-        </div>
-        <div>
+        <div className="d-flex flex-column main-wrapper">
+          <div className="d-flex flex-column justify-content-space flex-grow-0 my-2">
+            <h5 className="roboto-font">{this.props.offenseDescription}</h5>
+            <p className="roboto-font">Incident occured on {this.props.date}</p>
+            <p className="roboto-font"><span className="font-weight-bold">Location:</span><br /> {this.props.address}</p>
+            <p className="roboto-font mb-2"><span className="font-weight-bold">Description:</span><br />{this.props.description}</p>
+          </div>
           <IncidentMap lat={this.props.lat} lng={this.props.lng} type={this.props.offenseDescription} />
         </div>
       </div>

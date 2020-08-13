@@ -75,12 +75,16 @@ export default class IncidentMap extends React.Component {
   }
 
   componentDidMount() {
+    /* global google */
+    // marking as global because it should be in a script tag in the HTML file!
+
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 16,
       center: {
         lat: this.props.lat,
         lng: this.props.lng
       },
+      gestureHandling: 'cooperative',
       disableDefaultUI: true
     });
 
@@ -90,15 +94,11 @@ export default class IncidentMap extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="d-flex position-absolute" style={{ zIndex: 1 }}>
-        </div>
-        <div
-          ref={this.googleMapContainerRef}
-          style={{ height: '50vh' }}
-          className="d-flex" >
-          {this.displayMarkers()}
-        </div>
+      <div
+        ref={this.googleMapContainerRef}
+        style={{ minHeight: '35vh' }}
+        className="row flex-grow-1" >
+        {this.displayMarkers()}
       </div>
     );
   }

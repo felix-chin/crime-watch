@@ -34,10 +34,10 @@ export default class Map extends React.Component {
       const newDate = date.slice(0, date.indexOf('T'));
       this.infoWindowText =
         `<div class='info-window'>
-          <h1 class='info-window-title'>Incident</h1>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}<p>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[i].incident_address}<p>
-          <p class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[i].incident_offense_description}<p>
+          <h6 class='info-window-title'>Incident</h6>
+          <div class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}</div>
+          <div class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[i].incident_address}</div>
+          <div class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[i].incident_offense_description}</div>
          </div>
         `;
     }
@@ -86,7 +86,7 @@ export default class Map extends React.Component {
 
     const icons = {
       highTech: '../images/crimes/high-tech-small.png',
-      organized: '../images/crimes/organized_crime_small.png',
+      organized: '../images/crimes/organized-crime-small.png',
       other: '../images/crimes/other-small.png',
       property: '../images/crimes/property-small.png',
       publicOrder: '../images/crimes/public-order-small.png',
@@ -138,7 +138,7 @@ export default class Map extends React.Component {
     return (
       <>
         {/* <SearchBar className="py-4 position-absolute" getCoords={this.props.getCoords} /> */}
-        <button onClick={() => setView('heat-map', {})} className="standardMapView roboto-font" style={{ zIndex: 1 }}>Heat Map</button>
+        <button onClick={() => setView('heat-map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Heat Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
