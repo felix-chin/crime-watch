@@ -2,10 +2,11 @@ import React from 'react';
 export default class HeatMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { crimes: [], coords: [] };
+    this.state = { crimes: [], coords: [], mapCenter: [] };
     this.googleMapContainerRef = React.createRef();
     this.displayHeatMap = this.displayHeatMap.bind(this);
     this.getData = this.getData.bind(this);
+    this.displayCenter = this.displayCenter.bind(this);
   }
 
   getData() {
@@ -50,7 +51,14 @@ export default class HeatMap extends React.Component {
       disableDefaultUI: true
     });
     this.getData();
+    this.setState({ mapCenter: this.props.mapCenter });
+  }
 
+  displayCenter() {
+    const mapCenter = this.state.mapCenter;
+    for (let i = 0; i < mapCenter.length; i++) {
+      this.map.setCenter({ lat: mapCenter[0], lng: mapCenter[1] });
+    }
   }
 
   render() {
@@ -63,6 +71,7 @@ export default class HeatMap extends React.Component {
           style={{ width: '100vw', height: '100vh' }}
           className="d-flex"
         >
+          {this.displayCenter()}
           {this.displayHeatMap()}
         </div>
       </>
