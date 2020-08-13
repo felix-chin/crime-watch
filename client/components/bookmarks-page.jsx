@@ -28,8 +28,9 @@ export default class Bookmarks extends React.Component {
           const newBookmark = incident.incident;
           dataArray.push(newBookmark);
         });
-        this.setState({ userBookmarks: dataArray, userId: data[0].userId });
-      });
+        this.setState({ userBookmarks: dataArray, userId: profile.userId });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
