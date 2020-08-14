@@ -24,7 +24,7 @@ export default class SearchHistory extends React.Component {
 
   render() {
     return (
-      <div className="container" >
+      <div className="container nav-padding" >
         <div className="d-flex justify-content-center mt-5 mb-4" >
           <img src="./images/history.png" alt="search-history" className="mr-3 images" />
           <h1 className="quantico-font">Search History</h1>
