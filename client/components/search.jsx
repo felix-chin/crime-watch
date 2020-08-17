@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from './header';
 import SearchBar from './search-bar';
 
 function SearchPage(props) {
@@ -10,9 +10,16 @@ function SearchPage(props) {
       <div className='d-flex flex-column justify-content-center align-items-center mt-3'>
         <p>Welcome</p>
       </div>
-      <SearchBar profile={props.profile} getStats={props.getStats} setView={props.setView} getCoords={props.getCoords}/>
+      <SearchBar
+        profile={props.profile}
+        getStats={props.getStats}
+        setView={props.setView}
+        getCoords={props.getCoords}/>
       <div className="d-flex justify-content-center">
-        <button type="button" onClick={() => setView('compare', {})} className="btn btn-color">Compare two locations</button>
+        <button
+          type="button"
+          onClick={() => setView('compare', {})}
+          className="btn btn-color">Compare two locations</button>
       </div>
     </div>
   );

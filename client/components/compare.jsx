@@ -22,9 +22,12 @@ export default class Compare extends React.Component {
     const getStats1 = this.props.getStats1;
     const getStats2 = this.props.getStats2;
     const setView = this.props.setView;
-    getStats1(this.state.location1);
-    getStats2(this.state.location2);
-    setView('compare-rate-list', { location1: this.state.location1, location2: this.state.location2 });
+    getStats1('la');
+    getStats2('sf');
+    setView('compare-rate-list', {
+      location1: this.state.location1,
+      location2: this.state.location2
+    });
   }
 
   render() {
@@ -41,7 +44,8 @@ export default class Compare extends React.Component {
               onChange={this.handleChange}
               placeholder="ex. Los Angeles"
               className="form-control border border-secondary rounded"
-              required />
+              required
+              autoComplete="off" />
           </div>
           <div className="form-group mb-5">
             <label htmlFor="location2" className="ml-2">With:</label>
@@ -52,7 +56,8 @@ export default class Compare extends React.Component {
               onChange={this.handleChange}
               placeholder="ex. New York"
               className="form-control border border-secondary rounded"
-              required />
+              required
+              autoComplete="off" />
           </div>
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn btn-color">Compare</button>

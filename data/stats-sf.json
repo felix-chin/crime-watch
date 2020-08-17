@@ -1,0 +1,291 @@
+{
+  "total_incidents": 43204,
+  "report_types": [
+    {
+      "type": "Theft From Motor Vehicle",
+      "count": 4570,
+      "csi": "35.34"
+    },
+    {
+      "type": "All Other Larceny",
+      "count": 5395,
+      "csi": "27.69"
+    },
+    {
+      "type": "Simple Assault",
+      "count": 3322,
+      "csi": "23.39"
+    },
+    {
+      "type": "Destruction/Damage/Vandalism of Property",
+      "count": 4938,
+      "csi": "21.31"
+    },
+    {
+      "type": "Motor Vehicle Theft",
+      "count": 1742,
+      "csi": "17.81"
+    },
+    {
+      "type": "Aggravated Assault",
+      "count": 3112,
+      "csi": "16.96"
+    },
+    {
+      "type": "Burglary/Breaking & Entering",
+      "count": 3146,
+      "csi": "16.53"
+    },
+    {
+      "type": "Domestic Violence/Simple Assault",
+      "count": 2928,
+      "csi": "0.00"
+    },
+    {
+      "type": "Robbery",
+      "count": 2155,
+      "csi": "11.66"
+    },
+    {
+      "type": "All Other Offenses",
+      "count": 1949,
+      "csi": "4.22"
+    },
+    {
+      "type": "Identity Theft",
+      "count": 1428,
+      "csi": "9.27"
+    },
+    {
+      "type": "Shoplifting",
+      "count": 1446,
+      "csi": "4.96"
+    },
+    {
+      "type": "Intimidation",
+      "count": 1055,
+      "csi": "4.57"
+    },
+    {
+      "type": "Weapon Law Violations",
+      "count": 764,
+      "csi": "4.96"
+    },
+    {
+      "type": "False Pretenses/Swindle/Confidence Game",
+      "count": 747,
+      "csi": "4.04"
+    },
+    {
+      "type": "Trespass of Real Property",
+      "count": 660,
+      "csi": "2.86"
+    },
+    {
+      "type": "Domestic Violence/Aggravated Assault",
+      "count": 598,
+      "csi": "0.00"
+    },
+    {
+      "type": "Child Abuse/Simple/Psychological abuse",
+      "count": 314,
+      "csi": "1.70"
+    },
+    {
+      "type": "Rape",
+      "count": 242,
+      "csi": "1.57"
+    },
+    {
+      "type": "Counterfeiting/Forgery",
+      "count": 234,
+      "csi": "1.01"
+    },
+    {
+      "type": "Embezzlement",
+      "count": 227,
+      "csi": "0.00"
+    },
+    {
+      "type": "Sexual Battery",
+      "count": 224,
+      "csi": "1.45"
+    },
+    {
+      "type": "Stolen Property Offenses",
+      "count": 220,
+      "csi": "0.71"
+    },
+    {
+      "type": "Sex Offense/All Other",
+      "count": 160,
+      "csi": "0.69"
+    },
+    {
+      "type": "Sexual Assault With An Object",
+      "count": 130,
+      "csi": "0.84"
+    },
+    {
+      "type": "Drug Equipment Violations",
+      "count": 123,
+      "csi": "0.80"
+    },
+    {
+      "type": "Child Abuse/Neglect",
+      "count": 122,
+      "csi": "0.53"
+    },
+    {
+      "type": "Theft From Building",
+      "count": 122,
+      "csi": "0.66"
+    },
+    {
+      "type": "Drunkenness",
+      "count": 121,
+      "csi": "0.39"
+    },
+    {
+      "type": "Arson",
+      "count": 107,
+      "csi": "0.35"
+    },
+    {
+      "type": "Drug/Narcotic Violations",
+      "count": 105,
+      "csi": "0.68"
+    },
+    {
+      "type": "Disorderly Conduct",
+      "count": 99,
+      "csi": "0.32"
+    },
+    {
+      "type": "Sodomy",
+      "count": 83,
+      "csi": "0.00"
+    },
+    {
+      "type": "Extortion/Blackmail",
+      "count": 68,
+      "csi": "0.22"
+    },
+    {
+      "type": "Pocket-picking",
+      "count": 67,
+      "csi": "0.36"
+    },
+    {
+      "type": "Liquor Law Violations",
+      "count": 53,
+      "csi": "0.17"
+    },
+    {
+      "type": "Murder & Non-negligent Manslaughter",
+      "count": 48,
+      "csi": "0.31"
+    },
+    {
+      "type": "Theft of Motor Vehicle Parts or Accessories",
+      "count": 46,
+      "csi": "0.25"
+    },
+    {
+      "type": "Driving Under the Influence",
+      "count": 37,
+      "csi": "0.12"
+    },
+    {
+      "type": "Human Trafficking, Commercial Sex Acts",
+      "count": 32,
+      "csi": "0.21"
+    },
+    {
+      "type": "Kidnapping/Abduction",
+      "count": 32,
+      "csi": "0.21"
+    },
+    {
+      "type": "Credit Card/Automated Teller Machine Fraud",
+      "count": 31,
+      "csi": "0.13"
+    },
+    {
+      "type": "Hacking/Computer Invasion",
+      "count": 30,
+      "csi": "0.16"
+    },
+    {
+      "type": "Purse-snatching",
+      "count": 29,
+      "csi": "0.16"
+    },
+    {
+      "type": "Curfew/Loitering/Vagrancy Violations",
+      "count": 24,
+      "csi": "0.08"
+    },
+    {
+      "type": "Family Offenses/All Other",
+      "count": 24,
+      "csi": "0.00"
+    },
+    {
+      "type": "Peeping Tom",
+      "count": 18,
+      "csi": "0.06"
+    },
+    {
+      "type": "Assisting or Promoting Prostitution",
+      "count": 17,
+      "csi": "0.06"
+    },
+    {
+      "type": "Animal Cruelty",
+      "count": 12,
+      "csi": "0.00"
+    },
+    {
+      "type": "Suspicious Person",
+      "count": 11,
+      "csi": "0.02"
+    },
+    {
+      "type": "Theft From Coin-Operated Machine or Device",
+      "count": 10,
+      "csi": "0.03"
+    },
+    {
+      "type": "Other",
+      "count": 9,
+      "csi": "0.02"
+    },
+    {
+      "type": "Pornography/Obscene Material",
+      "count": 7,
+      "csi": "0.00"
+    },
+    {
+      "type": "Human Trafficking, Involuntary Servitude",
+      "count": 6,
+      "csi": "0.04"
+    },
+    {
+      "type": "Bribery",
+      "count": 2,
+      "csi": "0.00"
+    },
+    {
+      "type": "Child Abuse/Sexual abuse",
+      "count": 2,
+      "csi": "0.01"
+    },
+    {
+      "type": "\"\"",
+      "count": 1,
+      "csi": "NaN"
+    }
+  ],
+  "total_csi": "NaN"
+}

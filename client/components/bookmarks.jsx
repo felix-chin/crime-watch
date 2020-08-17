@@ -4,7 +4,11 @@ import BookmarkList from './bookmark-list';
 export default class Bookmarks extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { allBookmarks: [], userId: null, userBookmarks: [] };
+    this.state = {
+      allBookmarks: [],
+      userId: null,
+      userBookmarks: []
+    };
     this.getUserBookmarks = this.getUserBookmarks.bind(this);
   }
 
@@ -12,7 +16,9 @@ export default class Bookmarks extends React.Component {
     fetch('/api/bookmarks')
       .then(response => response.json())
       .then(data => {
-        this.setState({ allBookmarks: data });
+        this.setState({
+          allBookmarks: data
+        });
       })
       .catch(err => console.error(err));
     this.getUserBookmarks();
@@ -28,7 +34,10 @@ export default class Bookmarks extends React.Component {
           const newBookmark = incident.incident;
           dataArray.push(newBookmark);
         });
-        this.setState({ userBookmarks: dataArray, userId: profile.userId });
+        this.setState({
+          userBookmarks: dataArray,
+          userId: profile.userId
+        });
       })
       .catch(err => console.error(err));
   }

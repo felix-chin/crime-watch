@@ -10,7 +10,7 @@ import NavBar from './navbar';
 import Login from './login';
 import Compare from './compare';
 import CompareRateList from './compare-rate-list';
-import Bookmarks from './bookmarks-page';
+import Bookmarks from './bookmarks';
 import SearchHistory from './search-history';
 import Profile from './profile';
 export default class App extends React.Component {
@@ -49,14 +49,14 @@ export default class App extends React.Component {
   }
 
   getStats1(location) {
-    fetch('/api/stats')
+    fetch(`/api/stats/${location}`)
       .then(res => res.json())
       .then(data => this.setState({ stats1: data }))
       .catch(err => console.error(err));
   }
 
   getStats2(location) {
-    fetch('/api/stats')
+    fetch(`/api/stats/${location}`)
       .then(res => res.json())
       .then(data => this.setState({ stats2: data }))
       .catch(err => console.error(err));

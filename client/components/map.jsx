@@ -1,11 +1,14 @@
 import React from 'react';
-// import SearchBar from './search-bar';
+import typeMap from '../../shared/type-map';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { crimes: [], coords: [], mapCenter: [] };
+    this.state = {
+      crimes: [],
+      coords: [],
+      mapCenter: []
+    };
     this.googleMapContainerRef = React.createRef();
-
     this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
     this.displayCenter = this.displayCenter.bind(this);
@@ -30,52 +33,6 @@ export default class Map extends React.Component {
 
   displayMarkers() {
     const coords = this.state.coords;
-    const typeMap = {
-      'Theft From Motor Vehicle': 'property',
-      'Theft From Building': 'property',
-      'Suspicious Activity/All Other': 'other',
-      'Family Offenses/All Other': 'other',
-      'Negligent Manslaughter': 'violent',
-      'All Other Larceny': 'property',
-      'Simple Assault': 'violent',
-      'Destruction/Damage/Vandalism of Property': 'property',
-      'Motor Vehicle Theft': 'property',
-      'Aggravated Assault': 'violent',
-      'Burglary/Breaking & Entering': 'property',
-      'Domestic Violence/Simple Assault': 'violent',
-      Robbery: 'property',
-      'Identity Theft': 'whiteCollar',
-      Shoplifting: 'property',
-      Intimidation: 'organized',
-      'Weapon Law Violations': 'organized',
-      'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
-      'Trespass of Real Property': 'property',
-      'Domestic Violence/Aggravated Assault': 'violent',
-      'Child Abuse/Simple/Psychological abuse': 'violent',
-      Rape: 'violent',
-      'Counterfeiting/Forgery': 'whiteCollar',
-      'Human Trafficking, Commercial Sex Acts': 'organized',
-      'Human Trafficking, Involuntary Servitude': 'organized',
-      'Assisting or Promoting Prostitution': 'organized',
-      Embezzlement: 'whiteCollar',
-      'Sexual Battery': 'violent',
-      'Stolen Property Offenses': 'property',
-      'Drug Equipment Violations': 'publicOrder',
-      Drunkenness: 'publicOrder',
-      Arson: 'property',
-      'Drug/Narcotic Violations': 'publicOrder',
-      'Disorderly Conduct': 'publicOrder',
-      'Driving Under the Influence': 'publicOrder',
-      'Kidnapping/Abduction': 'organized',
-      'Extortion/Blackmail': 'highTech',
-      'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
-      'Hacking/Computer Invasion': 'highTech',
-      'Credit Card/Automated Teller Machine Fraud': 'highTech',
-      'Murder & Non-negligent Manslaughter': 'violent',
-      'Child Abuse/Sexual abuse': 'violent',
-      'All Other Offenses': 'other',
-      'Sexual Assault With An Object': 'violent'
-    };
 
     const icons = {
       highTech: '../images/crimes/high-tech-small.png',
@@ -107,7 +64,6 @@ export default class Map extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 13,
       center: { lat: 37.09024, lng: -95.712891 },
@@ -123,12 +79,12 @@ export default class Map extends React.Component {
     const date = crimes[crimeIndex].incident_date;
     const newDate = date.slice(0, date.indexOf('T'));
     return `<div class='info-window'>
-                  <h6 class='info-window-title'>Incident</h6>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}</div>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[crimeIndex].incident_address}</div>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[crimeIndex].incident_offense_description}</div>
-                 </div>
-                `;
+              <h6 class='info-window-title'>Incident</h6>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}</div>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[crimeIndex].incident_address}</div>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[crimeIndex].incident_offense_description}</div>
+            </div>
+           `;
   }
 
   displayCenter() {
@@ -143,13 +99,11 @@ export default class Map extends React.Component {
 
     return (
       <>
-        {/* <SearchBar className="py-4 position-absolute" getCoords={this.props.getCoords} /> */}
         <button onClick={() => setView('heat-map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Heat Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
-          className="d-flex"
-        >
+          className="d-flex">
           {this.displayCenter()}
         </div>
       </>
