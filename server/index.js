@@ -1,22 +1,57 @@
 require('dotenv/config');
 const express = require('express');
-// const axios = require('axios');
-const crimesJSON = require('../data/crimes1.json');
-
-const statsJSON = require('../data/stats1.json');
-
 const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
-
+const crimesLA = require('../data/crimes-la.json');
+const statsLA = require('../data/stats-la.json').report_types;
+const statsSF = require('../data/stats-sf.json').report_types;
 const app = express();
-
-const stats = statsJSON.report_types;
+// const statsLA = statsLA.report_types;
+// const statsSF = statsSF.report_types;
+const typeMap = {
+  'Theft From Motor Vehicle': 'property',
+  'All Other Larceny': 'property',
+  'Simple Assault': 'violent',
+  'Destruction/Damage/Vandalism of Property': 'property',
+  'Motor Vehicle Theft': 'property',
+  'Aggravated Assault': 'violent',
+  'Burglary/Breaking & Entering': 'property',
+  'Domestic Violence/Simple Assault': 'violent',
+  Robbery: 'property',
+  'Identity Theft': 'whiteCollar',
+  Shoplifting: 'property',
+  Intimidation: 'organized',
+  'Weapon Law Violations': 'organized',
+  'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
+  'Trespass of Real Property': 'property',
+  'Domestic Violence/Aggravated Assault': 'violent',
+  'Child Abuse/Simple/Psychological abuse': 'violent',
+  Rape: 'violent',
+  'Counterfeiting/Forgery': 'whiteCollar',
+  'Human Trafficking, Commercial Sex Acts': 'organized',
+  'Human Trafficking, Involuntary Servitude': 'organized',
+  'Assisting or Promoting Prostitution': 'organized',
+  Embezzlement: 'whiteCollar',
+  'Sexual Battery': 'violent',
+  'Stolen Property Offenses': 'property',
+  'Drug Equipment Violations': 'publicOrder',
+  Drunkenness: 'publicOrder',
+  Arson: 'property',
+  'Drug/Narcotic Violations': 'publicOrder',
+  'Disorderly Conduct': 'publicOrder',
+  'Driving Under the Influence': 'publicOrder',
+  'Kidnapping/Abduction': 'organized',
+  'Extortion/Blackmail': 'highTech',
+  'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
+  'Hacking/Computer Invasion': 'highTech',
+  'Credit Card/Automated Teller Machine Fraud': 'highTech',
+  'Murder & Non-negligent Manslaughter': 'violent'
+};
 
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
-
 app.use(express.json());
 
 app.get('/api/health-check', (req, res, next) => {
@@ -25,26 +60,12 @@ app.get('/api/health-check', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// to request from crimeometer API
-// app.get('/api/crimes', (req, res, next) => {
-//   axios({
-//     method: 'GET',
-//     url: `https://api.crimeometer.com/v1/incidents/raw-data?lat=34.050&lon=-118.329&distance=10mi&datetime_ini=2020-07-01T18:00:00.000Z&datetime_end=2020-07-31T18:00:00.000Z`,
-//     headers: {
-//       "content-type": "application/json",
-//       "x-api-key": "qxvlF9JKtS7VYumxoesEL2jdw3klKOkW236LkgD3"
-//     }
-//   })
-//   .then(result => res.json(result.data["incidents"]))
-//   .catch(err => console.error(err))
-// });
-
 app.get('/api/crime-details', (req, res, next) => {
-  res.json(crimesJSON.incidents);
+  res.json(crimesLA.incidents);
 });
 
 app.get('/api/crimes', (req, res, next) => {
-  res.json(crimesJSON);
+  res.json(crimesLA);
 });
 
 app.get('/api/users', (req, res, next) => {
@@ -89,7 +110,6 @@ app.get('/api/bookmarks', (req, res, next) => {
 
 app.get('/api/bookmarks/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
-
   const sql = `
     select *
     from "bookmarks"
@@ -104,6 +124,91 @@ app.get('/api/bookmarks/:userId', (req, res, next) => {
       res.json(bookmarks);
     })
     .catch(err => next(err));
+});
+
+app.get('/api/searches/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const sql = `
+    select *
+    from "searches"
+    where "userId" = $1;
+  `;
+  const params = [userId];
+  return db.query(sql, params)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/stats/:location', (req, res, next) => {
+  const crimeCounts = {
+    violent: 0,
+    property: 0,
+    publicOrder: 0,
+    whiteCollar: 0,
+    organized: 0,
+    highTech: 0,
+    other: 0,
+    total: 0
+  };
+  const crimeRates = {
+    violent: {
+      crimeType: 'Violent',
+      image: './images/crimes/violent.png',
+      rate: 0
+    },
+    property: {
+      crimeType: 'Property',
+      image: './images/crimes/property.png',
+      rate: 0
+    },
+    publicOrder: {
+      crimeType: 'Public Order',
+      image: './images/crimes/public-order.png',
+      rate: 0
+    },
+    whiteCollar: {
+      crimeType: 'White Collar',
+      image: './images/crimes/white-collar.png',
+      rate: 0
+    },
+    organized: {
+      crimeType: 'Organized',
+      image: './images/crimes/organized-crime.png',
+      rate: 0
+    },
+    highTech: {
+      crimeType: 'High Tech',
+      image: './images/crimes/high-tech.png',
+      rate: 0
+    },
+    other: {
+      crimeType: 'Other',
+      image: './images/crimes/other.png',
+      rate: 0
+    }
+  };
+  let stats = [];
+  const location = req.params.location;
+
+  if (location === 'la') {
+    stats = statsLA;
+  } else if (location === 'sf') {
+    stats = statsSF;
+  }
+
+  stats.forEach(stat => {
+    if (stat.type in typeMap) {
+      crimeCounts[typeMap[stat.type]] += stat.count;
+    } else {
+      crimeCounts.other += stat.count;
+    }
+    crimeCounts.total += stat.count;
+  });
+
+  for (const key in crimeRates) {
+    crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
+  }
+  res.send(crimeRates);
 });
 
 app.post('/api/bookmarks/:userId', (req, res, next) => {
@@ -187,19 +292,6 @@ app.delete('/api/bookmarks/:bookmarkId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/searches/:userId', (req, res, next) => {
-  const userId = parseInt(req.params.userId, 10);
-  const sql = `
-    select *
-    from "searches"
-    where "userId" = $1;
-  `;
-  const params = [userId];
-  return db.query(sql, params)
-    .then(result => res.json(result.rows))
-    .catch(err => next(err));
-});
-
 app.post('/api/searches/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const location = req.body.location;
@@ -213,138 +305,6 @@ app.post('/api/searches/:userId', (req, res, next) => {
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
-
-app.get('/api/stats', (req, res, next) => {
-  const typeMap = {
-    'Theft From Motor Vehicle': 'property',
-    'All Other Larceny': 'property',
-    'Simple Assault': 'violent',
-    'Destruction/Damage/Vandalism of Property': 'property',
-    'Motor Vehicle Theft': 'property',
-    'Aggravated Assault': 'violent',
-    'Burglary/Breaking & Entering': 'property',
-    'Domestic Violence/Simple Assault': 'violent',
-    Robbery: 'property',
-    'Identity Theft': 'whiteCollar',
-    Shoplifting: 'property',
-    Intimidation: 'organized',
-    'Weapon Law Violations': 'organized',
-    'False Pretenses/Swindle/Confidence Game': 'whiteCollar',
-    'Trespass of Real Property': 'property',
-    'Domestic Violence/Aggravated Assault': 'violent',
-    'Child Abuse/Simple/Psychological abuse': 'violent',
-    Rape: 'violent',
-    'Counterfeiting/Forgery': 'whiteCollar',
-    'Human Trafficking, Commercial Sex Acts': 'organized',
-    'Human Trafficking, Involuntary Servitude': 'organized',
-    'Assisting or Promoting Prostitution': 'organized',
-    Embezzlement: 'whiteCollar',
-    'Sexual Battery': 'violent',
-    'Stolen Property Offenses': 'property',
-    'Drug Equipment Violations': 'publicOrder',
-    Drunkenness: 'publicOrder',
-    Arson: 'property',
-    'Drug/Narcotic Violations': 'publicOrder',
-    'Disorderly Conduct': 'publicOrder',
-    'Driving Under the Influence': 'publicOrder',
-    'Kidnapping/Abduction': 'organized',
-    'Extortion/Blackmail': 'highTech',
-    'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
-    'Hacking/Computer Invasion': 'highTech',
-    'Credit Card/Automated Teller Machine Fraud': 'highTech',
-    'Murder & Non-negligent Manslaughter': 'violent'
-  };
-
-  const crimeCounts = {
-    violent: 0,
-    property: 0,
-    publicOrder: 0,
-    whiteCollar: 0,
-    organized: 0,
-    highTech: 0,
-    other: 0,
-    total: 0
-  };
-
-  const crimeRates = {
-    violent: {
-      crimeType: 'Violent',
-      image: './images/crimes/violent.png',
-      rate: 0
-    },
-    property: {
-      crimeType: 'Property',
-      image: './images/crimes/property.png',
-      rate: 0
-    },
-    publicOrder: {
-      crimeType: 'Public Order',
-      image: './images/crimes/public-order.png',
-      rate: 0
-    },
-    whiteCollar: {
-      crimeType: 'White Collar',
-      image: './images/crimes/white-collar.png',
-      rate: 0
-    },
-    organized: {
-      crimeType: 'Organized',
-      image: './images/crimes/organized-crime.png',
-      rate: 0
-    },
-    highTech: {
-      crimeType: 'High Tech',
-      image: './images/crimes/high-tech.png',
-      rate: 0
-    },
-    other: {
-      crimeType: 'Other',
-      image: './images/crimes/other.png',
-      rate: 0
-    }
-  };
-  stats.forEach(stat => {
-    if (stat.type in typeMap) {
-      crimeCounts[typeMap[stat.type]] += stat.count;
-    } else {
-      crimeCounts.other += stat.count;
-    }
-    crimeCounts.total += stat.count;
-  });
-
-  for (const key in crimeRates) {
-    crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
-  }
-  res.send(crimeRates);
-});
-
-// to request from crimeometer API
-// axios({
-//   method: 'GET',
-//   url: 'https://api.crimeometer.com/v1/incidents/stats?lat=34.050&lon=-118.329&distance=10mi&datetime_ini=2019-01-01T18:00:00.000Z&datetime_end=2019-12-317T18:00:00.000Z&source=1',
-//   headers: {
-//     "content-type": "application/json",
-//     "x-api-key": "qxvlF9JKtS7VYumxoesEL2jdw3klKOkW236LkgD3"
-//   }
-// })
-//   .then(result => {
-//     const stats = result.data['report_types'];
-//     stats.forEach(stat => {
-//       if (stat.type in typeMap) {
-//         crimeCounts[typeMap[stat.type]] += stat.count;
-//       } else {
-//         crimeCounts.other += stat.count;
-//       }
-//       crimeCounts.total += stat.count;
-//     });
-
-//     for (const key in crimeRates) {
-//       crimeRates[key].rate = (crimeCounts[key] / crimeCounts.total * 100).toFixed(1) + '%';
-//     }
-
-//     res.json(crimeRates)
-//   })
-//   .catch(err => console.error(err))
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
