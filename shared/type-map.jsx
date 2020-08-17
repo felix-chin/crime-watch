@@ -1,5 +1,9 @@
 const typeMap = {
   'Theft From Motor Vehicle': 'property',
+  'Theft From Building': 'property',
+  'Suspicious Activity/All Other': 'other',
+  'Family Offenses/All Other': 'other',
+  'Negligent Manslaughter': 'violent',
   'All Other Larceny': 'property',
   'Simple Assault': 'violent',
   'Destruction/Damage/Vandalism of Property': 'property',
@@ -35,7 +39,10 @@ const typeMap = {
   'Curfew/Loitering/Vagrancy Violations': 'publicOrder',
   'Hacking/Computer Invasion': 'highTech',
   'Credit Card/Automated Teller Machine Fraud': 'highTech',
-  'Murder & Non-negligent Manslaughter': 'violent'
+  'Murder & Non-negligent Manslaughter': 'violent',
+  'Child Abuse/Sexual abuse': 'violent',
+  'All Other Offenses': 'other',
+  'Sexual Assault With An Object': 'violent'
 };
 
 export default typeMap;

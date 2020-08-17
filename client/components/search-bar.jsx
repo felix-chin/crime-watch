@@ -26,7 +26,7 @@ export default class SearchBar extends React.Component {
     const getCoords = this.props.getCoords;
     const profile = this.props.profile;
     this.saveSearch(profile.userId);
-    getStats(this.state.location);
+    getStats('la');
     setView('crime-rates', {});
 
     Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
