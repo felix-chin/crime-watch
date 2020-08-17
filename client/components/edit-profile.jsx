@@ -55,13 +55,16 @@ export default class EditProfile extends React.Component {
           </div>
           <form className="container justify-content-center align-items-center" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label className="h5 roboto-font">Name:</label><br></br>
+              <label className="h5 roboto-font">Name:</label>
+              <br />
               <input onChange={this.handleChange} type="text" value={name} name="name" id="name" className="mb- form-control"></input>
             </div>
             <div className="form-group">
-              <label className="h5 roboto-font">Default Location:</label><br></br>
+              <label className="h5 roboto-font">Default Location:</label>
+              <br />
               <input onChange={this.handleChange} type="text" value={defaultLocation} name="defaultLocation" id="defaultLocation" className="mb-3 form-control"></input>
-            </div><br></br>
+            </div>
+            <br />
             <div className="d-flex justify-content-center">
               <button type="submit" className="btn btn-color roboto-font">Update Profile</button>
             </div>

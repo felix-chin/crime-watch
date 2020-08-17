@@ -1,6 +1,5 @@
 import React from 'react';
 import IncidentMap from './map-single-incident';
-// import { response } from 'express';
 
 class SingleIncident extends React.Component {
 
@@ -8,14 +7,6 @@ class SingleIncident extends React.Component {
     super(props);
     this.state = { userId: 2, isBookmarked: null, bookmarkId: null };
   }
-
-  // backButton () {
-
-  // }
-
-  // save () {
-
-  // }
 
   componentDidMount() {
     const profile = this.props.profile;

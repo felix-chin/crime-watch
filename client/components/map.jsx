@@ -1,11 +1,13 @@
 import React from 'react';
-// import SearchBar from './search-bar';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { crimes: [], coords: [], mapCenter: [] };
+    this.state = {
+      crimes: [],
+      coords: [],
+      mapCenter: []
+    };
     this.googleMapContainerRef = React.createRef();
-
     this.getData = this.getData.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
     this.displayCenter = this.displayCenter.bind(this);
@@ -107,7 +109,6 @@ export default class Map extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 13,
       center: { lat: 37.09024, lng: -95.712891 },
@@ -123,12 +124,12 @@ export default class Map extends React.Component {
     const date = crimes[crimeIndex].incident_date;
     const newDate = date.slice(0, date.indexOf('T'));
     return `<div class='info-window'>
-                  <h6 class='info-window-title'>Incident</h6>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}</div>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[crimeIndex].incident_address}</div>
-                  <div class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[crimeIndex].incident_offense_description}</div>
-                 </div>
-                `;
+              <h6 class='info-window-title'>Incident</h6>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Date:</b> ${newDate}</div>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Address:</b> ${crimes[crimeIndex].incident_address}</div>
+              <div class='info-window-text-descriptions'><b class='info-window-text'>Description:</b> ${crimes[crimeIndex].incident_offense_description}</div>
+            </div>
+           `;
   }
 
   displayCenter() {
@@ -143,13 +144,11 @@ export default class Map extends React.Component {
 
     return (
       <>
-        {/* <SearchBar className="py-4 position-absolute" getCoords={this.props.getCoords} /> */}
         <button onClick={() => setView('heat-map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Heat Map</button>
         <div
           ref={this.googleMapContainerRef}
           style={{ width: '100vw', height: '100vh' }}
-          className="d-flex"
-        >
+          className="d-flex">
           {this.displayCenter()}
         </div>
       </>

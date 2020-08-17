@@ -40,14 +40,12 @@ export default class HeatMap extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 10,
       center: {
         lat: 34.052235,
         lng: -118.243683
       },
-      // mapTypeId: 'satellite',
       disableDefaultUI: true
     });
     this.getData();

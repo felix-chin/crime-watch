@@ -32,7 +32,6 @@ export default class SearchBar extends React.Component {
     Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
     Geocode.setLanguage('en');
 
-    // Get latidude & longitude from address.
     const location = this.state.location;
     const coords = [];
     Geocode.fromAddress(location).then(
@@ -63,7 +62,15 @@ export default class SearchBar extends React.Component {
       <div className='container mt-2 mb-5'>
         <form onSubmit={this.handleSubmit}>
           <div className="input-group border border-secondary rounded" style={{ zIndex: 1 }}>
-            <input className="form-control" type="text" name="location" value={this.state.location} placeholder="Enter location" required autoComplete="off" onChange={this.handleChange} />
+            <input
+              className="form-control"
+              type="text"
+              name="location"
+              value={this.state.location}
+              placeholder="Enter location"
+              required
+              autoComplete="off"
+              onChange={this.handleChange} />
             <div className="input-group-append">
               <button type="submit" className="d-flex align-items-center btn bg-color input-group-append">
                 <i className="fas fa-search fa-fw search-button" ></i>

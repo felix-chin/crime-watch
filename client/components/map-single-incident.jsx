@@ -3,7 +3,10 @@ import React from 'react';
 export default class IncidentMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { crimes: [], coords: [] };
+    this.state = {
+      crimes: [],
+      coords: []
+    };
     this.googleMapContainerRef = React.createRef();
     this.displayMarkers = this.displayMarkers.bind(this);
   }
@@ -77,7 +80,6 @@ export default class IncidentMap extends React.Component {
   componentDidMount() {
     /* global google */
     // marking as global because it should be in a script tag in the HTML file!
-
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 16,
       center: {
