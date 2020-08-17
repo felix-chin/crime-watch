@@ -1,44 +1,44 @@
 {
-  "total_incidents": 45064,
+  "total_incidents": 43204,
   "report_types": [
     {
       "type": "Theft From Motor Vehicle",
-      "count": 6530,
+      "count": 4570,
       "csi": "35.34"
     },
     {
       "type": "All Other Larceny",
-      "count": 6395,
+      "count": 5395,
       "csi": "27.69"
     },
     {
       "type": "Simple Assault",
-      "count": 4322,
+      "count": 3322,
       "csi": "23.39"
     },
     {
       "type": "Destruction/Damage/Vandalism of Property",
-      "count": 3938,
+      "count": 4938,
       "csi": "21.31"
     },
     {
       "type": "Motor Vehicle Theft",
-      "count": 2742,
+      "count": 1742,
       "csi": "17.81"
     },
     {
       "type": "Aggravated Assault",
-      "count": 2612,
+      "count": 3112,
       "csi": "16.96"
     },
     {
       "type": "Burglary/Breaking & Entering",
-      "count": 2546,
+      "count": 3146,
       "csi": "16.53"
     },
     {
       "type": "Domestic Violence/Simple Assault",
-      "count": 2228,
+      "count": 2928,
       "csi": "0.00"
     },
     {
@@ -58,7 +58,7 @@
     },
     {
       "type": "Shoplifting",
-      "count": 1146,
+      "count": 1446,
       "csi": "4.96"
     },
     {
