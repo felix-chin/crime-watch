@@ -201,7 +201,7 @@ COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
 
 COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
 2	final_boss	Tim Davis	San Francisco
-3	I_LikeFood	Guy Fieri	Chicago
+3	flavor_town	Guy Fieri	Chicago
 1	anime_kotaku	Uzair Ashraf	Los Angeles
 \.
 
