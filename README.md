@@ -38,6 +38,7 @@ Here is a link to a live demo of the application: https://crime-watch.felixchin.
 ## System Requirements
 
 - Node.js
+- PostgreSQL
 - npm
 
 ## Getting Started
