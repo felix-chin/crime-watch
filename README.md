@@ -4,6 +4,12 @@ A mobile application for people who want to monitor crime activity. Crime-Watch 
 ## Live Demo: <a href="http://crimewatch.danielvargas.tech/" target="_blank">Crime-Watch</a>
 ![Live Demo](/server/public/images/preview.gif)
 
+##  Technologies Used:
+* React.js
+* Node.js
+* Express
+* PostgreSQL
+
 ## Current Feature List:
 * User can view single incident crime details
 * User can set a default location
