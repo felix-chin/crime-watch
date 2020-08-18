@@ -4,7 +4,7 @@ A full stack mobile application for people who want to view and monitor crime ac
 
 ## Live Demo
 
-Here is a link to a live demo of the application: https://crime-watch.felixchin.com
+Link to a live demo of the application: https://crime-watch.felixchin.com
 
 ## Technologies Used
 
