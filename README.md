@@ -52,6 +52,7 @@ Here is a link to a live demo of the application: https://crime-watch.felixchin.
     npm install
     ```
 3. Start PostgreSQL:
+
    Command if using Linux:
     ```shell
     sudo service postgresql start
