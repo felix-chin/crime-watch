@@ -43,20 +43,20 @@ Here is a link to a live demo of the application: https://crime-watch.felixchin.
 ## Getting Started
 
 1. Clone the repo:
-  git clone https://github.com/felix-chin/crime-watch
-  cd crime-watch
+    git clone https://github.com/felix-chin/crime-watch
+    cd crime-watch
   
 2. Install npm dependencies:
-  npm install
+    npm install
 
 3. Start PostgreSQL:
   - Command if using Linux:
-  sudo service postgresql start
+    sudo service postgresql start
   
 4. Import the example database:
-  npm run db:import
+    npm run db:import
   
 5. Run webpack script to start the application:
-  npm run dev
+    npm run dev
   
 6. Visit http://localhost:3000 in your browser to view the application.
