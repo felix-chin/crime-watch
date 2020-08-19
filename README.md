@@ -1,6 +1,6 @@
 # crime-watch
 
-A full stack mobile application for people who want to view and monitor crime activity.
+A full stack mobile application for people who want to view and monitor crime activity. This application utilizes [crimeometer](https://www.crimeometer.com), an API that provides raw crime data, and Google Maps, to visualize crime information to the user.
 
 ## Live Demo
 
