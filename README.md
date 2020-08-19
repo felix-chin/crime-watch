@@ -42,13 +42,13 @@ Best viewed in iPhone 6/7/8.
 
 ### System Requirements
 
-- Node.js
+- Node.js 10 or higher
+- npm 6 or higher
 - PostgreSQL
-- npm
 
 ### Getting Started
 
-1. Clone the repo:
+1. Clone the repository:
     ```shell
     git clone https://github.com/felix-chin/crime-watch
     cd crime-watch
@@ -63,11 +63,11 @@ Best viewed in iPhone 6/7/8.
     ```shell
     sudo service postgresql start
     ```
-4. Import the example database:
+4. Import the example database to PostgreSQL:
     ```shell
     npm run db:import
     ```
-5. Run webpack script to start the application:
+5. Start the application:
     ```shell
     npm run dev
     ```
