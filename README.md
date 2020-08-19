@@ -35,15 +35,15 @@ https://crime-watch.felixchin.com
 
 ![alt text](./demo.gif "Demo")
 
-# Development
+## Development
 
-## System Requirements
+### System Requirements
 
 - Node.js
 - PostgreSQL
 - npm
 
-## Getting Started
+### Getting Started
 
 1. Clone the repo:
     ```shell
