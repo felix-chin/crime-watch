@@ -17,6 +17,7 @@ Best viewed in iPhone 6/7/8.
 - PostgreSQL
 - Express
 - Webpack 4
+- Babel
 - Bootstrap 4
 - HTML5
 - CSS3
@@ -35,7 +36,7 @@ Best viewed in iPhone 6/7/8.
 
 ## Preview
 
-![alt text](./demo.gif "Demo")
+![crime-watch](./demo.gif "Demo")
 
 ## Development
 
