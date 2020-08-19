@@ -4,9 +4,11 @@ A full stack mobile application for people who want to view and monitor crime ac
 
 ## Live Demo
 
-Link to a live demo of the application (please view in iPhone 6/7/8 resolution): 
+Link to a live demo of the application: 
 
 https://crime-watch.felixchin.com
+
+Best viewed in iPhone 6/7/8.
 
 ## Technologies Used
 
