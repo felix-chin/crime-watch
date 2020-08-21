@@ -236,4 +236,9 @@ option:hover {
 	  margin:auto;
   }
 
+  .crime-rate-list {
+    position: relative;
+    left: 10%;
+  }
+
 }
