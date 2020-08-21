@@ -208,3 +208,32 @@ body {
 option:hover {
   background-color: blue;
 }
+
+
+/* Large Screen Devices */
+@media screen and (min-width: 1200px) {
+  .logo {
+    position: relative;
+    left: 38.5%;
+  }
+
+  .dropdown-item {
+    font-size: 18px;
+  }
+
+  .login-title {
+    font-size: 62px;
+  }
+
+  .crime-watch-title {
+    font-size: 62px;
+  }
+
+  .inp-group-max{
+	  width:100%;
+	  max-width:32rem;
+	  min-width:280px;
+	  margin:auto;
+  }
+
+}

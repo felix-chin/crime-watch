@@ -10,11 +10,14 @@ function SearchPage(props) {
       <div className='d-flex flex-column justify-content-center align-items-center mt-3'>
         <p>Welcome</p>
       </div>
-      <SearchBar
-        profile={props.profile}
-        getStats={props.getStats}
-        setView={props.setView}
-        getCoords={props.getCoords}/>
+      <div className='container'>
+        <SearchBar
+          profile={props.profile}
+          getStats={props.getStats}
+          setView={props.setView}
+          getCoords={props.getCoords} />
+      </div>
+
       <div className="d-flex justify-content-center">
         <button
           type="button"
