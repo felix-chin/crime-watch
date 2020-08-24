@@ -184,6 +184,8 @@ ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public.
 --
 
 COPY public.bookmarks ("bookmarkId", "userId", incident, "createdAt") FROM stdin;
+18	2	{"incident_offense_description":"Simple Assault","incident_date":"2019-10-07","incident_address":"200 N  AVENUE 60, Northeast","incident_code":"191117681"}	2020-08-24 11:43:18.934392-07
+19	2	{"incident_offense_description":"Aggravated Assault","incident_date":"2019-10-07","incident_address":"GEARY BLVD \\\\ 16TH AVE","incident_code":"85573304013"}	2020-08-24 11:46:21.038382-07
 \.
 
 
@@ -192,6 +194,31 @@ COPY public.bookmarks ("bookmarkId", "userId", incident, "createdAt") FROM stdin
 --
 
 COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
+58	2	Los Angeles	2020-08-24 10:25:04.820937-07
+59	1	Los Angeles 	2020-08-24 11:02:23.045848-07
+60	2	Los Angeles	2020-08-24 11:04:35.136535-07
+61	2	Los Angeles	2020-08-24 11:05:22.836991-07
+62	1	Los Angeles	2020-08-24 11:06:29.224343-07
+63	1	Los Angeles	2020-08-24 11:08:23.454559-07
+64	2	Los Angeles	2020-08-24 11:10:03.63915-07
+65	1	crime-details-list	2020-08-24 11:11:49.254449-07
+66	1	Los Angeles	2020-08-24 11:12:08.74443-07
+67	2	Los Angeles	2020-08-24 11:12:45.189947-07
+68	2	Los Angeles	2020-08-24 11:13:50.078639-07
+69	2	Los Angeles	2020-08-24 11:14:18.193632-07
+70	2	Los Angeles	2020-08-24 11:16:32.80565-07
+71	3	Los Angeles	2020-08-24 11:17:53.064939-07
+72	1	Los Angeles	2020-08-24 11:19:31.552789-07
+73	2	Los Angeles	2020-08-24 11:20:06.54004-07
+74	2	Los Angeles	2020-08-24 11:22:11.736754-07
+75	1	Los Angeles	2020-08-24 11:22:38.140534-07
+76	2	Los Angeles	2020-08-24 11:34:59.708751-07
+77	2	Los Angeles	2020-08-24 11:35:43.213912-07
+78	1	Los Angeles	2020-08-24 11:36:20.344633-07
+79	2	Los Angeles	2020-08-24 11:43:02.291119-07
+80	2	Los Angeles	2020-08-24 11:46:03.117201-07
+81	2	Los Angeles	2020-08-24 13:54:14.783018-07
+82	2	Los Angeles	2020-08-24 13:55:47.677266-07
 \.
 
 
@@ -200,9 +227,9 @@ COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
 --
 
 COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
-2	final_boss	Tim Davis	San Francisco
 3	flavor_town	Guy Fieri	Chicago
 1	anime_kotaku	Uzair Ashraf	Los Angeles
+2	final_boss	Tim Davis	San Francisco
 \.
 
 
@@ -210,14 +237,14 @@ COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
 -- Name: bookmarks_bookmarkId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."bookmarks_bookmarkId_seq"', 17, true);
+SELECT pg_catalog.setval('public."bookmarks_bookmarkId_seq"', 19, true);
 
 
 --
 -- Name: searches_searchId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."searches_searchId_seq"', 57, true);
+SELECT pg_catalog.setval('public."searches_searchId_seq"', 82, true);
 
 
 --
@@ -261,3 +288,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
