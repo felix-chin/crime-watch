@@ -93,7 +93,7 @@ export default class CrimeDetailsList extends React.Component {
         <span onClick={() => setView('crime-rates', {})} className="text-muted cursor-pointer back">Back</span>
         <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
         <CrimeDetailsHeading image={image} heading={heading} />
-        <div>
+        <div className='pointer'>
           {renderIncidents}
         </div>
       </div>

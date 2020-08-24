@@ -209,6 +209,10 @@ option:hover {
   background-color: blue;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 
 /* Large Screen Devices */
 @media screen and (min-width: 1200px) {
