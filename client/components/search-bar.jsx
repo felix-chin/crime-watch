@@ -61,7 +61,7 @@ export default class SearchBar extends React.Component {
     return (
       <div className='container mt-2 mb-5'>
         <form onSubmit={this.handleSubmit}>
-          <div className="input-group border border-secondary rounded" style={{ zIndex: 1 }}>
+          <div className="input-group inp-group-max border border-secondary rounded" style={{ zIndex: 1 }}>
             <input
               className="form-control"
               type="text"

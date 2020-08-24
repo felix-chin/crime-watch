@@ -25,7 +25,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <>
-        <div className='container login-container btn-color'>
+        <div className='container-fluid login-container btn-color'>
           <div className='main'>
             <div className="ml-2">
               <img className="logo" src="../images/logo.png"></img>
@@ -33,13 +33,13 @@ export default class Login extends React.Component {
             <header className="header d-flex justify-content-center">
               <h1 className="login-title">Crime<i className="fas fa-search" style={{ color: 'black' }}></i>Watch</h1>
             </header>
-            <form className='d-flex flex-column justify-content-center align-items-center mt-3' onSubmit={this.handleSubmit}>
+            <form className='container d-flex flex-column justify-content-center align-items-center mt-3' onSubmit={this.handleSubmit}>
               <p>Select a user to log in</p>
               <select style={{ fontSize: '18px' }} className='select-option btn btn-group dropdown roboto-font w-75' type="button" value={this.state.activeUser} required onChange={this.handleChange}>
-                <option style={{ fontSize: '12px' }} className='dropdown-item' value="" disabled >Select User</option>
-                <option style={{ fontSize: '12px' }} className='dropdown-item' value="1">anime_kotaku</option>
-                <option style={{ fontSize: '12px' }} className='dropdown-item' value="2">final_boss</option>
-                <option style={{ fontSize: '12px' }} className='dropdown-item' value="3">flavor_town</option>
+                <option className='dropdown-item' value="" disabled >Select User</option>
+                <option className='dropdown-item' value="1">anime_kotaku</option>
+                <option className='dropdown-item' value="2">final_boss</option>
+                <option className='dropdown-item' value="3">flavor_town</option>
               </select>
               <div className='mt-5'>
                 <button className='roboto-font btn login-btn'>Log In</button>

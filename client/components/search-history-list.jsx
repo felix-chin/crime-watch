@@ -16,7 +16,7 @@ export default function SearchHistoryList(props) {
     );
   });
   return (
-    <ol>
+    <ol className="crime-details-list">
       {searchHistoryListItems}
     </ol>
   );
