@@ -252,4 +252,14 @@ option:hover {
     font-size: 22px;
   }
 
+  .profile-pic {
+    width: 300px;
+    height: 300px;
+    margin: 0;
+  }
+
+  .quantico-font {
+    font-size: 48px;
+  }
+
 }
