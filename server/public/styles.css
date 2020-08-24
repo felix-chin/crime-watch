@@ -245,4 +245,11 @@ option:hover {
     left: 10%;
   }
 
+  .crime-details-list {
+    position: relative;
+    left: 30%;
+    justify-content: center;
+    font-size: 22px;
+  }
+
 }
