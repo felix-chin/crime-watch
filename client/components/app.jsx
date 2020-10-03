@@ -13,6 +13,7 @@ import CompareRateList from './compare-rate-list';
 import Bookmarks from './bookmarks';
 import SearchHistory from './search-history';
 import Profile from './profile';
+import Disclaimer from './disclaimer';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,8 @@ export default class App extends React.Component {
       profile: {},
       stats1: [],
       stats2: [],
-      coords: []
+      coords: [],
+      disclaimer: true
     };
     this.setView = this.setView.bind(this);
     this.getStats1 = this.getStats1.bind(this);
@@ -33,6 +35,7 @@ export default class App extends React.Component {
     this.getProfile = this.getProfile.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.getCoords = this.getCoords.bind(this);
+    this.closeDisclaimer = this.closeDisclaimer.bind(this);
   }
 
   getCoords(coordsArray) {
@@ -89,6 +92,10 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  closeDisclaimer() {
+    this.setState({ disclaimer: false });
+  }
+
   render() {
     const view = this.state.view.name;
     let renderPage;
@@ -130,6 +137,9 @@ export default class App extends React.Component {
     }
     return (
       <>
+        { this.state.disclaimer &&
+          <Disclaimer closeDisclaimer={this.closeDisclaimer} />
+        }
         <div>
           {renderPage}
         </div>

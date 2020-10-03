@@ -27,12 +27,10 @@ export default class Login extends React.Component {
       <>
         <div className='container-fluid login-container btn-color'>
           <div className='main'>
-            <div className="ml-2">
-              <img className="logo" src="../images/logo.png"></img>
-            </div>
-            <header className="header d-flex justify-content-center">
+            <div className="text-center">
+              <img className="logo" src="../images/logo.png" />
               <h1 className="login-title">Crime<i className="fas fa-search" style={{ color: 'black' }}></i>Watch</h1>
-            </header>
+            </div>
             <form className='container d-flex flex-column justify-content-center align-items-center mt-3' onSubmit={this.handleSubmit}>
               <p>Select a user to log in</p>
               <select style={{ fontSize: '18px' }} className='select-option btn btn-group dropdown roboto-font w-75' type="button" value={this.state.activeUser} required onChange={this.handleChange}>
