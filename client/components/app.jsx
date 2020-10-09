@@ -131,9 +131,9 @@ export default class App extends React.Component {
         offenseDescription={this.state.view.params.offenseDescription}
         profile={this.state.profile} />;
     } else if (view === 'search-history') {
-      renderPage = <SearchHistory profile={this.state.profile}/>;
+      renderPage = <SearchHistory profile={this.state.profile} setView={this.setView}/>;
     } else if (view === 'bookmarks') {
-      renderPage = <Bookmarks profile={this.state.profile} />;
+      renderPage = <Bookmarks profile={this.state.profile} setView={this.setView}/>;
     }
     return (
       <>

@@ -35,6 +35,7 @@ export default class EditProfile extends React.Component {
   }
 
   render() {
+    const setView = this.props.setView;
     const { name, defaultLocation } = this.state;
     const profile = this.props.profile;
     let profilePic;
@@ -67,6 +68,9 @@ export default class EditProfile extends React.Component {
             <br />
             <div className="d-flex justify-content-center">
               <button type="submit" className="btn btn-color roboto-font">Update Profile</button>
+              <span onClick={() => setView('profile', {})} className='ml-3'>
+                <button type="submit" className="btn btn-color roboto-font cancel">Cancel</button>
+              </span>
             </div>
           </form>
         </div>

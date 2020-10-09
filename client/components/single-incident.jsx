@@ -57,7 +57,9 @@ class SingleIncident extends React.Component {
 
     return (
       <div className="container pt-3">
-        <span className="back text-muted mt-4 pointer" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>Back</span>
+        <span className="back mt-4 pointer" onClick={() => this.props.setView('crime-details', { type: this.props.type })}>
+          <i className="fa fa-arrow-left fa-lg mt-3" aria-hidden="true"></i>
+        </span>
         <header className="row justify-content-center align-items-center">
           <h1 className="quantico-font">Incident</h1>
           <div onClick={this.handleBookmark.bind(this)} className="position-absolute bookmark pointer">

@@ -23,9 +23,15 @@ export default class SearchHistory extends React.Component {
   }
 
   render() {
+    const setView = this.props.setView;
     return (
       <div className="container nav-padding" >
-        <div className="d-flex justify-content-center mt-5 mb-4" >
+        <div className='back-button-container mt-2'>
+          <span onClick={() => setView('profile', {})} className="cursor-pointer back">
+            <i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div className="d-flex justify-content-center mt-4 mb-4" >
           <img src="./images/history.png" alt="search-history" className="mr-3 images" />
           <h1 className="quantico-font">Search History</h1>
         </div>

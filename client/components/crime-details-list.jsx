@@ -90,7 +90,9 @@ export default class CrimeDetailsList extends React.Component {
     });
     return (
       <div className="container nav-padding pt-3">
-        <span onClick={() => setView('crime-rates', {})} className="text-muted cursor-pointer back">Back</span>
+        <span onClick={() => setView('crime-rates', {})} className="cursor-pointer back">
+          <i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+        </span>
         <h1 className="mt-2 mb-4 text-center quantico-font">Crime Details</h1>
         <CrimeDetailsHeading image={image} heading={heading} />
         <div className='pointer crime-details-list'>

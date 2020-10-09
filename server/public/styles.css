@@ -70,6 +70,10 @@ body {
   color: white;
 }
 
+.cancel {
+  background-color: crimson;
+}
+
 .login-container {
   background-color: #1244A5;
   color: white;
@@ -119,6 +123,14 @@ body {
 
 .back {
   font-size: 24px;
+}
+
+.backToDetails {
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: 1rem;
 }
 
 .font-size-compare{
