@@ -27,7 +27,6 @@ export default class SearchBar extends React.Component {
     const profile = this.props.profile;
     this.saveSearch(profile.userId);
     getStats('la');
-    setView('map', {});
 
     Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
     Geocode.setLanguage('en');
@@ -39,6 +38,7 @@ export default class SearchBar extends React.Component {
         const { lat, lng } = response.results[0].geometry.location;
         coords.push(lat, lng);
         getCoords(coords);
+        setView('map', {});
       },
       error => {
         console.error(error);
