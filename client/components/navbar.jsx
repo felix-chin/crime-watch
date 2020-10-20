@@ -25,7 +25,7 @@ export default function NavBar(props) {
   }
   return (
     <nav className="navbar fixed-bottom nav">
-      <div className="container d-flex justify-content-between align-items-center px-4">
+      <div className="container px-4">
         {/* <img
           src={search}
           onClick={() => setView('search', {})}
@@ -36,10 +36,10 @@ export default function NavBar(props) {
           onClick={() => setView('map', {})}
           className="nav-icon cursor-pointer"
         /> */}
-        <div><i onClick={() => setView('search', {})} className="fas fa-search nav-icon"></i></div>
-        <div><i onClick={() => setView('map', {})} className="fas fa-map-marker-alt nav-icon"></i></div>
-        <div><i className="fas fa-chart-bar nav-icon"></i></div>
-        <div><i onClick={() => setView('profile', {})} className="fas fa-user nav-icon"></i></div>
+        <i onClick={() => setView('search', {})} className="d-flex justify-content-center align-items-center fas fa-search nav-icon"></i>
+        <i onClick={() => setView('map', {})} className="d-flex justify-content-center align-items-center fas fa-map-marker-alt nav-icon"></i>
+        <i className="d-flex justify-content-center align-items-center fas fa-chart-bar nav-icon"></i>
+        <i onClick={() => setView('profile', {})} className="d-flex justify-content-center align-items-center fas fa-user nav-icon"></i>
         {/* <img
           src={user}
           onClick={() => setView('profile', {})}

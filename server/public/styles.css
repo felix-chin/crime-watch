@@ -62,9 +62,12 @@ body {
 }
 
 .nav-icon {
-  text-align: center;
   font-size: 30px;
   color: white;
+}
+
+.nav-icon-active {
+  color: black;
 }
 
 .roboto-font {
