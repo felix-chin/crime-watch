@@ -66,7 +66,7 @@ export default class Map extends React.Component {
     // marking as global because it should be in a script tag in the HTML file!
     this.map = new google.maps.Map(this.googleMapContainerRef.current, {
       zoom: 13,
-      center: { lat: 34.03079, lng: -118.14373 },
+      center: { lat: 34.03079, lng: -118.19373 },
       disableDefaultUI: true
     });
 

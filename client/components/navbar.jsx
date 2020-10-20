@@ -25,19 +25,26 @@ export default function NavBar(props) {
   }
   return (
     <nav className="navbar fixed-bottom nav">
-      <div className="container d-flex flex-row justify-content-between px-5">
-        <img
+      <div className="container d-flex justify-content-between align-items-center px-4">
+        {/* <img
           src={search}
           onClick={() => setView('search', {})}
-          className="nav-icon cursor-pointer" />
-        <img
+          className="nav-icon cursor-pointer"
+        /> */}
+        {/* <img
           src={place}
           onClick={() => setView('map', {})}
-          className="nav-icon cursor-pointer" />
-        <img
+          className="nav-icon cursor-pointer"
+        /> */}
+        <i onClick={() => setView('search', {})} className="fas fa-search nav-icon"></i>
+        <i onClick={() => setView('map', {})} className="fas fa-map-marker-alt nav-icon"></i>
+        <i className="fas fa-chart-bar nav-icon"></i>
+        <i onClick={() => setView('profile', {})} className="fas fa-user nav-icon"></i>
+        {/* <img
           src={user}
           onClick={() => setView('profile', {})}
-          className="nav-icon cursor-pointer" />
+          className="nav-icon cursor-pointer"
+        /> */}
       </div>
     </nav>
   );
