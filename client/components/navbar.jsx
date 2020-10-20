@@ -5,23 +5,28 @@ export default function NavBar(props) {
   const view = props.view;
   let search;
   let place;
+  let stats;
   let user;
   if (view === 'map' || view === 'heat-map') {
-    search = './images/search.png';
-    place = './images/place_black.png';
-    user = './images/user.png';
+    search = 'nav-icon';
+    place = 'nav-icon-active';
+    stats = 'nav-icon';
+    user = 'nav-icon';
   } else if (view === 'profile' || view === 'edit-profile' || view === 'search-history' || view === 'bookmarks') {
-    search = './images/search.png';
-    place = './images/place.png';
-    user = './images/user_black.png';
+    search = 'nav-icon';
+    place = 'nav-icon';
+    stats = 'nav-icon';
+    user = 'nav-icon-active';
   } else if (view === 'search') {
-    search = './images/search_black.png';
-    place = './images/place.png';
-    user = './images/user.png';
+    search = 'nav-icon-active';
+    place = 'nav-icon';
+    stats = 'nav-icon';
+    user = 'nav-icon';
   } else {
-    search = './images/search_black.png';
-    place = './images/place.png';
-    user = './images/user.png';
+    search = 'nav-icon-active';
+    place = 'nav-icon';
+    stats = 'nav-icon';
+    user = 'nav-icon';
   }
   return (
     <nav className="navbar fixed-bottom nav">
@@ -36,10 +41,10 @@ export default function NavBar(props) {
           onClick={() => setView('map', {})}
           className="nav-icon cursor-pointer"
         /> */}
-        <i onClick={() => setView('search', {})} className="d-flex justify-content-center align-items-center fas fa-search nav-icon"></i>
-        <i onClick={() => setView('map', {})} className="d-flex justify-content-center align-items-center fas fa-map-marker-alt nav-icon"></i>
-        <i className="d-flex justify-content-center align-items-center fas fa-chart-bar nav-icon"></i>
-        <i onClick={() => setView('profile', {})} className="d-flex justify-content-center align-items-center fas fa-user nav-icon"></i>
+        <i onClick={() => setView('search', {})} className={'fas fa-search ' + search}></i>
+        <i onClick={() => setView('map', {})} className={'fas fa-map-marker-alt ' + place}></i>
+        <i className={'fas fa-chart-bar ' + stats }></i>
+        <i onClick={() => setView('profile', {})} className={'fas fa-user ' + user}></i>
         {/* <img
           src={user}
           onClick={() => setView('profile', {})}
