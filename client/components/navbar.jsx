@@ -23,9 +23,9 @@ export default function NavBar(props) {
     stats = 'nav-icon';
     user = 'nav-icon';
   } else {
-    search = 'nav-icon-active';
+    search = 'nav-icon';
     place = 'nav-icon';
-    stats = 'nav-icon';
+    stats = 'nav-icon-active';
     user = 'nav-icon';
   }
   return (
@@ -43,7 +43,7 @@ export default function NavBar(props) {
         /> */}
         <i onClick={() => setView('search', {})} className={'fas fa-search ' + search}></i>
         <i onClick={() => setView('map', {})} className={'fas fa-map-marker-alt ' + place}></i>
-        <i className={'fas fa-chart-bar ' + stats }></i>
+        <i onClick={() => setView('crime-rates', {})} className={'fas fa-chart-bar ' + stats }></i>
         <i onClick={() => setView('profile', {})} className={'fas fa-user ' + user}></i>
         {/* <img
           src={user}
