@@ -99,6 +99,7 @@ export default class App extends React.Component {
   render() {
     const view = this.state.view.name;
     let renderPage;
+    let renderNavBar;
     if (view === 'login') {
       renderPage = <Login getProfile={this.getProfile} setView={this.setView}/>;
     } else if (view === 'search') {
@@ -135,6 +136,9 @@ export default class App extends React.Component {
     } else if (view === 'bookmarks') {
       renderPage = <Bookmarks profile={this.state.profile} setView={this.setView}/>;
     }
+    if (this.state.view.name !== 'login' && this.state.view.name !== 'search') {
+      renderNavBar = <NavBar view={this.state.view.name} setView={this.setView} />;
+    }
     return (
       <>
         { this.state.disclaimer &&
@@ -143,9 +147,7 @@ export default class App extends React.Component {
         <div>
           {renderPage}
         </div>
-        { this.state.view.name !== 'login' &&
-          <NavBar view={this.state.view.name} setView={this.setView} />
-        }
+        {renderNavBar}
       </>
     );
   }

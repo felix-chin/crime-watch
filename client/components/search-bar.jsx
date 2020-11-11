@@ -72,7 +72,7 @@ export default class SearchBar extends React.Component {
               autoComplete="off"
               onChange={this.handleChange} />
             <div className="input-group-append">
-              <button type="submit" className="d-flex align-items-center btn bg-color input-group-append">
+              <button type="submit" className="d-flex align-items-center btn btn-color input-group-append">
                 <i className="fas fa-search fa-fw search-button" ></i>
               </button>
             </div>
