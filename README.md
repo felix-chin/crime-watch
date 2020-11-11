@@ -30,7 +30,6 @@ Best viewed in iPhone 6/7/8.
 - User can search for crime rates by city.
 - User can view crime incidents plotted on a map.
 - User can view a crime heatmap.
-- User can compare crime rates between two cities.
 - User can view a list of crime incidents organized by crime type.
 - User can view a detailed description of a crime incident.
 - User can bookmark specific crime incidents.
