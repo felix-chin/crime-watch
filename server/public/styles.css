@@ -256,15 +256,20 @@ option:hover {
   font-size: 22px;
 }
 
+.loader-container {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
 .loader {
   margin: 20px 20px;
   border: 5px solid white;
   border-top: 5px solid #3498db;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  width: 100px;
+  height: 100px;
   animation: spin 2s linear infinite;
-  display: none;
 }
 
 @keyframes spin {

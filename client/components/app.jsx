@@ -14,6 +14,7 @@ import Bookmarks from './bookmarks';
 import SearchHistory from './search-history';
 import Profile from './profile';
 import Disclaimer from './disclaimer';
+import Loader from './loader';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +28,8 @@ export default class App extends React.Component {
       stats1: [],
       stats2: [],
       coords: [],
-      disclaimer: true
+      disclaimer: true,
+      loading: false
     };
     this.setView = this.setView.bind(this);
     this.getStats1 = this.getStats1.bind(this);
@@ -36,6 +38,10 @@ export default class App extends React.Component {
     this.editProfile = this.editProfile.bind(this);
     this.getCoords = this.getCoords.bind(this);
     this.closeDisclaimer = this.closeDisclaimer.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ loading: false });
   }
 
   getCoords(coordsArray) {
@@ -52,10 +58,17 @@ export default class App extends React.Component {
   }
 
   getStats1(location) {
-    fetch(`/api/stats/${location}`)
-      .then(res => res.json())
-      .then(data => this.setState({ stats1: data }))
-      .catch(err => console.error(err));
+    this.setState({ loading: true }, () => {
+      fetch(`/api/stats/${location}`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            stats1: data,
+            loading: false
+          });
+        })
+        .catch(err => console.error(err));
+    });
   }
 
   getStats2(location) {
@@ -66,10 +79,17 @@ export default class App extends React.Component {
   }
 
   getProfile(userId) {
-    fetch(`/api/users/${userId}`)
-      .then(res => res.json())
-      .then(data => this.setState({ profile: data }))
-      .catch(err => console.error(err));
+    this.setState({ loading: true }, () => {
+      fetch(`/api/users/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            profile: data,
+            loading: false
+          });
+        })
+        .catch(err => console.error(err));
+    });
   }
 
   editProfile(userId, profile) {
@@ -139,14 +159,16 @@ export default class App extends React.Component {
     if (this.state.view.name !== 'login' && this.state.view.name !== 'search') {
       renderNavBar = <NavBar view={this.state.view.name} setView={this.setView} />;
     }
+
     return (
       <>
         { this.state.disclaimer &&
           <Disclaimer closeDisclaimer={this.closeDisclaimer} />
         }
-        <div>
-          {renderPage}
-        </div>
+        { this.state.loading
+          ? <Loader />
+          : <div>{renderPage}</div>
+        }
         {renderNavBar}
       </>
     );
