@@ -33,7 +33,7 @@ export default class HeatMap extends React.Component {
       }),
       map: this.map,
       radius: 40,
-      opacity: 0.4
+      opacity: 0.8
     });
   }
 
@@ -46,6 +46,7 @@ export default class HeatMap extends React.Component {
         lat: 34.052235,
         lng: -118.243683
       },
+      mapTypeId: 'satellite',
       disableDefaultUI: true
     });
     this.getData();
