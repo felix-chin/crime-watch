@@ -15,7 +15,7 @@ export default class Profile extends React.Component {
     } else if (profile.userId === 2) {
       profilePic = './images/tim.png';
     } else if (profile.userId === 3) {
-      profilePic = './images/guy.jpg';
+      profilePic = './images/pika.png';
     }
     return (
       <>

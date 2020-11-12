@@ -8,8 +8,7 @@ const crimesLA = require('../data/crimes-la.json');
 const statsLA = require('../data/stats-la.json').report_types;
 const statsSF = require('../data/stats-sf.json').report_types;
 const app = express();
-// const statsLA = statsLA.report_types;
-// const statsSF = statsSF.report_types;
+
 const typeMap = {
   'Theft From Motor Vehicle': 'property',
   'All Other Larceny': 'property',

@@ -200,7 +200,7 @@ COPY public.searches ("searchId", "userId", location, "createdAt") FROM stdin;
 --
 
 COPY public.users ("userId", username, name, "defaultLocation") FROM stdin;
-3	flavor_town	Guy Fieri	Chicago
+3	crime_watcher	Detective Pikachu	Chicago
 1	anime_kotaku	Uzair Ashraf	Los Angeles
 2	final_boss	Tim Davis	San Francisco
 \.

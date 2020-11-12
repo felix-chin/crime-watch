@@ -15,7 +15,7 @@ export default class ProfileDrawer extends React.Component {
 
   render() {
     const openedMenu = {
-      bottom: '53px',
+      bottom: '46px',
       transition: 'bottom 0.7s'
     };
     const closedMenu = {
