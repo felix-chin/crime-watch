@@ -37,7 +37,7 @@ export default class Login extends React.Component {
                 <option className='dropdown-item' value="" disabled >Select User</option>
                 <option className='dropdown-item' value="1">anime_kotaku</option>
                 <option className='dropdown-item' value="2">final_boss</option>
-                <option className='dropdown-item' value="3">flavor_town</option>
+                <option className='dropdown-item' value="3">crime_watcher</option>
               </select>
               <div className='mt-5'>
                 <button className='roboto-font btn login-btn'>Log In</button>

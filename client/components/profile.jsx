@@ -2,11 +2,6 @@ import React from 'react';
 import ProfileDrawer from './profile-drawer';
 
 export default class Profile extends React.Component {
-  componentDidMount() {
-    const profile = this.props.profile;
-    this.props.getProfile(profile.userId);
-  }
-
   render() {
     const profile = this.props.profile;
     let profilePic;
@@ -15,7 +10,7 @@ export default class Profile extends React.Component {
     } else if (profile.userId === 2) {
       profilePic = './images/tim.png';
     } else if (profile.userId === 3) {
-      profilePic = './images/guy.jpg';
+      profilePic = './images/pika.png';
     }
     return (
       <>
