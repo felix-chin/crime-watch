@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchHistoryList from './search-history-list';
+import ProfileDrawer from './profile-drawer';
 
 export default class SearchHistory extends React.Component {
   constructor(props) {
@@ -23,22 +24,16 @@ export default class SearchHistory extends React.Component {
   }
 
   render() {
-    const setView = this.props.setView;
     return (
-      <div className="container nav-padding" >
-        <div className='back-button-container mt-2'>
-          <span onClick={() => setView('profile', {})} className="cursor-pointer back">
-            <i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
-          </span>
+      <>
+        <ProfileDrawer setView={this.props.setView} />
+        <div className="container" >
+          <h1 className="quantico-font text-center mt-5 mb-3">Search History</h1>
+          <div>
+            <SearchHistoryList searches={this.state.searches} />
+          </div>
         </div>
-        <div className="d-flex justify-content-center mt-4 mb-4" >
-          <img src="./images/history.png" alt="search-history" className="mr-3 images" />
-          <h1 className="quantico-font">Search History</h1>
-        </div>
-        <div>
-          <SearchHistoryList searches={this.state.searches} />
-        </div>
-      </div>
+      </>
     );
   }
 }

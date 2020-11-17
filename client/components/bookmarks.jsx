@@ -1,5 +1,6 @@
 import React from 'react';
 import BookmarkList from './bookmark-list';
+import ProfileDrawer from './profile-drawer';
 
 export default class Bookmarks extends React.Component {
   constructor(props) {
@@ -43,19 +44,12 @@ export default class Bookmarks extends React.Component {
   }
 
   render() {
-    const setView = this.props.setView;
     return (
       <>
+        <ProfileDrawer setView={this.props.setView} />
         <div className="container ">
-          <span onClick={() => setView('profile', {})} className="cursor-pointer back">
-            <i className="fa fa-arrow-left fa-lg mt-3" aria-hidden="true"></i>
-          </span>
-          <header className='d-flex justify-content-center mt-3'>
-            <h1 className="quantico-font text-center">Bookmarked Incidents</h1>
-          </header>
-          <div className='row mt-3 align-items-center roboto-font'>
-            <BookmarkList bookmarks={this.state.userBookmarks} />
-          </div>
+          <h1 className="quantico-font text-center mt-5 mb-3">Bookmarked Incidents</h1>
+          <BookmarkList bookmarks={this.state.userBookmarks} />
         </div>
       </>
     );
