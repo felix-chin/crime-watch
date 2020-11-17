@@ -41,10 +41,10 @@ export default function NavBar(props) {
           onClick={() => setView('map', {})}
           className="nav-icon cursor-pointer"
         /> */}
-        <i onClick={() => setView('search', {})} className={'fas fa-search ' + search}></i>
-        <i onClick={() => setView('map', {})} className={'fas fa-map-marker-alt ' + place}></i>
-        <i onClick={() => setView('crime-rates', {})} className={'fas fa-chart-bar ' + stats }></i>
-        <i onClick={() => setView('profile', {})} className={'fas fa-user ' + user}></i>
+        <i onClick={() => setView('search', {})} className={'cursor-pointer fas fa-search ' + search}></i>
+        <i onClick={() => setView('map', {})} className={'cursor-pointer fas fa-map-marker-alt ' + place}></i>
+        <i onClick={() => setView('crime-rates', {})} className={'cursor-pointer fas fa-chart-bar ' + stats }></i>
+        <i onClick={() => setView('profile', {})} className={'cursor-pointer fas fa-user ' + user}></i>
         {/* <img
           src={user}
           onClick={() => setView('profile', {})}
