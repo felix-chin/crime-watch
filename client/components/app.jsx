@@ -37,10 +37,6 @@ export default class App extends React.Component {
     this.closeDisclaimer = this.closeDisclaimer.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ loading: false });
-  }
-
   getCoords(coordsArray) {
     this.setState({ coords: coordsArray });
   }
@@ -50,7 +46,8 @@ export default class App extends React.Component {
       view: {
         name: name,
         params: params
-      }
+      },
+      loading: false
     });
   }
 
@@ -60,8 +57,7 @@ export default class App extends React.Component {
         .then(res => res.json())
         .then(data => {
           this.setState({
-            stats: data,
-            loading: false
+            stats: data
           });
         })
         .catch(err => console.error(err));
