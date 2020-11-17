@@ -96,10 +96,8 @@ export default class Map extends React.Component {
 
   render() {
     const setView = this.props.setView;
-
     return (
       <>
-        {/* <i className="fa fa-arrow-left fa-2x mt-3 backToDetails pointer" aria-hidden="true" onClick={() => this.props.setView('crime-rates', { type: this.props.type })}></i> */}
         <button onClick={() => setView('heat-map', {})} className="standardMapView shadow roboto-font" style={{ zIndex: 1 }}>View Heat Map</button>
         <div
           ref={this.googleMapContainerRef}

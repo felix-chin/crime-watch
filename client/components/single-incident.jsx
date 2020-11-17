@@ -2,10 +2,12 @@ import React from 'react';
 import IncidentMap from './map-single-incident';
 
 class SingleIncident extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = { userId: 2, isBookmarked: null, bookmarkId: null };
+    this.state = {
+      isBookmarked: null,
+      bookmarkId: null
+    };
   }
 
   componentDidMount() {
