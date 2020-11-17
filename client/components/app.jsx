@@ -23,7 +23,6 @@ export default class App extends React.Component {
         name: 'login',
         params: {}
       },
-      users: [],
       profile: {},
       stats: [],
       coords: [],
@@ -70,17 +69,14 @@ export default class App extends React.Component {
   }
 
   getProfile(userId) {
-    this.setState({ loading: true }, () => {
-      fetch(`/api/users/${userId}`)
-        .then(res => res.json())
-        .then(data => {
-          this.setState({
-            profile: data,
-            loading: false
-          });
-        })
-        .catch(err => console.error(err));
-    });
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          profile: data
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   editProfile(userId, profile) {
@@ -89,16 +85,11 @@ export default class App extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(profile)
     })
-      .then(response => response.json())
-      .then(updatedProfile => {
-        const newUsers = this.state.users.map(user => {
-          if (user.userId === 6) {
-            return updatedProfile;
-          } else {
-            return user;
-          }
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          profile: data
         });
-        this.setState({ users: newUsers });
       })
       .catch(err => console.error(err));
   }

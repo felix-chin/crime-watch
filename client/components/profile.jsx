@@ -2,6 +2,11 @@ import React from 'react';
 import ProfileDrawer from './profile-drawer';
 
 export default class Profile extends React.Component {
+  componentDidMount() {
+    const profile = this.props.profile;
+    this.props.getProfile(profile.userId);
+  }
+
   render() {
     const profile = this.props.profile;
     const setView = this.props.setView;
