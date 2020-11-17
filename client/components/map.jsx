@@ -33,7 +33,7 @@ export default class Map extends React.Component {
 
   displayMarkers() {
     const coords = this.state.coords;
-    let openWindow = false;
+    const infoWindow = new google.maps.InfoWindow();
     const icons = {
       highTech: '../images/crimes/high-tech-small.png',
       organized: '../images/crimes/organized-crime-small.png',
@@ -45,22 +45,16 @@ export default class Map extends React.Component {
     };
 
     coords.forEach((coord, index) => {
-      new google.maps.Marker({
+      const marker = new google.maps.Marker({
         position: { lat: coord.lat, lng: coord.lng },
         map: this.map,
         icon: icons[typeMap[coord.type]]
-      })
-        .addListener('click', event => {
-          const infoWindow = new google.maps.InfoWindow({
-            content: this.displayInfoWindowText(index)
-          });
-          infoWindow.setPosition(event.latLng);
-          if (openWindow) {
-            openWindow.close();
-          }
-          openWindow = infoWindow;
-          infoWindow.open(this.map);
-        });
+      });
+
+      marker.addListener('click', event => {
+        infoWindow.setContent(this.displayInfoWindowText(index));
+        infoWindow.open(this.map, marker);
+      });
     });
   }
 
