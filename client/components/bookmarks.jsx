@@ -14,14 +14,6 @@ export default class Bookmarks extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/bookmarks')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          allBookmarks: data
-        });
-      })
-      .catch(err => console.error(err));
     this.getUserBookmarks();
   }
 
