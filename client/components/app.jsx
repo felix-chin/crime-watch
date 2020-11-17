@@ -25,15 +25,13 @@ export default class App extends React.Component {
       },
       users: [],
       profile: {},
-      stats1: [],
-      stats2: [],
+      stats: [],
       coords: [],
       disclaimer: true,
       loading: false
     };
     this.setView = this.setView.bind(this);
-    this.getStats1 = this.getStats1.bind(this);
-    this.getStats2 = this.getStats2.bind(this);
+    this.getStats = this.getStats.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.getCoords = this.getCoords.bind(this);
@@ -57,25 +55,18 @@ export default class App extends React.Component {
     });
   }
 
-  getStats1(location) {
+  getStats(location) {
     this.setState({ loading: true }, () => {
       fetch(`/api/stats/${location}`)
         .then(res => res.json())
         .then(data => {
           this.setState({
-            stats1: data,
+            stats: data,
             loading: false
           });
         })
         .catch(err => console.error(err));
     });
-  }
-
-  getStats2(location) {
-    fetch(`/api/stats/${location}`)
-      .then(res => res.json())
-      .then(data => this.setState({ stats2: data }))
-      .catch(err => console.error(err));
   }
 
   getProfile(userId) {
@@ -123,13 +114,13 @@ export default class App extends React.Component {
     if (view === 'login') {
       renderPage = <Login getProfile={this.getProfile} setView={this.setView}/>;
     } else if (view === 'search') {
-      renderPage = <SearchPage profile={this.state.profile} getStats={this.getStats1} setView={this.setView} getCoords={this.getCoords}/>;
+      renderPage = <SearchPage profile={this.state.profile} getStats={this.getStats} setView={this.setView} getCoords={this.getCoords}/>;
     } else if (view === 'compare') {
-      renderPage = <Compare getStats1={this.getStats1} getStats2={this.getStats2} setView={this.setView} />;
+      renderPage = <Compare getStats={this.getStats} setView={this.setView} />;
     } else if (view === 'compare-rate-list') {
-      renderPage = <CompareRateList locations={this.state.view.params} stats1={this.state.stats1} stats2={this.state.stats2} setView={this.setView} />;
+      renderPage = <CompareRateList locations={this.state.view.params} stats={this.state.stats} setView={this.setView} />;
     } else if (view === 'crime-rates') {
-      renderPage = <CrimeRateList stats={this.state.stats1} setView={this.setView}/>;
+      renderPage = <CrimeRateList stats={this.state.stats} setView={this.setView}/>;
     } else if (view === 'crime-details') {
       renderPage = <CrimeDetailsList setView={this.setView} type={this.state.view.params.type} />;
     } else if (view === 'map') {
