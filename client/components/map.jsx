@@ -33,7 +33,7 @@ export default class Map extends React.Component {
 
   displayMarkers() {
     const coords = this.state.coords;
-
+    let openWindow = false;
     const icons = {
       highTech: '../images/crimes/high-tech-small.png',
       organized: '../images/crimes/organized-crime-small.png',
@@ -55,8 +55,11 @@ export default class Map extends React.Component {
             content: this.displayInfoWindowText(index)
           });
           infoWindow.setPosition(event.latLng);
+          if (openWindow) {
+            openWindow.close();
+          }
+          openWindow = infoWindow;
           infoWindow.open(this.map);
-          setTimeout(() => { infoWindow.close(); }, 5000);
         });
     });
   }
