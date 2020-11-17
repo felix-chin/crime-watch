@@ -35,9 +35,9 @@ export default class Login extends React.Component {
               <p>Select a user to log in</p>
               <select style={{ fontSize: '18px' }} className='select-option btn btn-group dropdown roboto-font w-75' type="button" value={this.state.activeUser} required onChange={this.handleChange}>
                 <option className='dropdown-item' value="" disabled >Select User</option>
+                <option className='dropdown-item' value="3">crime_watcher</option>
                 <option className='dropdown-item' value="1">anime_kotaku</option>
                 <option className='dropdown-item' value="2">final_boss</option>
-                <option className='dropdown-item' value="3">crime_watcher</option>
               </select>
               <div className='mt-5'>
                 <button className='roboto-font btn login-btn'>Log In</button>

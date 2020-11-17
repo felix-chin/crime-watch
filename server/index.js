@@ -93,20 +93,6 @@ app.get('/api/users/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/bookmarks', (req, res, next) => {
-  const sql = `
-    select *
-    from "bookmarks"
-  `;
-
-  db.query(sql)
-    .then(result => {
-      const bookmarks = result.rows;
-      res.json(bookmarks);
-    })
-    .catch(err => next(err));
-});
-
 app.get('/api/bookmarks/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const sql = `
@@ -210,48 +196,6 @@ app.get('/api/stats/:location', (req, res, next) => {
   res.send(crimeRates);
 });
 
-app.post('/api/bookmarks/:userId', (req, res, next) => {
-  const userId = parseInt(req.params.userId, 10);
-  const incident = req.body;
-  const sql = `
-    insert into "bookmarks" ("userId", "incident")
-    values ($1, $2)
-    returning *
-  `;
-  const params = [userId, incident];
-
-  db.query(sql, params)
-    .then(result => {
-      const bookmarkedIncident = result.rows[0];
-      res.status(201).json(bookmarkedIncident);
-    })
-    .catch(err => next(err));
-});
-
-app.post('/api/users', (req, res, next) => {
-  const sql = `
-    insert into "users" ("username", "name", "defaultLocation")
-    values ($1, $2, $3)
-    returning *;
-  `;
-  const username = req.body.username;
-  const name = req.body.name;
-  const location = req.body.defaultLocation;
-
-  const params = [username, name, location];
-
-  db.query(sql, params)
-    .then(result => {
-      if (!result.rows) {
-        throw new ClientError('Please provide a valid location', 400);
-      } else {
-        const location = result.rows[0];
-        res.status(201).json(location);
-      }
-    })
-    .catch(err => next(err));
-});
-
 app.patch('/api/users/:userId', (req, res, next) => {
   const userId = parseInt(req.params.userId, 10);
   const defaultLocation = req.body.defaultLocation;
@@ -272,6 +216,24 @@ app.patch('/api/users/:userId', (req, res, next) => {
       } else {
         res.status(201).json(editProfile);
       }
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/bookmarks/:userId', (req, res, next) => {
+  const userId = parseInt(req.params.userId, 10);
+  const incident = req.body;
+  const sql = `
+    insert into "bookmarks" ("userId", "incident")
+    values ($1, $2)
+    returning *
+  `;
+  const params = [userId, incident];
+
+  db.query(sql, params)
+    .then(result => {
+      const bookmarkedIncident = result.rows[0];
+      res.status(201).json(bookmarkedIncident);
     })
     .catch(err => next(err));
 });

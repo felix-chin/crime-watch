@@ -58,12 +58,28 @@ export default class EditProfile extends React.Component {
             <div className="form-group">
               <label className="h5 roboto-font">Name:</label>
               <br />
-              <input onChange={this.handleChange} type="text" value={name} name="name" id="name" className="mb- form-control"></input>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                value={name}
+                name="name"
+                id="name"
+                autoComplete="off"
+                className="mb-3 form-control"
+              />
             </div>
             <div className="form-group">
               <label className="h5 roboto-font">Default Location:</label>
               <br />
-              <input onChange={this.handleChange} type="text" value={defaultLocation} name="defaultLocation" id="defaultLocation" className="mb-3 form-control"></input>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                value={defaultLocation}
+                name="defaultLocation"
+                id="defaultLocation"
+                autoComplete="off"
+                className="mb-3 form-control"
+              />
             </div>
             <br />
             <div className="d-flex justify-content-center">

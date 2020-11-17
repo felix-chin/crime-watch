@@ -4,11 +4,7 @@ export default class CompareRateList extends React.Component {
   render() {
     const locations = this.props.locations;
     const setView = this.props.setView;
-    const statsObj1 = this.props.stats1;
-    const statsObj2 = this.props.stats2;
-    for (const key in statsObj2) {
-      statsObj1[key].rate2 = statsObj2[key].rate;
-    }
+    const statsObj1 = this.props.stats;
     const compareRateListItems = Object.keys(statsObj1).map((item, i) => {
       return (
         <CompareRateListItem
