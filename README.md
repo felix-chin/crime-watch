@@ -18,7 +18,7 @@ Best viewed in iPhone 6/7/8.
 - Node.js
 - PostgreSQL
 - Express
-- Webpack 4
+- webpack
 - Babel
 - Bootstrap 4
 - HTML5
