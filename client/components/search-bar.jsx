@@ -1,6 +1,7 @@
 import React from 'react';
 import Geocode from 'react-geocode';
 
+const apiKey = process.env.API_KEY;
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,7 @@ export default class SearchBar extends React.Component {
     this.saveSearch(profile.userId);
     getStats('la');
 
-    Geocode.setApiKey('AIzaSyC37G_TaabnjhwNuCove5iXzL_qQmS7X7E');
+    Geocode.setApiKey(apiKey);
     Geocode.setLanguage('en');
 
     const location = this.state.location;
