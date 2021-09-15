@@ -28,7 +28,7 @@ export default class SearchBar extends React.Component {
     this.saveSearch(profile.userId);
     getStats('la');
 
-    Geocode.setApiKey('AIzaSyCC9N0oTNTZ8FTEfuuTFDj3hb3Eby1vt_w');
+    Geocode.setApiKey('AIzaSyC37G_TaabnjhwNuCove5iXzL_qQmS7X7E');
     Geocode.setLanguage('en');
 
     const location = this.state.location;
