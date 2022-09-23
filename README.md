@@ -4,14 +4,6 @@ A full stack mobile application for people who want to view and monitor crime ac
 
 This application utilizes [crimeometer](https://www.crimeometer.com), an API that provides raw crime data, and [Google Maps](https://developers.google.com/maps/documentation).
 
-## Live Demo
-
-Link to a live demo of the application: 
-
-https://crime-watch.felixchin.com
-
-Best viewed in iPhone 6/7/8.
-
 ## Technologies Used
 
 - React.js
